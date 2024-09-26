@@ -1,0 +1,180 @@
+version: '3.8'
+
+networks:
+  moots:
+    driver: bridge
+
+volumes:
+  redpanda-data:
+  redis-data:
+    driver: local
+
+services:
+  redpanda:
+    command:
+      - redpanda
+      - start
+      - --kafka-addr internal://0.0.0.0:9092,external://0.0.0.0:19092
+      - --advertise-kafka-addr internal://redpanda:9092,external://redpanda:19092
+      - --pandaproxy-addr internal://0.0.0.0:8082,external://0.0.0.0:18082
+      - --advertise-pandaproxy-addr internal://redpanda:8082,external://redpanda:18082
+      - --schema-registry-addr internal://0.0.0.0:8081,external://0.0.0.0:18081
+      - --rpc-addr redpanda:33145
+      - --advertise-rpc-addr redpanda:33145
+      - --mode dev-container
+      - --smp 1
+      - --default-log-level=info
+    image: docker.redpanda.com/redpandadata/redpanda:v24.2.3
+    container_name: redpanda
+    volumes:
+      - redpanda-data:/var/lib/redpanda/data
+    networks:
+      - moots
+    ports:
+      - 18081:18081
+      - 18082:18082
+      - 19092:19092
+      - 19644:9644
+
+  console:
+    container_name: redpanda-console
+    image: docker.redpanda.com/redpandadata/console:v2.7.1
+    networks:
+      - moots
+    entrypoint: /bin/sh
+    command: -c 'echo "$$CONSOLE_CONFIG_FILE" > /tmp/config.yml; /app/console'
+    environment:
+      CONFIG_FILEPATH: /tmp/config.yml
+      CONSOLE_CONFIG_FILE: |
+        kafka:
+          brokers: ["redpanda:9092"]
+          schemaRegistry:
+            enabled: true
+            urls: ["http://redpanda:8081"]
+        redpanda:
+          adminApi:
+            enabled: true
+            urls: ["http://redpanda:9644"]
+    ports:
+      - 8090:8080
+    depends_on:
+      - redpanda
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    volumes:
+      - redis-data:/data
+    ports:
+      - 6379:6379
+      - 16379:16379
+    networks:
+      - moots
+
+  cache:
+    container_name: cache
+    image: redis:latest
+    volumes:
+      - redis-data:/data
+    ports:
+      - 6380:6379
+      - 16380:16379
+    networks:
+      - moots
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: bitnami/elasticsearch:latest
+    ports:
+      - 9200:9200
+      - 9300:9300
+    networks:
+      - moots
+
+  api-post:
+    build:
+      context: ./api-post
+      dockerfile: Dockerfile
+    environment:
+      - SPRING.KAFKA.BOOTSTRAP-SERVERS=redpanda:19092
+      - SPRING.REDIS.HOST=cache
+      - SPRING.REDIS.PORT=6380
+      - SPRING.DATA.REDIS.HOST=redis
+      - SPRING.DATA.REDIS.PORT=6379
+    ports:
+      - 8081:8081
+    depends_on:
+      - redis
+      - redpanda
+      - cache
+    networks:
+      - moots
+
+  api-usuarios:
+    build:
+      context: ./api-usuarios
+      dockerfile: Dockerfile
+    environment:
+      - SPRING.KAFKA.BOOTSTRAP-SERVERS=redpanda:19092
+      - SPRING.REDIS.HOST=cache
+      - SPRING.REDIS.PORT=6380
+      - SPRING.DATA.REDIS.HOST=redis
+      - SPRING.DATA.REDIS.PORT=6379
+    ports:
+      - 8083:8083
+    depends_on:
+      - redis
+      - redpanda
+      - cache
+    networks:
+      - moots
+
+  api-reporte:
+    build:
+      context: ./api-reporte-main
+      dockerfile: Dockerfile
+    environment:
+      - SPRING.KAFKA.BOOTSTRAP-SERVERS=redpanda:19092
+      - SPRING.REDIS.HOST=cache
+      - SPRING.REDIS.PORT=6380
+    ports:
+      - 8082:8082
+    depends_on:
+      - redpanda
+      - cache
+    networks:
+      - moots
+
+  api-notificacao:
+    build:
+      context: ./api-notificacao
+      dockerfile: Dockerfile
+    environment:
+      - SPRING.KAFKA.BOOTSTRAP-SERVERS=redpanda:19092
+      - SPRING.REDIS.HOST=cache
+      - SPRING.REDIS.PORT=6380
+    ports:
+      - 8084:8084
+    depends_on:
+      - redpanda
+      - cache
+    networks:
+      - moots
+
+  api-busca:
+    build:
+      context: ./api-busca
+      dockerfile: Dockerfile
+    environment:
+      - SPRING_ELASTICSEARCH_URIS=elasticsearch:9200
+      - SPRING.KAFKA.BOOTSTRAP-SERVERS=redpanda:19092
+      - SPRING.REDIS.HOST=cache
+      - SPRING.REDIS.PORT=6380
+    ports:
+      - 8085:8085
+    depends_on:
+      - elasticsearch
+      - redpanda
+      - cache
+    networks:
+      - moots
