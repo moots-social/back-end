@@ -14,7 +14,6 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -66,6 +65,8 @@ public class PostService {
                 .orElseThrow(() -> new NoSuchElementException("Post não encontrado"));
     }
 
+    //criar um tópico para atualização do post
+    @CacheEvict(value = "post", key = "#postId")
     public Post darLike(Long postId, boolean like) throws Exception {
         var idUser = Utils.buscarIdToken();
         String evento = "Curtiu";
@@ -85,6 +86,8 @@ public class PostService {
         return postRepository.save(post);
     }
 
+    //criar um tópico para atualização do post
+    @CacheEvict(value = "post", key = "#postId")
     public Post darDeslike(Long postId, boolean deslike)  {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new NoSuchElementException("Post não encontrado"));

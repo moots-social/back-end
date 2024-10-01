@@ -40,18 +40,6 @@ services:
       - moots
     restart: unless-stopped
 
-#  cache:
-#    container_name: cache
-#    image: redis:latest
-#    volumes:
-#      - redis-data:/data
-#    ports:
-#      - 6380:6379
-#      - 16380:16379
-#    networks:
-#      - moots
-#    restart: unless-stopped
-
   elasticsearch:
     container_name: elasticsearch
     image: bitnami/elasticsearch:latest
@@ -97,8 +85,8 @@ services:
       - SPRING.KAFKA.BOOTSTRAP-SERVERS=redpanda:19092
       - SPRING.REDIS.HOST=redisDB
       - SPRING.REDIS.PORT=6379
-#      - SPRING.DATA.REDIS.HOST=redisDB
-#      - SPRING.DATA.REDIS.PORT=6379
+      - SPRING.DATA.REDIS.HOST=redisDB
+      - SPRING.DATA.REDIS.PORT=6379
       - SPRING.NEO4J.URI=bolt://neo4j:7687
       - SPRING.NEO4J.AUTHENTICATION.USERNAME=neo4j
       - SPRING.NEO4J.AUTHENTICATION.PASSWORD=admin123

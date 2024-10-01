@@ -43,6 +43,7 @@ public class PostController {
         return ResponseEntity.ok().body(post);
     }
 
+    //Alterar o método para PutMapping
     @PostMapping("/dar-like")
     public ResponseEntity<Post> darLikePost(@RequestParam Long postId, @RequestParam boolean like) {
         try{
@@ -55,7 +56,7 @@ public class PostController {
         }
     }
 
-
+    //Alterar o método para PutMapping
     @PostMapping("/dar-deslike")
     public Post darDeslikePost(@RequestParam Long postId, @RequestParam boolean deslike){
         return postService.darDeslike(postId, deslike);

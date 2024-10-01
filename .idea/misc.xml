@@ -5,7 +5,6 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/api-post/pom.xml" />
-        <option value="$PROJECT_DIR$/api-busca/pom.xml" />
         <option value="$PROJECT_DIR$/api-usuarios/pom.xml" />
         <option value="$PROJECT_DIR$/api-notificacao/pom.xml" />
         <option value="$PROJECT_DIR$/api-reporte-main/pom.xml" />
