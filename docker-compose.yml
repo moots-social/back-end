@@ -1,14 +1,5 @@
 version: '3.8'
 
-networks:
-  moots:
-    driver: bridge
-
-volumes:
-  redpanda-data:
-  redis-data:
-    driver: local
-
 services:
   redpanda:
     command:
@@ -35,52 +26,31 @@ services:
       - 18082:18082
       - 19092:19092
       - 19644:9644
+    restart: unless-stopped
 
-  console:
-    container_name: redpanda-console
-    image: docker.redpanda.com/redpandadata/console:v2.7.1
-    networks:
-      - moots
-    entrypoint: /bin/sh
-    command: -c 'echo "$$CONSOLE_CONFIG_FILE" > /tmp/config.yml; /app/console'
-    environment:
-      CONFIG_FILEPATH: /tmp/config.yml
-      CONSOLE_CONFIG_FILE: |
-        kafka:
-          brokers: ["redpanda:9092"]
-          schemaRegistry:
-            enabled: true
-            urls: ["http://redpanda:8081"]
-        redpanda:
-          adminApi:
-            enabled: true
-            urls: ["http://redpanda:9644"]
-    ports:
-      - 8090:8080
-    depends_on:
-      - redpanda
-
-  redis:
-    container_name: redis
+  redisDB:
+    container_name: redisDB
     image: redis:latest
     volumes:
-      - redis-data:/data
+      - redisDB-data:/data
     ports:
       - 6379:6379
       - 16379:16379
     networks:
       - moots
+    restart: unless-stopped
 
-  cache:
-    container_name: cache
-    image: redis:latest
-    volumes:
-      - redis-data:/data
-    ports:
-      - 6380:6379
-      - 16380:16379
-    networks:
-      - moots
+#  cache:
+#    container_name: cache
+#    image: redis:latest
+#    volumes:
+#      - redis-data:/data
+#    ports:
+#      - 6380:6379
+#      - 16380:16379
+#    networks:
+#      - moots
+#    restart: unless-stopped
 
   elasticsearch:
     container_name: elasticsearch
@@ -90,91 +60,154 @@ services:
       - 9300:9300
     networks:
       - moots
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    restart: unless-stopped
 
   api-post:
+    container_name: api-post
     build:
       context: ./api-post
       dockerfile: Dockerfile
     environment:
       - SPRING.KAFKA.BOOTSTRAP-SERVERS=redpanda:19092
-      - SPRING.REDIS.HOST=cache
-      - SPRING.REDIS.PORT=6380
-      - SPRING.DATA.REDIS.HOST=redis
+      - SPRING.REDIS.HOST=redisDB
+      - SPRING.REDIS.PORT=6379
+      - SPRING.DATA.REDIS.HOST=redisDB
       - SPRING.DATA.REDIS.PORT=6379
+      - SPRING.NEO4J.URI=bolt://neo4j:7687
+      - SPRING.NEO4J.AUTHENTICATION.USERNAME=neo4j
+      - SPRING.NEO4J.AUTHENTICATION.PASSWORD=admin123
     ports:
       - 8081:8081
     depends_on:
-      - redis
+      - redisDB
       - redpanda
-      - cache
+      - neo4j
     networks:
       - moots
+    restart: unless-stopped
 
   api-usuarios:
+    container_name: api-usuarios
     build:
       context: ./api-usuarios
       dockerfile: Dockerfile
     environment:
       - SPRING.KAFKA.BOOTSTRAP-SERVERS=redpanda:19092
-      - SPRING.REDIS.HOST=cache
-      - SPRING.REDIS.PORT=6380
-      - SPRING.DATA.REDIS.HOST=redis
-      - SPRING.DATA.REDIS.PORT=6379
+      - SPRING.REDIS.HOST=redisDB
+      - SPRING.REDIS.PORT=6379
+#      - SPRING.DATA.REDIS.HOST=redisDB
+#      - SPRING.DATA.REDIS.PORT=6379
+      - SPRING.NEO4J.URI=bolt://neo4j:7687
+      - SPRING.NEO4J.AUTHENTICATION.USERNAME=neo4j
+      - SPRING.NEO4J.AUTHENTICATION.PASSWORD=admin123
     ports:
       - 8083:8083
     depends_on:
-      - redis
+      - redisDB
       - redpanda
-      - cache
+      - neo4j
     networks:
       - moots
+    restart: unless-stopped
 
   api-reporte:
+    container_name: api-reporte
     build:
       context: ./api-reporte-main
       dockerfile: Dockerfile
     environment:
       - SPRING.KAFKA.BOOTSTRAP-SERVERS=redpanda:19092
-      - SPRING.REDIS.HOST=cache
-      - SPRING.REDIS.PORT=6380
+      - SPRING.REDIS.HOST=redisDB
+      - SPRING.REDIS.PORT=6379
     ports:
       - 8082:8082
     depends_on:
       - redpanda
-      - cache
+      - redisDB
     networks:
       - moots
+    restart: unless-stopped
 
   api-notificacao:
+    container_name: api-notificacao
     build:
       context: ./api-notificacao
       dockerfile: Dockerfile
     environment:
       - SPRING.KAFKA.BOOTSTRAP-SERVERS=redpanda:19092
-      - SPRING.REDIS.HOST=cache
-      - SPRING.REDIS.PORT=6380
+      - SPRING.REDIS.HOST=redisDB
+      - SPRING.REDIS.PORT=6379
     ports:
       - 8084:8084
     depends_on:
       - redpanda
-      - cache
+      - redisDB
     networks:
       - moots
+    restart: unless-stopped
 
   api-busca:
+    container_name: api-busca
     build:
       context: ./api-busca
       dockerfile: Dockerfile
     environment:
       - SPRING_ELASTICSEARCH_URIS=elasticsearch:9200
       - SPRING.KAFKA.BOOTSTRAP-SERVERS=redpanda:19092
-      - SPRING.REDIS.HOST=cache
-      - SPRING.REDIS.PORT=6380
+      - SPRING.REDIS.HOST=redisDB
+      - SPRING.REDIS.PORT=6379
     ports:
       - 8085:8085
     depends_on:
       - elasticsearch
       - redpanda
-      - cache
+      - redisDB
     networks:
       - moots
+    restart: unless-stopped
+
+  api-gateway:
+    container_name: api-gateway
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - api-post
+      - api-usuarios
+      - api-reporte
+      - api-notificacao
+      - api-busca
+    networks:
+      - moots
+    restart: unless-stopped
+
+  neo4j:
+    container_name: neo4j
+    image: neo4j:5-community
+    environment:
+      - NEO4J_AUTH=neo4j/admin123
+    ports:
+      - 7474:7474
+      - 7687:7687
+    networks:
+      - moots
+    volumes:
+      - neo4j-data:/data
+    restart: unless-stopped
+
+networks:
+  moots:
+    driver: bridge
+
+volumes:
+  elasticsearch-data:
+  neo4j-data:
+  redpanda-data:
+  redisDB-data:
+    driver: local
+
+
