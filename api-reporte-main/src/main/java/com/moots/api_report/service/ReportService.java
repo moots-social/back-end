@@ -34,6 +34,10 @@ public class ReportService {
                 .orElseThrow(NoSuchElementException::new);
     }
 
+    public List<Report> findAll(){
+        return reportRepository.findAll();
+    }
+
     @Caching(evict = {
             @CacheEvict(value = "report-postId", key = "#postId"),
             @CacheEvict(value = "report", key = "#id") })

@@ -1,0 +1,6 @@
+
+š
+java:S2142"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(”ı¾J$fc32df5a-b6dc-4cfe-8c06-1f8a0799d503
+k	java:S106"+Replace this use of System.out by a logger.(³î±£şÿÿÿÿJ$fd12e509-e9ae-46a8-890e-5a14d653863e
+s
+java:S1128"2Remove this unused import 'java.util.Collections'.(¢³ïÓşÿÿÿÿJ$9e884f57-d443-47e1-b30e-3d6c8688fe15

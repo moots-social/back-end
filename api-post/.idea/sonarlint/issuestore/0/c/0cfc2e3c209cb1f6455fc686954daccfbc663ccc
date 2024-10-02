@@ -1,0 +1,17 @@
+
+p
+java:S3740"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿJ$388c0109-5401-45ff-9a20-d03250227873
+–
+java:S1192A"UDefine a constant instead of duplicating this literal "Post nÃ£o encontrado" 3 times.(£«œ×øÿÿÿÿJ$41cdf359-d77e-4032-a021-19f728c3c91d
+~
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞJ$d28df628-60ba-4367-8c0e-fb84e8dfef2b
+~
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞJ$e0c1fc73-8483-4818-8c63-f4c00cdc17f9
+~
+java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄÞJ$d52bbb43-4593-49b1-8c02-de087b25a6ea
+—
+java:S2159Q"VRemove this call to "equals"; comparisons between unrelated types always return false.(ÈËÕÂûÿÿÿÿJ$0e98daa9-de00-44d1-95ee-7f39bcd49d30
+„
+java:S1858U"C"getUserId" returns a string, there's no need to call "toString()".(®¥ñùûÿÿÿÿJ$f7a9fae6-30e6-4ca4-ad82-aa468a707c64
+„
+java:S1858b"C"getUserId" returns a string, there's no need to call "toString()".(®¥ñùûÿÿÿÿJ$5a46aff9-c032-4f66-9cae-e092fd765522

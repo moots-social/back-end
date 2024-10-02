@@ -33,6 +33,23 @@ public class PostService {
         return postRepository.save(post);
     }
 
+    public Post atualizarPostElastic(ElasticEvent elasticEvent){
+        var post = postRepository.findByPostId(elasticEvent.getPostId().toString());
+
+        post.setTag(elasticEvent.getTag());
+        post.setListImagens(elasticEvent.getListImagens());
+        post.setTexto(elasticEvent.getTexto());
+        post.setContadorLike(elasticEvent.getContadorLike());
+        post.setContadorDeslike(elasticEvent.getContadorDeslike());
+        post.setNomeCompleto(elasticEvent.getNomeCompleto());
+        post.setFotoPerfil(elasticEvent.getFotoPerfil());
+        post.setUserId(elasticEvent.getUserId());
+        post.setPostId(elasticEvent.getPostId());
+
+
+        return postRepository.save(post);
+    }
+
     public Post deletarPost(String postId){
         Post post = postRepository.findByPostId(postId);
         postRepository.deleteById(post.getId());

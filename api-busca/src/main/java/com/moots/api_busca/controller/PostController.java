@@ -34,6 +34,13 @@ public class PostController {
         log.info("Post deletado no Elastic Search");
     }
 
+    @KafkaListener(topics = "post-atualizado-topic")
+    public void atualizarPostElastic(ElasticEvent elasticEvent){
+        System.out.println("Mensagem recebida " + elasticEvent);
+        postService.atualizarPostElastic(elasticEvent);
+        log.info("Post atualizado no Elastic Search");
+    }
+
     @GetMapping("/all")
     public ResponseEntity<Iterable<Post>> allPosts(){
         var posts = postService.findAll();

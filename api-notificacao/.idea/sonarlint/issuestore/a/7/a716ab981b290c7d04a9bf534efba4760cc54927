@@ -1,0 +1,9 @@
+
+s
+java:S3655&"XCall "notification.isPresent()" or "!notification.isEmpty()" before accessing the value.(Ç”¡ºùÿÿÿÿ
+œ
+java:S11861"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÃšÙ“ÿÿÿÿÿ
+—
+java:S11864"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(—è
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ

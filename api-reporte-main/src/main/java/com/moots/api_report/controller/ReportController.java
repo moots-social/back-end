@@ -45,4 +45,11 @@ public class ReportController {
         var reports = reportService.findByPostId(postId);
         return ResponseEntity.ok().body(reports);
     }
+
+    @GetMapping
+    public ResponseEntity<List<Report>> findAll(){
+        var reports = reportService.findAll();
+        return ResponseEntity.ok().body(reports);
+    }
+
 }
