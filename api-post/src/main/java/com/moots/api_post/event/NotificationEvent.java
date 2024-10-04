@@ -26,4 +26,7 @@ public class NotificationEvent implements Serializable {
     private Date timestamp;
 
     private String myUserId;
+
+    private String fotoPerfil;
+
 }

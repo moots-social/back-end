@@ -13,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 public class ElasticEvent implements Serializable {
 
-
     private String userId;
 
     private Long postId;
@@ -31,5 +30,6 @@ public class ElasticEvent implements Serializable {
     private Integer contadorLike;
 
     private Integer contadorDeslike;
+
 }
 

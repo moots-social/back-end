@@ -79,7 +79,7 @@ public class UserService {
         User savedUser = userRepository.save(user);
         savedUser.setUserId(savedUser.getId());
 
-        kafkaProducerService.sendMessage("user-criado-topic", new ElasticEvent(user.getUserId().toString(), null, user.getNomeCompleto(), user.getTag(), user.getFotoPerfil(), null, null, null, null));
+        kafkaProducerService.sendMessage("user-criado-topic", new ElasticEvent(user.getUserId().toString(), null, user.getNomeCompleto(), user.getTag(), user.getFotoPerfil(), null, null, null, null, user.getCurso()));
         return userRepository.save(savedUser);
     }
 
@@ -113,7 +113,7 @@ public class UserService {
             }
 
             userRepository.save(user.get());
-            kafkaProducerService.sendMessage("user-alterado-topic", new ElasticEvent(user.get().getUserId().toString(), null, user.get().getNomeCompleto(), user.get().getTag(), user.get().getFotoPerfil(), null, null, null, null));
+            kafkaProducerService.sendMessage("user-alterado-topic", new ElasticEvent(user.get().getUserId().toString(), null, user.get().getNomeCompleto(), user.get().getTag(), user.get().getFotoPerfil(), null, null, null, null, user.get().getCurso()));
             return userRepository.findOnlyUser(user.get().getUserId());
         } else {
             // Lançar uma exceção apropriada se o usuário não for encontrado
@@ -159,7 +159,7 @@ public class UserService {
 
             userRepository.save(user1.get());
 
-            kafkaProducerService.sendMessage("notification-topic", new NotificationEvent(null,user1.get().getUserId(), user1.get().getTag(), evento, new Date(),user2.get().getUserId().toString()));
+            kafkaProducerService.sendMessage("notification-topic", new NotificationEvent(null,user1.get().getUserId(), user1.get().getTag(), evento, new Date(),user2.get().getUserId().toString(), user1.get().getFotoPerfil()));
             log.info("Evento enviado com sucesso");
             return userRepository.findOnlyUser(user1.get().getUserId());
         } else {
@@ -206,7 +206,7 @@ public class UserService {
         if (user.isPresent()) {
             User user1 = userRepository.findOnlyUser(user.get().getUserId());
             userRepository.deleteById(id);
-            kafkaProducerService.sendMessage("user-deletado-topic", new ElasticEvent(user1.getUserId().toString(), null, null, null, null, null, null, null, null));
+            kafkaProducerService.sendMessage("user-deletado-topic", new ElasticEvent(user1.getUserId().toString(), null, null, null, null, null, null, null, null, user.get().getCurso()));
             return user1;
         } else {
             throw new BusinessException("Erro ao excluir usuario");

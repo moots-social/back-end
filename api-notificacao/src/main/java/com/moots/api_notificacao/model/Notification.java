@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,5 +25,9 @@ public class Notification {
 
     private String evento;
 
+    private Date timestamp;
+
     private String myUserId;
+
+    private String fotoPerfil;
 }

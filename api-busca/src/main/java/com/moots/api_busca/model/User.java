@@ -31,4 +31,7 @@ public class User {
 
     @NonNull
     private String fotoPerfil;
+
+    @NonNull
+    private Curso curso;
 }

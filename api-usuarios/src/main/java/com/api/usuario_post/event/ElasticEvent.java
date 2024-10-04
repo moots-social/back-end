@@ -1,8 +1,10 @@
 package com.api.usuario_post.event;
 
+import com.api.usuario_post.model.Curso;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 
 import java.io.Serializable;
@@ -30,4 +32,6 @@ public class ElasticEvent implements Serializable {
     private Integer contadorLike;
 
     private Integer contadorDeslike;
+
+    private Curso curso;
 }

@@ -1,5 +1,6 @@
 package com.api.usuario_post.event;
 
+import com.api.usuario_post.model.Curso;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,4 +27,6 @@ public class UserEvent implements Serializable {
 
     @NonNull
     private String fotoPerfil;
+
+
 }

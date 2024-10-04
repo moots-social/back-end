@@ -1,6 +1,7 @@
 package com.moots.api_busca.service;
 
 import com.moots.api_busca.event.ElasticEvent;
+import com.moots.api_busca.model.Curso;
 import com.moots.api_busca.model.Post;
 import com.moots.api_busca.model.User;
 import com.moots.api_busca.repository.UserRepository;
@@ -23,6 +24,7 @@ public class UserService {
         user.setNomeCompleto(elasticEvent.getNomeCompleto());
         user.setFotoPerfil(elasticEvent.getFotoPerfil());
         user.setUserId(elasticEvent.getUserId());
+        user.setCurso(elasticEvent.getCurso());
 
         return userRepository.save(user);
     }
@@ -40,6 +42,7 @@ public class UserService {
         user.setNomeCompleto(elasticEvent.getNomeCompleto());
         user.setFotoPerfil(elasticEvent.getFotoPerfil());
         user.setUserId(elasticEvent.getUserId());
+        user.setCurso(elasticEvent.getCurso());
 
         return userRepository.save(user);
     }
@@ -54,5 +57,10 @@ public class UserService {
         PageRequest pageRequest = PageRequest.of(page, size);
         var result = userRepository.findByTagOrNomeCompleto(query, query, pageRequest);
         return result;
+    }
+
+    public List<User> findByCurso(Curso curso){
+        List<User> users = userRepository.findByCurso(curso.toString());
+        return users;
     }
 }

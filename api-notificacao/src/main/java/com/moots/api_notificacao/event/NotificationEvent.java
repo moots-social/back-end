@@ -5,11 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class NotificationEvent implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     private Long postId;
@@ -20,5 +22,10 @@ public class NotificationEvent implements Serializable {
 
     private String evento;
 
+    private Date timestamp;
+
     private String myUserId;
+
+    private String fotoPerfil;
+
 }

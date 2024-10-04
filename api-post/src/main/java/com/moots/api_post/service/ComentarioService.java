@@ -55,7 +55,7 @@ public class ComentarioService {
         comentario.setFotoPerfil(user.getFotoPerfil());
         comentario.setUserId(user.getUserId());
 
-        kafkaProducerService.sendMessage("notification-topic", new NotificationEvent(postId, userId , user.getTag(), evento, new Date(), post.getUserId()));
+        kafkaProducerService.sendMessage("notification-topic", new NotificationEvent(postId, userId , user.getTag(), evento, new Date(), post.getUserId(), comentario.getFotoPerfil()));
         log.info("Evento enviado com sucesso");
 
         return comentarioRepository.save(comentario);
