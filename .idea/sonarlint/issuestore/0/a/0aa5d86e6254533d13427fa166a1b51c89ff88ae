@@ -1,5 +1,8 @@
 
+u
+java:S1192"SDefine a constant instead of duplicating this literal "Mensagem recebida " 3 times.(Ë“¶”ûÿÿÿÿ8Úİå—¦2
 ~
 java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞJ$81eb222a-e652-4959-a604-7ed214dea1bd
 k	java:S106"+Replace this use of System.out by a logger.(Ë“¶”ûÿÿÿÿJ$ef96af25-5033-4ec5-91df-251c2e373925
 k	java:S106 "+Replace this use of System.out by a logger.(Ë“¶”ûÿÿÿÿJ$4cd59ad3-4ee7-401b-b24c-601db6b225c1
+L	java:S106'"+Replace this use of System.out by a logger.(Ë“¶”ûÿÿÿÿ8Şå—¦2

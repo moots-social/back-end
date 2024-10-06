@@ -2,11 +2,11 @@ package com.api.usuario_post.controller;
 
 import com.api.usuario_post.dto.ResetPasswordDTO;
 import com.api.usuario_post.dto.UserDTO;
-import com.api.usuario_post.event.ColecaoPostEvent;
+import com.api.usuario_post.event.ElasticEvent;
+import com.api.usuario_post.event.PostEvent;
 import com.api.usuario_post.model.User;
 import com.api.usuario_post.repository.UserRepository;
 import com.api.usuario_post.service.UserService;
-import org.neo4j.cypherdsl.core.Use;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,15 +93,15 @@ public class UserController {
     }
 
     @KafkaListener(topics = "post-colecao-topic")
-    public ResponseEntity<User> savePostColecao(ColecaoPostEvent colecaoPostEvent){
-        User user = userService.salvarPostColecao(colecaoPostEvent);
+    public ResponseEntity<User> savePostColecao(ElasticEvent elasticEvent){
+        User user = userService.salvarPostColecao(elasticEvent);
         log.info("post salvo na coleção");
         return ResponseEntity.ok().body(user);
     }
 
     @GetMapping("/colecao-salvos/{userId}")
-    public ResponseEntity<List<ColecaoPostEvent>> getColecaoSalvos(@PathVariable Long userId) {
-        List<ColecaoPostEvent> colecaoSalvos = userService.getColecaoSalvosByUserId(userId);
+    public ResponseEntity<List<PostEvent>> getColecaoSalvos(@PathVariable Long userId) {
+        List<PostEvent> colecaoSalvos = userService.getColecaoSalvosByUserId(userId);
         return ResponseEntity.ok(colecaoSalvos);
     }
 
@@ -109,5 +109,20 @@ public class UserController {
     public ResponseEntity<String> removerPostColecao(@PathVariable Long userId, @PathVariable Long postId){
         userService.removerPostColecao(userId, postId);
         return ResponseEntity.ok().body("Post removido da coleção com sucesso");
+    }
+
+
+    @KafkaListener(topics = "post-salvo-topic")
+    public void salvarPostElastic(ElasticEvent elasticEvent){
+        System.out.println("Mensagem recebida " + elasticEvent);
+        userService.salvarPostList(elasticEvent);
+        log.info("Post salvo na lista");
+    }
+
+    @KafkaListener(topics = "post-deletado-topic")
+    public void deletarPostElastic(ElasticEvent elasticEvent){
+        System.out.println("Mensagem recebida " + elasticEvent);
+        userService.removerPostListPosts(Long.valueOf(elasticEvent.getUserId()), elasticEvent.getPostId());
+        log.info("Post deletado da lista");
     }
 }

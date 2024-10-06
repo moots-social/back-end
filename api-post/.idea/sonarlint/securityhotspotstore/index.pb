@@ -11,3 +11,11 @@ k
 ;src/main/java/com/moots/api_post/event/ReportPostEvent.java,2\f\2f6e115b2e471dc501bb1e6090a0686efa7ee4b6
 p
 @src/main/java/com/moots/api_post/security/WebSecurityConfig.java,1\4\1479b821c6567297d02d224e45d788d8c04f5ce1
+e
+5src/main/java/com/moots/api_post/event/PostEvent.java,6\5\65dfb641023978a4425950acebaf381a848d20dd
+`
+0src/main/java/com/moots/api_post/model/Post.java,6\e\6eccb040cb752aafb4915e35b9e3a786e8122a19
+u
+Esrc/main/java/com/moots/api_post/controller/ComentarioController.java,5\c\5c0be5befd1e45c6de0a1d73231267604927a469
+h
+8src/main/java/com/moots/api_post/event/ElasticEvent.java,c\d\cd6bcba6f0ec4b048ba68399fa18291c88a81e51

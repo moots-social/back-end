@@ -1,3 +1,28 @@
 
-X
-java:S2094"BRemove this empty class, write its code or make it an "interface".(Ó™¦ß
+t
+java:S1104	"RMake PREFIX a static final constant or non-public and provide accessors if needed.(õ¹ ¥øÿÿÿÿ8¦Ìó“¦2
+l
+java:S1104
+"OMake KEY a static final constant or non-public and provide accessors if needed.(ÎãåÂ8§Ìó“¦2
+x
+java:S1104"VMake EXPIRATION a static final constant or non-public and provide accessors if needed.(âµ–öúÿÿÿÿ8¨Ìó“¦2
+N
+java:S1444	",Make this "public static PREFIX" field final(õ¹ ¥øÿÿÿÿ8«Ìó“¦2
+F
+java:S1444
+")Make this "public static KEY" field final(ÎãåÂ8¬Ìó“¦2
+R
+java:S1444"0Make this "public static EXPIRATION" field final(âµ–öúÿÿÿÿ8¬Ìó“¦2
+s
+java:S3008	"QRename this field "PREFIX" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ¹ ¥øÿÿÿÿ8¹Ìó“¦2
+k
+java:S3008
+"NRename this field "KEY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÎãåÂ8ºÌó“¦2
+w
+java:S3008"URename this field "EXPIRATION" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(âµ–öúÿÿÿÿ8»Ìó“¦2
+S
+java:S2696"6Make the enclosing method "static" or remove this set.(üşóÄ8ÍÌó“¦2
+S
+java:S2696"6Make the enclosing method "static" or remove this set.(»Åîç8ĞÌó“¦2
+R
+java:S2696"6Make the enclosing method "static" or remove this set.(çÚ¹Z8ÒÌó“¦2

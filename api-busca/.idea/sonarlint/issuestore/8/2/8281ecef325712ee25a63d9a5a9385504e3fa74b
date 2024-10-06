@@ -1,3 +1,13 @@
 
-X
-java:S2094"BRemove this empty class, write its code or make it an "interface".(Ó™¦ß
+W
+java:S1118":Add a private constructor to hide the implicit public one.(Ë·Ã¥8€Êó“¦2
+j
+java:S6201"HReplace this instanceof check and cast with 'instanceof Integer integer'(ä§êèûÿÿÿÿ8™Êó“¦2
+d
+java:S6201!"BReplace this instanceof check and cast with 'instanceof Long long'(ð¿‰©ûÿÿÿÿ8œÊó“¦2
+—
+java:S6204."zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨¹8¢Êó“¦2
+j
+java:S5361-"HReplace this call to "replaceAll()" by a call to the "replace()" method.(î¯‘ªýÿÿÿÿ8îÊó“¦2
+L
+java:S1144+"/Remove this unused private "checkRoles" method.(³Ú¢ý8üÊó“¦2
