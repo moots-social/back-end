@@ -197,5 +197,3 @@ volumes:
   redpanda-data:
   redisDB-data:
     driver: local
-
-
