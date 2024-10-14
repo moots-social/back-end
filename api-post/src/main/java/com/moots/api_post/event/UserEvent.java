@@ -25,7 +25,6 @@ public class UserEvent implements Serializable {
     @NonNull
     private String tag;
 
-    @NonNull
     private String fotoPerfil;
 }
 
