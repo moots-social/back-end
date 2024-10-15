@@ -48,6 +48,7 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.GET,  "/user/colecao-salvos/{userId}").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.DELETE,"/user/{id}").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.DELETE,"/user").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/user/images").hasAnyRole("ADMIN", "USER")
                         .anyRequest().authenticated()
                 )
                 .csrf(c -> c.disable())

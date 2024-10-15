@@ -44,6 +44,7 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/post/deletar/{postId}").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.POST, "/post/dar-like").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.POST, "/post/dar-deslike").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.POST, "/post/images").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.POST, "/post/criar-report").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.GET, "/post/user/{userId}").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.POST, "/comentario/criar/{postId}").hasAnyRole("ADMIN", "USER")

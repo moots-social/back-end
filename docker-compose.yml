@@ -28,31 +28,6 @@ services:
       - 19644:9644
     restart: unless-stopped
 
-  console:
-    container_name: redpanda-console
-    image: docker.redpanda.com/redpandadata/console:v2.7.2
-    networks:
-      - moots
-    entrypoint: /bin/sh
-    command: -c 'echo "$$CONSOLE_CONFIG_FILE" > /tmp/config.yml; /app/console'
-    environment:
-      CONFIG_FILEPATH: /tmp/config.yml
-      CONSOLE_CONFIG_FILE: |
-        kafka:
-          brokers: ["redpanda:9092"]
-          schemaRegistry:
-            enabled: true
-            urls: ["http://redpanda:8081"]
-        redpanda:
-          adminApi:
-            enabled: true
-            urls: ["http://redpanda:9644"]
-    ports:
-      - 8090:8080
-    depends_on:
-      - redpanda
-    restart: unless-stopped
-
   redisDB:
     container_name: redisDB
     image: redis:latest
@@ -197,6 +172,7 @@ services:
     networks:
       - moots
     restart: unless-stopped
+
 
   neo4j:
     container_name: neo4j

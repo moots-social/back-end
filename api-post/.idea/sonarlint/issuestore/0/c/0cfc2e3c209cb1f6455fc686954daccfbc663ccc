@@ -1,17 +1,17 @@
 
-Q
-java:S3740"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿ8ç ª”¦2
 w
-java:S1192A"UDefine a constant instead of duplicating this literal "Post nÃ£o encontrado" 3 times.(£«œ×øÿÿÿÿ8ë ª”¦2
-_
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8 ¡ª”¦2
-_
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8 ¡ª”¦2
-_
-java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8 ¡ª”¦2
-x
-java:S2159Q"VRemove this call to "equals"; comparisons between unrelated types always return false.(ÈËÕÂûÿÿÿÿ8á¡ª”¦2
-e
-java:S1858U"C"getUserId" returns a string, there's no need to call "toString()".(®¥ñùûÿÿÿÿ8ê¡ª”¦2
-e
-java:S1858b"C"getUserId" returns a string, there's no need to call "toString()".(®¥ñùûÿÿÿÿ8ù¡ª”¦2
+java:S3740"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿ8ç ª”¦2J$d0dc687b-54bd-4d06-b6c7-fbb3059d2360
+
+java:S1192B"UDefine a constant instead of duplicating this literal "Post nÃ£o encontrado" 3 times.(£«œ×øÿÿÿÿ8ë ª”¦2J$2358e234-09f9-4ffd-a913-f2808c865f95
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8 ¡ª”¦2J$c973f78c-3abf-4588-aa39-0b3c400cd120
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8 ¡ª”¦2J$4ba566dd-a821-48a1-94a7-5dd7c1924792
+…
+java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8 ¡ª”¦2J$c91b78fd-d09e-41d4-9560-97b546061ae9
+
+java:S2159R"VRemove this call to "equals"; comparisons between unrelated types always return false.(ÈËÕÂûÿÿÿÿ8á¡ª”¦2J$5d1a7409-8979-4ae3-a391-5ee02c71e029
+‹
+java:S1858V"C"getUserId" returns a string, there's no need to call "toString()".(®¥ñùûÿÿÿÿ8ê¡ª”¦2J$0d067e50-ba4d-4806-acd8-db0b7c4de0bd
+‹
+java:S1858c"C"getUserId" returns a string, there's no need to call "toString()".(®¥ñùûÿÿÿÿ8ù¡ª”¦2J$471ead0e-966e-4256-9bfd-b2ef87e268b2

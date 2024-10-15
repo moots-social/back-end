@@ -51,6 +51,7 @@ public class PostService {
         postSalvo.setPostId(postSalvo.getId());
 
         kafkaProducerService.sendMessage("post-salvo-topic", new ElasticEvent(post.getUserId(), post.getPostId() ,post.getNomeCompleto(), post.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike()));
+        log.info("Evento enviado com sucesso");
         return postRepository.save(postSalvo);
     }
 
