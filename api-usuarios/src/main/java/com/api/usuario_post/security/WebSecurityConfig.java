@@ -34,7 +34,7 @@ public class WebSecurityConfig {
     @Bean
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.headers(frameOption -> frameOption.disable())
-                .cors(cors -> cors.disable()) // Desabilita o CORS (para simplificar)
+                .cors(cors -> cors.disable())
                 .addFilterBefore(new JWTFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(athz -> athz
                         .requestMatchers(SWAGGER_WHITELIST).permitAll()
@@ -48,6 +48,7 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.GET,  "/user/colecao-salvos/{userId}").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.DELETE,"/user/{id}").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.DELETE,"/user").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/user/images").hasAnyRole("ADMIN", "USER")
                         .anyRequest().authenticated()
                 )
                 .csrf(c -> c.disable())

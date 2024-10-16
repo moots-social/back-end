@@ -1,5 +1,6 @@
 package com.api.usuario_post.controller;
 
+import com.api.usuario_post.client.imagestorage.ImageStorageClient;
 import com.api.usuario_post.dto.ResetPasswordDTO;
 import com.api.usuario_post.dto.UserDTO;
 import com.api.usuario_post.event.ElasticEvent;
@@ -7,6 +8,8 @@ import com.api.usuario_post.event.PostEvent;
 import com.api.usuario_post.model.User;
 import com.api.usuario_post.repository.UserRepository;
 import com.api.usuario_post.service.UserService;
+import com.api.usuario_post.utils.Result;
+import com.api.usuario_post.utils.StatusCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +17,26 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     private UserService userService;
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ImageStorageClient imageStorageClient;
 
     @PostMapping("/criar")
     public ResponseEntity<User> criar(@RequestBody UserDTO userDTO) {
@@ -124,5 +135,12 @@ public class UserController {
         System.out.println("Mensagem recebida " + elasticEvent);
         userService.removerPostListPosts(Long.valueOf(elasticEvent.getUserId()), elasticEvent.getPostId());
         log.info("Post deletado da lista");
+    }
+    @PostMapping("/images")
+    public Result uparImgemBlob(@RequestParam String containerName, @RequestParam MultipartFile file) throws IOException {
+        try (InputStream inputStream = file.getInputStream()){
+            String imageUrl = this.imageStorageClient.uploadImage(containerName, file.getOriginalFilename(),inputStream, file.getSize());
+            return new Result(true, StatusCode.SUCCESS, "Imagem upada com sucesso", imageUrl);
+        }
     }
 }

@@ -28,7 +28,6 @@ services:
       - 19644:9644
     restart: unless-stopped
 
-
   redisDB:
     container_name: redisDB
     image: redis:latest
