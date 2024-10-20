@@ -122,25 +122,18 @@ public class UserController {
         return ResponseEntity.ok().body("Post removido da coleção com sucesso");
     }
 
-
-    @KafkaListener(topics = "post-salvo-topic")
-    public void salvarPostElastic(ElasticEvent elasticEvent){
-        System.out.println("Mensagem recebida " + elasticEvent);
-        userService.salvarPostList(elasticEvent);
-        log.info("Post salvo na lista");
-    }
-
-    @KafkaListener(topics = "post-deletado-topic")
-    public void deletarPostElastic(ElasticEvent elasticEvent){
-        System.out.println("Mensagem recebida " + elasticEvent);
-        userService.removerPostListPosts(Long.valueOf(elasticEvent.getUserId()), elasticEvent.getPostId());
-        log.info("Post deletado da lista");
-    }
     @PostMapping("/images")
     public Result uparImgemBlob(@RequestParam String containerName, @RequestParam MultipartFile file) throws IOException {
         try (InputStream inputStream = file.getInputStream()){
             String imageUrl = this.imageStorageClient.uploadImage(containerName, file.getOriginalFilename(),inputStream, file.getSize());
-            return new Result(true, StatusCode.SUCCESS, "Imagem upada com sucesso", imageUrl);
+            String blobName = imageUrl.substring(imageUrl.lastIndexOf("/") + 1);
+            return new Result(true, StatusCode.SUCCESS, "Imagem upada com sucesso", imageUrl, blobName);
         }
+    }
+
+    @DeleteMapping("/deletar-blob")
+    public String deletarImagemBlob(@RequestParam String containerName, @RequestParam String blobName) {
+        imageStorageClient.deleteBlob(blobName, containerName);
+        return "Blob deletado com sucesso " + blobName;
     }
 }

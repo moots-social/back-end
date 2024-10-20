@@ -23,6 +23,7 @@ public class AzureImageStorageClient implements ImageStorageClient{
         try {
             BlobContainerClient blobContainerClient = blobServiceClient.getBlobContainerClient(containerName);
 
+
             String newImageName = UUID.randomUUID().toString() + originalImageName.substring(originalImageName.lastIndexOf("."));
 
             BlobClient blobClient =  blobContainerClient.getBlobClient(newImageName);
@@ -34,5 +35,15 @@ public class AzureImageStorageClient implements ImageStorageClient{
             throw new BlobException("Falha ao upar a imagem no Blob storage", e.getCause());
         }
 
+    }
+
+
+    @Override
+    public void deleteBlob(String blobName, String containerName) {
+        try{
+            blobServiceClient.getBlobContainerClient(containerName).getBlobClient(blobName).delete();
+        }catch (BlobException e){
+            throw new BlobException("Falha ao deletar o blob", e.getCause());
+        }
     }
 }

@@ -7,4 +7,5 @@ public interface ImageStorageClient {
 
     String uploadImage(String containerName, String originalImageName, InputStream data, Long length) throws IOException;
 
+    void deleteBlob(String blobName, String containerName);
 }

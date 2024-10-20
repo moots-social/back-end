@@ -1,30 +1,28 @@
 
-a	java:S112X"FDefine and throw a dedicated exception instead of using a generic one.(¥şûy8°ó†â¨2
-h	java:S112«"FDefine and throw a dedicated exception instead of using a generic one.(Ï€”©üÿÿÿÿ8ğÖÛ–¦2
-h	java:S112¶"FDefine and throw a dedicated exception instead of using a generic one.(Ä’°ùÿÿÿÿ8ñÖÛ–¦2
-h	java:S112Á"FDefine and throw a dedicated exception instead of using a generic one.(š™´Ñÿÿÿÿÿ8ñÖÛ–¦2
-h	java:S112Ì"FDefine and throw a dedicated exception instead of using a generic one.(÷ˆ‰êüÿÿÿÿ8»ó†â¨2
-h	java:S112â"FDefine and throw a dedicated exception instead of using a generic one.(ÛõŠÁøÿÿÿÿ8ñÖÛ–¦2
-c	java:S112ü"FDefine and throw a dedicated exception instead of using a generic one.(†ê¿¡8ñÖÛ–¦2
-h	java:S112—"FDefine and throw a dedicated exception instead of using a generic one.(ÛõŠÁøÿÿÿÿ8ñÖÛ–¦2
-c	java:S112±"FDefine and throw a dedicated exception instead of using a generic one.(†ê¿¡8ñÖÛ–¦2
+h	java:S112«"FDefine and throw a dedicated exception instead of using a generic one.(Ï€”©üÿÿÿÿ8ŒøäÙª2
+h	java:S112¶"FDefine and throw a dedicated exception instead of using a generic one.(Ä’°ùÿÿÿÿ8ŒøäÙª2
+h	java:S112Á"FDefine and throw a dedicated exception instead of using a generic one.(š™´Ñÿÿÿÿÿ8ŒøäÙª2
+h	java:S112â"FDefine and throw a dedicated exception instead of using a generic one.(ÛõŠÁøÿÿÿÿ8ŒøäÙª2
+c	java:S112ü"FDefine and throw a dedicated exception instead of using a generic one.(†ê¿¡8ŒøäÙª2
+h	java:S112—"FDefine and throw a dedicated exception instead of using a generic one.(ÛõŠÁøÿÿÿÿ8ŒøäÙª2
+c	java:S112±"FDefine and throw a dedicated exception instead of using a generic one.(†ê¿¡8ŒøäÙª2
 Q
-java:S3740$"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿ8òÖÛ–¦2
+java:S3740$"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿ8‘øäÙª2
 ‡
-java:S1192â"dDefine a constant instead of duplicating this literal "UsuÃ¡rio nÃ£o encontrado com o ID: " 4 times.(ÛõŠÁøÿÿÿÿ8şÖÛ–¦2
+java:S1192â"dDefine a constant instead of duplicating this literal "UsuÃ¡rio nÃ£o encontrado com o ID: " 4 times.(ÛõŠÁøÿÿÿÿ8’øäÙª2
 _
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8–×Û–¦2
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8µøäÙª2
 _
-java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8–×Û–¦2
+java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8µøäÙª2
 _
-java:S6813#"BRemove this field injection and use constructor injection instead.(êæÄŞ8–×Û–¦2
+java:S6813#"BRemove this field injection and use constructor injection instead.(êæÄŞ8µøäÙª2
 n
-java:S3776X"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(¥şûy8¥×Û–¦2
+java:S3776X"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(¥şûy8ÈøäÙª2
 b
-java:S1854"?Remove this useless assignment to local variable "removerPost".(š§…œıÿÿÿÿ8º×Û–¦2
+java:S1854"?Remove this useless assignment to local variable "removerPost".(š§…œıÿÿÿÿ8áøäÙª2
 S
-java:S1481"0Remove this unused "removerPost" local variable.(š§…œıÿÿÿÿ8¾×Û–¦2
+java:S1481"0Remove this unused "removerPost" local variable.(š§…œıÿÿÿÿ8åøäÙª2
 b
-java:S1854¶"?Remove this useless assignment to local variable "removerPost".(ïò¼Ãúÿÿÿÿ8Ä×Û–¦2
+java:S1854¶"?Remove this useless assignment to local variable "removerPost".(ïò¼Ãúÿÿÿÿ8åøäÙª2
 S
-java:S1481¶"0Remove this unused "removerPost" local variable.(ïò¼Ãúÿÿÿÿ8Æ×Û–¦2
+java:S1481¶"0Remove this unused "removerPost" local variable.(ïò¼Ãúÿÿÿÿ8åøäÙª2

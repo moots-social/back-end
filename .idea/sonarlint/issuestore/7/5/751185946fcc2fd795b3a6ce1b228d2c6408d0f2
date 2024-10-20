@@ -1,7 +1,7 @@
 
 ‚
-java:S1192)"GDefine a constant instead of duplicating this literal "ADMIN" 12 times.(òäJ$c0bf9f7a-b4db-4a6a-9209-ef2b88206a08
+java:S1192)"GDefine a constant instead of duplicating this literal "ADMIN" 12 times.(òäJ$5d97c7da-32bc-449e-ac35-ea8cbb81c248
 ~
-java:S1874"BRemove this use of "EnableGlobalMethodSecurity"; it is deprecated.(ö­ê×J$3366a9e1-dd66-4c61-9c4a-a0c8824b8a5b
+java:S1874"BRemove this use of "EnableGlobalMethodSecurity"; it is deprecated.(ö­ê×J$be50e513-39b9-4380-9c88-c69c6c3bfb36
 
-java:S1612$"LReplace this lambda with method reference 'AbstractHttpConfigurer::disable'.(ø´ïûÿÿÿÿJ$887e0bf4-73fa-4924-8b7c-0c2b08fbc239
+java:S1612$"LReplace this lambda with method reference 'AbstractHttpConfigurer::disable'.(ø´ïûÿÿÿÿJ$2b78871e-b9dc-46aa-a41e-303ae4459df5
