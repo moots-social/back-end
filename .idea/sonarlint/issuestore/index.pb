@@ -125,3 +125,9 @@ t
 Dapi-busca/src/main/java/com/moots/api_busca/service/PostService.java,9\a\9a1e62dc89e1a0611564fda980b69052856d1b8a
 Å
 Qapi-usuarios/src/main/java/com/api/usuario_post/service/KafkaProducerService.java,1\f\1f0bb85e62cd3cc7046b10a209209c8bf016a54f
+t
+Dapi-post/src/main/java/com/moots/api_post/security/JWTValidated.java,a\0\a0d1b650413aca96c05f33cebb68cd3808b2acc2
+q
+Aapi-post/src/main/java/com/moots/api_post/security/JWTObject.java,e\4\e4c61e206db7a1dc0340df3842b345764e658159
+x
+Hapi-post/src/main/java/com/moots/api_post/service/ComentarioService.java,c\7\c7c47b71d5d6ac3e47cd9d84206c556d8f251f62

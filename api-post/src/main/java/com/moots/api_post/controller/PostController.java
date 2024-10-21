@@ -92,9 +92,9 @@ public class PostController {
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping(value = "/sse", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping(path = "/stream-sse", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public SseEmitter streamPosts() {
-        SseEmitter emitter = new SseEmitter();
+        SseEmitter emitter = new SseEmitter(Long.MAX_VALUE);
         sseService.addEmitter(emitter);
         return emitter;
     }

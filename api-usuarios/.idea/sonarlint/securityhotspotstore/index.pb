@@ -37,3 +37,5 @@ v
 Fsrc/main/java/com/api/usuario_post/handler/GlobalExceptionHandler.java,c\1\c1661b9d4f6a37dfc518872501bb04d7b039615e
 m
 =src/main/java/com/api/usuario_post/handler/ResponseError.java,5\d\5dc29e14c260a3b8395b9408f2bee50fe3115498
+B
+docker-compose.yml,3\5\35b8c13cf2eb2a194eada000eb310d65aed53b2a

@@ -49,7 +49,7 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/post/user/{userId}").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.POST, "/comentario/criar/{postId}").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.DELETE, "/comentario/deletar/{comentarioId}").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers(HttpMethod.GET, "/post/sse").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/post/stream-sse").permitAll()
                         .requestMatchers(HttpMethod.GET, "/post/find-all").hasAnyRole("ADMIN", "USER")
                         .anyRequest().authenticated()
                 )

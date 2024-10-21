@@ -19,15 +19,14 @@ public class SseService {
     }
 
     public void sendPostEvent(Post postData) {
-        emitters.removeIf(emitter -> {
-            try {
-                emitter.send(SseEmitter.event().name("post-data").data(postData));
-                return false;
-            } catch (IOException e) {
+        for(SseEmitter emitter : emitters){
+            try{
+                emitter.send(postData);
+            } catch (IOException e){
                 emitter.complete();
-                return true;
+                emitters.remove(emitter);
             }
-        });
+        }
     }
 
 }
