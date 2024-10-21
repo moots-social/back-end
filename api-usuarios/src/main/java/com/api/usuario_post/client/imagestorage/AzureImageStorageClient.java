@@ -4,6 +4,8 @@ import com.api.usuario_post.handler.BlobException;
 import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobServiceClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import java.util.UUID;
 @Service
 public class AzureImageStorageClient implements ImageStorageClient{
 
+    private static final Logger log = LoggerFactory.getLogger(AzureImageStorageClient.class);
     @Autowired
     private BlobServiceClient blobServiceClient;
 
@@ -22,6 +25,7 @@ public class AzureImageStorageClient implements ImageStorageClient{
 
         try {
             BlobContainerClient blobContainerClient = blobServiceClient.getBlobContainerClient(containerName);
+
 
             String newImageName = UUID.randomUUID().toString() + originalImageName.substring(originalImageName.lastIndexOf("."));
 
@@ -35,4 +39,14 @@ public class AzureImageStorageClient implements ImageStorageClient{
         }
 
     }
+
+    @Override
+    public void deleteBlob(String blobName, String containerName) {
+       try{
+           blobServiceClient.getBlobContainerClient(containerName).getBlobClient(blobName).delete();
+       }catch (BlobException e){
+           throw new BlobException("Falha ao deletar o blob", e.getCause());
+       }
+    }
+
 }

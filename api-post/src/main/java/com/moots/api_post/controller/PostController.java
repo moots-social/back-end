@@ -90,6 +90,8 @@ public class PostController {
         var posts = postService.findAll();
         return ResponseEntity.ok().body(posts);
     }
+
+    @CrossOrigin(origins = "*")
     @GetMapping(value = "/sse", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public SseEmitter streamPosts() {
         SseEmitter emitter = new SseEmitter();
@@ -101,7 +103,14 @@ public class PostController {
     public Result uparImgemBlob(@RequestParam String containerName, @RequestParam MultipartFile file) throws IOException {
         try (InputStream inputStream = file.getInputStream()){
             String imageUrl = this.imageStorageClient.uploadImage(containerName, file.getOriginalFilename(),inputStream, file.getSize());
-            return new Result(true, StatusCode.SUCCESS, "Imagem upada com sucesso", imageUrl);
+            String blobName = imageUrl.substring(imageUrl.lastIndexOf("/") + 1);
+            return new Result(true, StatusCode.SUCCESS, "Imagem upada com sucesso", imageUrl, blobName);
         }
+    }
+
+    @DeleteMapping("/deletar-blob")
+    public String deletarImagemBlob(@RequestParam String containerName, @RequestParam String blobName) {
+        imageStorageClient.deleteBlob(blobName, containerName);
+        return "Blob deletado com sucesso " + blobName;
     }
 }
