@@ -1,6 +1,5 @@
 package com.moots.api_busca.repository;
 
-import com.moots.api_busca.model.Curso;
 import com.moots.api_busca.model.User;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;

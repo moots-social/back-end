@@ -27,5 +27,5 @@ public class User {
 
     private String fotoPerfil;
 
-    private Curso curso;
+    private String curso;
 }
