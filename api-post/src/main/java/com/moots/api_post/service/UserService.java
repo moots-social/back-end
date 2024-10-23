@@ -50,6 +50,18 @@ public class UserService {
         }
     }
 
+    public void updateUserRedis(String id, UserEvent userEvent) throws Exception{
+        User user = this.getUserRedis(id);
+        user.setUserId(userEvent.getUserId().toString());
+        user.setNomeCompleto(userEvent.getNomeCompleto());
+        user.setTag(userEvent.getTag());
+        user.setFotoPerfil(userEvent.getFotoPerfil());
+
+        String userKey = "user:" + user.getUserId();
+        String userJson = objectMapper.writeValueAsString(user);
+        redisTemplate.opsForValue().set(userKey, userJson);
+    }
+
 
 
 }

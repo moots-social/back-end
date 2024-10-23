@@ -30,6 +30,13 @@ public class UserEventService {
         log.info("User salvo com sucesso");
     }
 
+    @KafkaListener(topics = "user-alterado-topic")
+    public void updateUser(UserEvent userEvent) throws Exception {
+        log.info("Evento recebido: " + userEvent);
+        userService.updateUserRedis(userEvent.getUserId().toString(), userEvent);
+        log.info("User alterado com sucesso");
+    }
+
 }
 
 
