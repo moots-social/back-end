@@ -35,11 +35,11 @@ public class WebSecurityConfig {
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.headers(frameOption -> frameOption.disable())
                 .cors(cors -> cors.disable())
-                .addFilterBefore(new JWTFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(athz -> athz
-                        .requestMatchers(SWAGGER_WHITELIST).permitAll()
+                        .requestMatchers("/swagger-ui.html").permitAll()
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/user/criar").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/user/buscarEmail").permitAll()
                         .requestMatchers(HttpMethod.PUT,  "/user/seguir").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.PATCH,"/user/redefinir-senha/{id}").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.GET,  "/user/buscar/{id}").hasAnyRole("ADMIN")
@@ -50,6 +50,7 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.DELETE,"/user").hasAnyRole("ADMIN")
                         .anyRequest().authenticated()
                 )
+                .addFilterBefore(new JWTFilter(), UsernamePasswordAuthenticationFilter.class)
                 .csrf(c -> c.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(new CustomAuthenticationEntryPoint()));

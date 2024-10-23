@@ -22,6 +22,5 @@ public class UsuarioPostApplication {
 		return Configuration.newConfig()
 				.withDialect(Dialect.NEO4J_5).build();
 	}
-
 }
 

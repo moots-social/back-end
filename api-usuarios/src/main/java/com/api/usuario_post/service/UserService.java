@@ -178,6 +178,16 @@ public class UserService {
         }
     }
 
+    public User buscarUsuarioEmail(String email) throws RuntimeException {
+        User user = userRepository.findByOnlyEmail(email);
+
+        if(user != null){
+            return user;
+        } else {
+            throw new BusinessException("Email e senha válidos");
+        }
+    }
+
     @Cacheable(cacheNames = "seguidores", key = "#userId")
     public List<User> buscarSeguidoresDoUsuario(Long userId) throws RuntimeException {
         List<User> seguidores = userRepository.findFollowersByUserId(userId);
@@ -268,5 +278,4 @@ public class UserService {
             throw new NoSuchElementException("Usuário não encontrado para o ID: " + userId);
         }
     }
-
 }

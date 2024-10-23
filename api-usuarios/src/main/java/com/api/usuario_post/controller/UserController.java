@@ -66,6 +66,13 @@ public class UserController {
         return ResponseEntity.ok().body(user);
     }
 
+    @GetMapping("buscarEmail")
+    public ResponseEntity<User> buscarUserEmail(@RequestParam String email) {
+        User user = userService.buscarUsuarioEmail(email);
+
+        return ResponseEntity.ok().body(user);
+    }
+
     @GetMapping("/buscar-seguidores/{id}" )
     public ResponseEntity<List<User>> buscarSeguidores(@PathVariable Long id){
         List<User> seguidores = userService.buscarSeguidoresDoUsuario(id);
