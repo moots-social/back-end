@@ -19,9 +19,8 @@ public class Topics {
             NewTopic postDeletado = new NewTopic("post-deletado-topic", 1, (short) 1);
             NewTopic postAtualizado = new NewTopic("post-atualizado-topic", 1, (short) 1);
             NewTopic userCriado = new NewTopic("user-criado-topic", 1, (short) 1);
-            NewTopic userAlterado = new NewTopic("user-alterado-topic", 1, (short) 1);
             NewTopic userDeletado = new NewTopic("user-deletado-topic", 1, (short) 1);
-            adminClient.createTopics(Arrays.asList(postSalvo, postAtualizado,postDeletado, userCriado, userAlterado, userDeletado)).all().get();
+            adminClient.createTopics(Arrays.asList(postSalvo, postAtualizado,postDeletado, userCriado, userDeletado)).all().get();
 
             System.out.println("Tópicos criado com sucesso!");
         } catch (Exception e) {

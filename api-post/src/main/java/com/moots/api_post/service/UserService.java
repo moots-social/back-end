@@ -52,6 +52,9 @@ public class UserService {
 
     public void updateUserRedis(String id, UserEvent userEvent) throws Exception{
         User user = this.getUserRedis(id);
+        if(user == null){
+            throw new NoSuchElementException("Usuário não encontrado no Redis com o ID: " + id);
+        }
         user.setUserId(userEvent.getUserId().toString());
         user.setNomeCompleto(userEvent.getNomeCompleto());
         user.setTag(userEvent.getTag());
@@ -60,6 +63,7 @@ public class UserService {
         String userKey = "user:" + user.getUserId();
         String userJson = objectMapper.writeValueAsString(user);
         redisTemplate.opsForValue().set(userKey, userJson);
+        log.info("User alterado no redis");
     }
 
 
