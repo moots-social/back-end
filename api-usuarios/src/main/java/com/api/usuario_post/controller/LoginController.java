@@ -49,6 +49,8 @@ public class LoginController {
             //Estamos enviando um objeto Sessão para retornar mais informações do usuário
             Sessao sessao = new Sessao();
             sessao.setLogin(user.getEmail());
+            sessao.setId(user.getId());
+
 
             JWTObject jwtObject = new JWTObject();
             jwtObject.setUserId(user.getUserId());

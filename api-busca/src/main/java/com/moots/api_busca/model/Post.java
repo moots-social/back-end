@@ -18,29 +18,21 @@ public class Post {
     @Id
     private String id;
 
-    @NonNull
     private Long postId;
 
-    @NonNull
     private String userId;
 
-    @NonNull
     private String nomeCompleto;
 
-    @NonNull
     private String tag;
 
-    @NonNull
     private String fotoPerfil;
 
-    @NonNull
     private String texto;
 
     private List<String> listImagens;
 
-    @NonNull
     private Integer contadorLike;
 
-    @NonNull
     private Integer contadorDeslike;
 }

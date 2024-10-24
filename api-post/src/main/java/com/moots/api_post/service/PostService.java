@@ -32,6 +32,9 @@ public class PostService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private SseService sseService;
+
     public Post criarPost(PostDTO postDTO) throws Exception {
         var userId = Utils.buscarIdToken();
         var post = new Post();
@@ -50,9 +53,13 @@ public class PostService {
         Post postSalvo = postRepository.save(post);
         postSalvo.setPostId(postSalvo.getId());
 
-        kafkaProducerService.sendMessage("post-salvo-topic", new ElasticEvent(post.getUserId(), post.getPostId() ,post.getNomeCompleto(), post.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike()));
-        return postRepository.save(postSalvo);
+        kafkaProducerService.sendMessage("post-salvo-topic", new ElasticEvent(post.getUserId(), post.getPostId(), post.getNomeCompleto(), post.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike()));
+        log.info("Evento enviado com sucesso");
+
+        sseService.sendPostEvent(postSalvo);
+        return postSalvo;
     }
+
 
     public Post deletarPostEComentarios(Long postId) {
         kafkaProducerService.sendMessage("post-deletado-topic", new ElasticEvent(null, postId, null, null, null, null, null, null, null));
@@ -65,7 +72,6 @@ public class PostService {
                 .orElseThrow(() -> new NoSuchElementException("Post não encontrado"));
     }
 
-    //criar um tópico para atualização do post
     @CacheEvict(value = "post", key = "#postId")
     public Post darLike(Long postId, boolean like) throws Exception {
         var idUser = Utils.buscarIdToken();
@@ -86,7 +92,6 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    //criar um tópico para atualização do post
     @CacheEvict(value = "post", key = "#postId")
     public Post darDeslike(Long postId, boolean deslike)  {
         Post post = postRepository.findById(postId)
@@ -119,7 +124,6 @@ public class PostService {
         colecaoPostEvent.setContadorLike(post.get().getContadorLike());
 
         kafkaProducerService.sendMessage("post-colecao-topic", colecaoPostEvent);
-
     }
 
     public List<Post> findAll(){

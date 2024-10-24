@@ -36,7 +36,7 @@ public class Post implements Serializable {
     @NonNull
     private String tag;
 
-    @NonNull
+
     private String fotoPerfil;
 
     @NonNull

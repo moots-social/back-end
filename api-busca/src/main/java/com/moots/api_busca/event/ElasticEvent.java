@@ -1,6 +1,5 @@
 package com.moots.api_busca.event;
 
-import com.moots.api_busca.model.Curso;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,6 +31,6 @@ public class ElasticEvent implements Serializable {
 
     private Integer contadorDeslike;
 
-    private Curso curso;
+    private String curso;
 
 }

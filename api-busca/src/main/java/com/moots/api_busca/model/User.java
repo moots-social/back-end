@@ -17,21 +17,15 @@ public class User {
     @Id
     private String id;
 
-    @NonNull
     private Long postId;
 
-    @NonNull
     private String userId;
 
-    @NonNull
     private String nomeCompleto;
 
-    @NonNull
     private String tag;
 
-    @NonNull
     private String fotoPerfil;
 
-    @NonNull
-    private Curso curso;
+    private String curso;
 }

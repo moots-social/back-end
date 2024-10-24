@@ -1,12 +1,16 @@
 package com.api.usuario_post.controller;
 
+import com.api.usuario_post.client.imagestorage.ImageStorageClient;
 import com.api.usuario_post.dto.ResetPasswordDTO;
 import com.api.usuario_post.dto.UserDTO;
+import com.api.usuario_post.dto.UsuarioDiferenteDTO;
 import com.api.usuario_post.event.ElasticEvent;
 import com.api.usuario_post.event.PostEvent;
 import com.api.usuario_post.model.User;
 import com.api.usuario_post.repository.UserRepository;
 import com.api.usuario_post.service.UserService;
+import com.api.usuario_post.utils.Result;
+import com.api.usuario_post.utils.StatusCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +18,26 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     private UserService userService;
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ImageStorageClient imageStorageClient;
 
     @PostMapping("/criar")
     public ResponseEntity<User> criar(@RequestBody UserDTO userDTO) {
@@ -41,7 +53,6 @@ public class UserController {
     @PutMapping("/atualizar/{id}")
     public ResponseEntity<User> atualizar(@PathVariable Long id, @RequestBody UserDTO userDTO) {
         User user = userService.alterarUsuario(id, userDTO);
-
         return ResponseEntity.ok().body(user);
     }
 
@@ -69,7 +80,12 @@ public class UserController {
     @GetMapping("buscarEmail")
     public ResponseEntity<User> buscarUserEmail(@RequestParam String email) {
         User user = userService.buscarUsuarioEmail(email);
+        return ResponseEntity.ok().body(user);
+    }
 
+    @GetMapping("/buscar/perfil/{id}")
+    public ResponseEntity<UsuarioDiferenteDTO> buscarUserSemToken(@PathVariable Long id){
+        UsuarioDiferenteDTO user = userService.buscarUsuarioPorIdSemToken(id);
         return ResponseEntity.ok().body(user);
     }
 
@@ -118,18 +134,18 @@ public class UserController {
         return ResponseEntity.ok().body("Post removido da coleção com sucesso");
     }
 
-
-    @KafkaListener(topics = "post-salvo-topic")
-    public void salvarPostElastic(ElasticEvent elasticEvent){
-        System.out.println("Mensagem recebida " + elasticEvent);
-        userService.salvarPostList(elasticEvent);
-        log.info("Post salvo na lista");
+    @PostMapping("/images")
+    public Result uparImgemBlob(@RequestParam String containerName, @RequestParam MultipartFile file) throws IOException {
+        try (InputStream inputStream = file.getInputStream()){
+            String imageUrl = this.imageStorageClient.uploadImage(containerName, file.getOriginalFilename(),inputStream, file.getSize());
+            String blobName = imageUrl.substring(imageUrl.lastIndexOf("/") + 1);
+            return new Result(true, StatusCode.SUCCESS, "Imagem upada com sucesso", imageUrl, blobName);
+        }
     }
 
-    @KafkaListener(topics = "post-deletado-topic")
-    public void deletarPostElastic(ElasticEvent elasticEvent){
-        System.out.println("Mensagem recebida " + elasticEvent);
-        userService.removerPostListPosts(Long.valueOf(elasticEvent.getUserId()), elasticEvent.getPostId());
-        log.info("Post deletado da lista");
+    @DeleteMapping("/deletar-blob")
+    public String deletarImagemBlob(@RequestParam String containerName, @RequestParam String blobName) {
+        imageStorageClient.deleteBlob(blobName, containerName);
+        return "Blob deletado com sucesso " + blobName;
     }
 }

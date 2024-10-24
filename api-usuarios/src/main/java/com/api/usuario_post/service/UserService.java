@@ -2,6 +2,7 @@ package com.api.usuario_post.service;
 
 import com.api.usuario_post.dto.ResetPasswordDTO;
 import com.api.usuario_post.dto.UserDTO;
+import com.api.usuario_post.dto.UsuarioDiferenteDTO;
 import com.api.usuario_post.event.PostEvent;
 import com.api.usuario_post.event.ElasticEvent;
 import com.api.usuario_post.event.NotificationEvent;
@@ -34,6 +35,7 @@ public class UserService {
 
     @Autowired
     private KafkaProducerService kafkaProducerService;
+
 
     public User criarUsuario(@Valid UserDTO userDTO){
         // Verificar unicidade de email e tag
@@ -79,7 +81,7 @@ public class UserService {
         User savedUser = userRepository.save(user);
         savedUser.setUserId(savedUser.getId());
 
-        kafkaProducerService.sendMessage("user-criado-topic", new ElasticEvent(user.getUserId().toString(), null, user.getNomeCompleto(), user.getTag(), user.getFotoPerfil(), null, null, null, null, user.getCurso()));
+        kafkaProducerService.sendMessage("user-criado-topic", new ElasticEvent(user.getUserId().toString(), null, user.getNomeCompleto(), user.getTag(), user.getFotoPerfil(), null, null, null, null));
         return userRepository.save(savedUser);
     }
 
@@ -113,7 +115,7 @@ public class UserService {
             }
 
             userRepository.save(user.get());
-            kafkaProducerService.sendMessage("user-alterado-topic", new ElasticEvent(user.get().getUserId().toString(), null, user.get().getNomeCompleto(), user.get().getTag(), user.get().getFotoPerfil(), null, null, null, null, user.get().getCurso()));
+            kafkaProducerService.sendMessage("user-alterado-topic", new ElasticEvent(user.get().getUserId().toString(), null, user.get().getNomeCompleto(), user.get().getTag(), user.get().getFotoPerfil(), null, null, null, null));
             return userRepository.findOnlyUser(user.get().getUserId());
         } else {
             // Lançar uma exceção apropriada se o usuário não for encontrado
@@ -170,12 +172,32 @@ public class UserService {
     @Cacheable(cacheNames = "user", key = "#id")
     public User buscarUsuarioPorId(Long id) throws RuntimeException {
         User user = userRepository.findOnlyUser(id);
-
         if (user != null) {
             return user;
         } else {
             throw new BusinessException("User não encontrado");
         }
+
+    }
+
+    public UsuarioDiferenteDTO buscarUsuarioPorIdSemToken(Long id) throws RuntimeException{
+        User user = userRepository.findOnlyUser(id);
+
+        UsuarioDiferenteDTO usuarioDiferenteDTO = new UsuarioDiferenteDTO();
+
+        usuarioDiferenteDTO.setId(user.getId());
+        usuarioDiferenteDTO.setUserId(user.getUserId());
+        usuarioDiferenteDTO.setFollowers(user.getFollowers());
+        usuarioDiferenteDTO.setDescricao(user.getDescricao());
+        usuarioDiferenteDTO.setCurso(user.getCurso().toString());
+        usuarioDiferenteDTO.setFotoCapa(user.getFotoCapa());
+        usuarioDiferenteDTO.setNomeCompleto(user.getNomeCompleto());
+        usuarioDiferenteDTO.setTag(user.getTag());
+        usuarioDiferenteDTO.setListPosts(user.getListPosts());
+        usuarioDiferenteDTO.setFotoPerfil(user.getFotoPerfil());
+
+        return usuarioDiferenteDTO;
+
     }
 
     public User buscarUsuarioEmail(String email) throws RuntimeException {
@@ -216,7 +238,7 @@ public class UserService {
         if (user.isPresent()) {
             User user1 = userRepository.findOnlyUser(user.get().getUserId());
             userRepository.deleteById(id);
-            kafkaProducerService.sendMessage("user-deletado-topic", new ElasticEvent(user1.getUserId().toString(), null, null, null, null, null, null, null, null, user.get().getCurso()));
+            kafkaProducerService.sendMessage("user-deletado-topic", new ElasticEvent(user1.getUserId().toString(), null, null, null, null, null, null, null, null));
             return user1;
         } else {
             throw new BusinessException("Erro ao excluir usuario");
@@ -302,7 +324,7 @@ public class UserService {
         var contadorLike = elasticEvent.getContadorLike();
         var contadorDeslike = elasticEvent.getContadorDeslike();
 
-        var postSalvo = new ElasticEvent(userId, postId, null, null, null, texto, listImagens, contadorLike, contadorDeslike, null);
+        var postSalvo = new ElasticEvent(userId, postId, null, null, null, texto, listImagens, contadorLike, contadorDeslike);
 
         listPosts.add(postSalvo);
 

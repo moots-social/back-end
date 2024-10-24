@@ -1,8 +1,6 @@
 package com.moots.api_busca.service;
 
 import com.moots.api_busca.event.ElasticEvent;
-import com.moots.api_busca.model.Curso;
-import com.moots.api_busca.model.Post;
 import com.moots.api_busca.model.User;
 import com.moots.api_busca.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +8,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class UserService {
@@ -59,8 +56,8 @@ public class UserService {
         return result;
     }
 
-    public List<User> findByCurso(Curso curso){
-        List<User> users = userRepository.findByCurso(curso.toString());
+    public List<User> findByCurso(String curso){
+        List<User> users = userRepository.findByCurso(curso);
         return users;
     }
 }
