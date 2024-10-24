@@ -1,6 +1,6 @@
 package com.moots.api_post.service;
 
-import com.moots.api_post.event.ColecaoPostEvent;
+import com.moots.api_post.event.PostEvent;
 import com.moots.api_post.dto.PostDTO;
 import com.moots.api_post.event.NotificationEvent;
 import com.moots.api_post.event.ElasticEvent;
@@ -106,14 +106,17 @@ public class PostService {
 
     public void salvarPostColecao(Long postId){
         log.info("Post está sendo salvo em sua coleção");
-        var userId = Utils.buscarIdToken();
+        Long userId = Utils.buscarIdToken();
+
         var post = postRepository.findById(postId);
 
-        var colecaoPostEvent = new ColecaoPostEvent();
-        colecaoPostEvent.setUserId(userId);
+        var colecaoPostEvent = new ElasticEvent();
+        colecaoPostEvent.setUserId(userId.toString());
         colecaoPostEvent.setPostId(postId);
         colecaoPostEvent.setTexto(post.get().getTexto());
         colecaoPostEvent.setListImagens(post.get().getListImagens());
+        colecaoPostEvent.setContadorDeslike(post.get().getContadorDeslike());
+        colecaoPostEvent.setContadorLike(post.get().getContadorLike());
 
         kafkaProducerService.sendMessage("post-colecao-topic", colecaoPostEvent);
 

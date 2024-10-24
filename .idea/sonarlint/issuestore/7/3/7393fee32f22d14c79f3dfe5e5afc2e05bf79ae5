@@ -1,7 +1,7 @@
 
 ~
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞJ$9b9d0ef4-08f7-4525-806b-155a757e91c9
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞJ$2188ee1f-64ea-4c84-a120-23df64c8654d
 ~
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞJ$4f414f24-5122-44b6-9487-402b8f545faa
-u
-java:S1128	"9Remove this unused import 'org.neo4j.cypherdsl.core.Use'.(¦ØÝ³J$bb9a185e-7c01-4d76-a877-4c8f8ba72eb2
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞJ$513a4bdc-c2e8-4946-818f-620c3af5c59f
+r	java:S106u"+Replace this use of System.out by a logger.(Ë“¶”ûÿÿÿÿ8ñÄË–¦2J$caa4331a-f484-4772-947d-34e307afc715
+r	java:S106|"+Replace this use of System.out by a logger.(Ë“¶”ûÿÿÿÿ8ôÄË–¦2J$5e52db43-3f0d-4e7b-b21d-cecfa7ad61a7

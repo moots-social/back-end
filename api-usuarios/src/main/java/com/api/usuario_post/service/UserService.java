@@ -2,7 +2,7 @@ package com.api.usuario_post.service;
 
 import com.api.usuario_post.dto.ResetPasswordDTO;
 import com.api.usuario_post.dto.UserDTO;
-import com.api.usuario_post.event.ColecaoPostEvent;
+import com.api.usuario_post.event.PostEvent;
 import com.api.usuario_post.event.ElasticEvent;
 import com.api.usuario_post.event.NotificationEvent;
 import com.api.usuario_post.event.UserEvent;
@@ -229,22 +229,24 @@ public class UserService {
     }
 
     @CacheEvict(value = "colecaoPost", key = "#colecaoPostEvent.userId")
-    public User salvarPostColecao(ColecaoPostEvent colecaoPostEvent) {
-        Optional<User> optionalUser = userRepository.findByUserId(colecaoPostEvent.getUserId());
+    public User salvarPostColecao(ElasticEvent elasticEvent) {
+        Optional<User> optionalUser = userRepository.findByUserId(Long.valueOf( elasticEvent.getUserId()));
 
         if (optionalUser.isEmpty()) {
-            throw new RuntimeException("Usuário não encontrado com o ID: " + colecaoPostEvent.getUserId());
+            throw new RuntimeException("Usuário não encontrado com o ID: " + elasticEvent.getUserId());
         }
 
         User user = optionalUser.get();
 
         var colecao = user.getColecaoSalvos();
 
-        var userId = colecaoPostEvent.getUserId();
-        var postId = colecaoPostEvent.getPostId();
-        var conteudo = colecaoPostEvent.getTexto();
-        var imagens = colecaoPostEvent.getListImagens();
-        var postSalvo = new ColecaoPostEvent(colecaoPostEvent.getId(), userId, postId, conteudo, imagens);
+        var userId = Long.valueOf( elasticEvent.getUserId());
+        var postId = elasticEvent.getPostId();
+        var conteudo = elasticEvent.getTexto();
+        var imagens = elasticEvent.getListImagens();
+        var contadorLike = elasticEvent.getContadorLike();
+        var contadorDeslike = elasticEvent.getContadorDeslike();
+        var postSalvo = new PostEvent(null, userId, postId, conteudo, imagens, contadorLike, contadorDeslike);
 
         colecao.add(postSalvo);
 
@@ -269,7 +271,7 @@ public class UserService {
     }
 
     @Cacheable(cacheNames = "colecaoPost", key = "#userId")
-    public List<ColecaoPostEvent> getColecaoSalvosByUserId(Long userId) {
+    public List<PostEvent> getColecaoSalvosByUserId(Long userId) {
         Optional<User> user = userRepository.findByUserId(userId);
 
         if (user.isPresent()) {
@@ -278,4 +280,49 @@ public class UserService {
             throw new NoSuchElementException("Usuário não encontrado para o ID: " + userId);
         }
     }
+<<<<<<< HEAD
+=======
+
+    public User salvarPostList(ElasticEvent elasticEvent){
+
+        Optional<User> optionalUser = userRepository.findByUserId(Long.valueOf(elasticEvent.getUserId()));
+
+        if (optionalUser.isEmpty()) {
+            throw new RuntimeException("Usuário não encontrado com o ID: " + elasticEvent.getUserId());
+        }
+
+        User user = optionalUser.get();
+
+        var listPosts = user.getListPosts();
+
+        var userId = elasticEvent.getUserId();
+        var postId = elasticEvent.getPostId();
+        var texto = elasticEvent.getTexto();
+        var listImagens = elasticEvent.getListImagens();
+        var contadorLike = elasticEvent.getContadorLike();
+        var contadorDeslike = elasticEvent.getContadorDeslike();
+
+        var postSalvo = new ElasticEvent(userId, postId, null, null, null, texto, listImagens, contadorLike, contadorDeslike, null);
+
+        listPosts.add(postSalvo);
+
+        log.info("Post adicionado a lista com sucesso");
+        return userRepository.save(user);
+    }
+
+    public User removerPostListPosts(Long userId, Long postId) {
+        Optional<User> optionalUser = userRepository.findByUserId(userId);
+
+        if (optionalUser.isEmpty()) {
+            throw new RuntimeException("Usuário não encontrado com o ID: " + userId);
+        }
+
+        User user = optionalUser.get();
+        var listPosts = user.getListPosts();
+        boolean removerPost = listPosts.removeIf(l -> l.getPostId().equals(postId));
+
+        log.info("Post removido da lista com sucesso");
+        return userRepository.save(user);
+    }
+>>>>>>> 993be7aae686d74f9c20f26869c20ad2085a3bd9
 }

@@ -5,3 +5,17 @@ n
 >src/main/java/com/api/usuario_post/UsuarioPostApplication.java,d\1\d1b8ff34d47b7b216ea5df6a8a8f989058aaacb5
 r
 Bsrc/main/java/com/api/usuario_post/security/WebSecurityConfig.java,3\b\3b83c0e7b172d8e34d3e2fc1b2e67f1532632547
+b
+2src/main/java/com/api/usuario_post/model/User.java,5\a\5ad96381aaf45344cab90b06b61d390a6d65d5d5
+g
+7src/main/java/com/api/usuario_post/event/PostEvent.java,7\d\7db079c21f563ff1f80614772ad81a66bd69213b
+k
+;src/main/java/com/api/usuario_post/service/UserService.java,e\5\e5e3706d34ad4d5a1d3fbf8a8d39d55d0992a9a8
+c
+3src/main/java/com/api/usuario_post/dto/UserDTO.java,8\9\898ba75055522ccafbe433643df0b13084c4d77d
+j
+:src/main/java/com/api/usuario_post/event/ElasticEvent.java,0\e\0e99f93c28ab635ac401b266f4857c06c2ed18ff
+q
+Asrc/main/java/com/api/usuario_post/controller/UserController.java,5\e\5ea5345d1677e35d472ab698beca9697f5cf5044
+c
+3src/main/java/com/api/usuario_post/dto/PostDTO.java,6\4\649aa772acf69fbd37b4153122f37dcd8700b8da

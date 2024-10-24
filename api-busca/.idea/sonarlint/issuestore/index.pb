@@ -27,3 +27,5 @@ q
 Asrc/main/java/com/moots/api_busca/security/WebSecurityConfig.java,7\f\7fabee3b7ddc241b334ebd3a56f0b244206dbe3f
 p
 @src/main/java/com/moots/api_busca/controller/UserController.java,6\0\60f414cd1dd0e1386bd98b6018080bf0f0a11f07
+a
+1src/main/java/com/moots/api_busca/model/Post.java,7\b\7b556df1cf6bc7b482b46feee0bb5e9b2e154c86
