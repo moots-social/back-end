@@ -302,8 +302,6 @@ public class UserService {
             throw new NoSuchElementException("Usuário não encontrado para o ID: " + userId);
         }
     }
-<<<<<<< HEAD
-=======
 
     public User salvarPostList(ElasticEvent elasticEvent){
 
@@ -346,5 +344,5 @@ public class UserService {
         log.info("Post removido da lista com sucesso");
         return userRepository.save(user);
     }
->>>>>>> 993be7aae686d74f9c20f26869c20ad2085a3bd9
+
 }

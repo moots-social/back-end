@@ -39,11 +39,8 @@ public class WebSecurityConfig {
                         .requestMatchers("/swagger-ui.html").permitAll()
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/user/criar").permitAll()
-<<<<<<< HEAD
                         .requestMatchers(HttpMethod.GET, "/user/buscarEmail").permitAll()
-=======
                         .requestMatchers(HttpMethod.GET, "/user/buscar/perfil/{id}").permitAll()
->>>>>>> 69e6a7afc8278b6c293b983501158e7ca4b514f5
                         .requestMatchers(HttpMethod.PUT,  "/user/seguir").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.PATCH,"/user/redefinir-senha/{id}").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.GET,  "/user/buscar/{id}").hasAnyRole("USER", "ADMIN")
