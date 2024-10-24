@@ -40,6 +40,7 @@ public class WebSecurityConfig {
                         .requestMatchers(SWAGGER_WHITELIST).permitAll()
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/user/criar").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/user/buscar/perfil/{id}").permitAll()
                         .requestMatchers(HttpMethod.PUT,  "/user/seguir").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.PATCH,"/user/redefinir-senha/{id}").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.GET,  "/user/buscar/{id}").hasAnyRole("USER", "ADMIN")

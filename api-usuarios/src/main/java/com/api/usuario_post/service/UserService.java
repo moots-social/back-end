@@ -2,6 +2,7 @@ package com.api.usuario_post.service;
 
 import com.api.usuario_post.dto.ResetPasswordDTO;
 import com.api.usuario_post.dto.UserDTO;
+import com.api.usuario_post.dto.UsuarioDiferenteDTO;
 import com.api.usuario_post.event.PostEvent;
 import com.api.usuario_post.event.ElasticEvent;
 import com.api.usuario_post.event.NotificationEvent;
@@ -34,6 +35,7 @@ public class UserService {
 
     @Autowired
     private KafkaProducerService kafkaProducerService;
+
 
     public User criarUsuario(@Valid UserDTO userDTO){
         // Verificar unicidade de email e tag
@@ -170,12 +172,32 @@ public class UserService {
     @Cacheable(cacheNames = "user", key = "#id")
     public User buscarUsuarioPorId(Long id) throws RuntimeException {
         User user = userRepository.findOnlyUser(id);
-
         if (user != null) {
             return user;
         } else {
             throw new BusinessException("User não encontrado");
         }
+
+    }
+
+    public UsuarioDiferenteDTO buscarUsuarioPorIdSemToken(Long id) throws RuntimeException{
+        User user = userRepository.findOnlyUser(id);
+
+        UsuarioDiferenteDTO usuarioDiferenteDTO = new UsuarioDiferenteDTO();
+
+        usuarioDiferenteDTO.setId(user.getId());
+        usuarioDiferenteDTO.setUserId(user.getUserId());
+        usuarioDiferenteDTO.setFollowers(user.getFollowers());
+        usuarioDiferenteDTO.setDescricao(user.getDescricao());
+        usuarioDiferenteDTO.setCurso(user.getCurso().toString());
+        usuarioDiferenteDTO.setFotoCapa(user.getFotoCapa());
+        usuarioDiferenteDTO.setNomeCompleto(user.getNomeCompleto());
+        usuarioDiferenteDTO.setTag(user.getTag());
+        usuarioDiferenteDTO.setListPosts(user.getListPosts());
+        usuarioDiferenteDTO.setFotoPerfil(user.getFotoPerfil());
+
+        return usuarioDiferenteDTO;
+
     }
 
     @Cacheable(cacheNames = "seguidores", key = "#userId")

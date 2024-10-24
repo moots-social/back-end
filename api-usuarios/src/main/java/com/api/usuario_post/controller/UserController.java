@@ -3,6 +3,7 @@ package com.api.usuario_post.controller;
 import com.api.usuario_post.client.imagestorage.ImageStorageClient;
 import com.api.usuario_post.dto.ResetPasswordDTO;
 import com.api.usuario_post.dto.UserDTO;
+import com.api.usuario_post.dto.UsuarioDiferenteDTO;
 import com.api.usuario_post.event.ElasticEvent;
 import com.api.usuario_post.event.PostEvent;
 import com.api.usuario_post.model.User;
@@ -73,6 +74,12 @@ public class UserController {
     public ResponseEntity<User> buscarUser (@PathVariable Long id) {
         User user = userService.buscarUsuarioPorId(id);
 
+        return ResponseEntity.ok().body(user);
+    }
+
+    @GetMapping("/buscar/perfil/{id}")
+    public ResponseEntity<UsuarioDiferenteDTO> buscarUserSemToken(@PathVariable Long id){
+        UsuarioDiferenteDTO user = userService.buscarUsuarioPorIdSemToken(id);
         return ResponseEntity.ok().body(user);
     }
 
