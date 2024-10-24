@@ -65,7 +65,7 @@ public class User {
 
     private String descricao = "Seja bem-vindo(a) ao meu perfil.";
 
-    private String fotoPerfil = "https://storageimagesmoots.blob.core.windows.net/artifact-image-container/015af62c-10db-4e9d-9252-2e4931e6e95b.jpg";
+    private String fotoPerfil = "https://storageimagesmoots.blob.core.windows.net/artifact-image-container/68a77764-1c2e-4bc4-8d6b-c280ac593970.png";
 
     private String fotoCapa = "https://storageimagesmoots.blob.core.windows.net/artifact-image-container/23cdd609-94b2-43f1-9112-9ae85ef2abe5.jpg";
 
