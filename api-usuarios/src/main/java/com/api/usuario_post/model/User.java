@@ -33,12 +33,9 @@ public class User {
 
     private String senha;
 
-    private List<PostEvent> colecaoSalvos;
+    private List<PostEvent> colecaoSalvos = new ArrayList<>();
 
     private Curso curso;
-
-    @Relationship(type = "HAVE", direction = Relationship.Direction.OUTGOING)
-    private List<ElasticEvent> listPosts;
 
     @Relationship(type = "FOLLOWS", direction = Relationship.Direction.OUTGOING)
     private Set<User> followers = new HashSet<>();
@@ -67,7 +64,7 @@ public class User {
 
     private String fotoPerfil = "https://storageimagesmoots.blob.core.windows.net/artifact-image-container/68a77764-1c2e-4bc4-8d6b-c280ac593970.png";
 
-    private String fotoCapa = "https://storageimagesmoots.blob.core.windows.net/artifact-image-container/23cdd609-94b2-43f1-9112-9ae85ef2abe5.jpg";
+    private String fotoCapa = "https://storageimagesmoots.blob.core.windows.net/artifact-image-container/2442999d-d56d-4a55-994b-91f9286a0ef0.jpg";
 
     private List<String > roles = new ArrayList<>();
 

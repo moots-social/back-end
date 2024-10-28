@@ -33,4 +33,6 @@ public class ElasticEvent implements Serializable {
 
     private Integer contadorDeslike;
 
+    private String curso;
+
 }

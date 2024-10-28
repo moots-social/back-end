@@ -61,7 +61,7 @@ public class PostService {
     }
 
     public List<Post> findByTextoOrTag(String query, int page){
-        int size = 2;
+        int size = 10;
         PageRequest pageRequest = PageRequest.of(page, size);
         List<Post> result = postRepository.findByTextoOrTag(query, query, pageRequest);
         return result;

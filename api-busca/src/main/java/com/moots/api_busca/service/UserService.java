@@ -32,14 +32,15 @@ public class UserService {
         return user;
     }
 
-    public User alterarUser(String userId, ElasticEvent elasticEvent){
-        User user = userRepository.findByUserId(userId);
+    public User alterarUser(ElasticEvent elasticEvent){
+        User user = userRepository.findByUserId(elasticEvent.getUserId());
 
         user.setTag(elasticEvent.getTag());
         user.setNomeCompleto(elasticEvent.getNomeCompleto());
         user.setFotoPerfil(elasticEvent.getFotoPerfil());
         user.setUserId(elasticEvent.getUserId());
         user.setCurso(elasticEvent.getCurso());
+        user.setPostId(elasticEvent.getPostId());
 
         return userRepository.save(user);
     }
@@ -50,7 +51,7 @@ public class UserService {
     }
 
     public List<User> findByTagOrNomeCompleto(String query, int page){
-        int size = 10;
+        int size = 5;
         PageRequest pageRequest = PageRequest.of(page, size);
         var result = userRepository.findByTagOrNomeCompleto(query, query, pageRequest);
         return result;

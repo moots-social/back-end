@@ -36,13 +36,19 @@ public class UserController {
     @KafkaListener(topics = "user-alterado-topic")
     public void alterarUserElastic(ElasticEvent elasticEvent){
         System.out.println("Mensagem recebida " + elasticEvent);
-        userService.alterarUser(elasticEvent.getUserId(), elasticEvent);
+        userService.alterarUser(elasticEvent);
         log.info("User alterado no Elastic Search");
     }
 
     @GetMapping
     public ResponseEntity<List<User>> findByTagOrNomeCompleto(@RequestParam String query, @RequestParam (defaultValue = "0", value = "page") int page){
         var result = userService.findByTagOrNomeCompleto(query, page);
+        return ResponseEntity.ok().body(result);
+    }
+
+    @GetMapping("/{curso}")
+    public ResponseEntity<List<User>> findUserByCurso(@PathVariable String curso){
+        var result = userService.findByCurso(curso);
         return ResponseEntity.ok().body(result);
     }
 }

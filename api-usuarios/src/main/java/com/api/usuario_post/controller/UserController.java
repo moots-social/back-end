@@ -135,7 +135,7 @@ public class UserController {
     }
 
     @PostMapping("/images")
-    public Result uparImgemBlob(@RequestParam String containerName, @RequestParam MultipartFile file) throws IOException {
+    public Result uparImgemBlob(@RequestParam (defaultValue = "artifact-image-container") String containerName, @RequestParam MultipartFile file) throws IOException {
         try (InputStream inputStream = file.getInputStream()){
             String imageUrl = this.imageStorageClient.uploadImage(containerName, file.getOriginalFilename(),inputStream, file.getSize());
             String blobName = imageUrl.substring(imageUrl.lastIndexOf("/") + 1);

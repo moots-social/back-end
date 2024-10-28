@@ -1,19 +1,19 @@
 
 w
-java:S3740"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿ8ë‚õ×ª2J$6edb3111-9b4f-4244-a7ca-5c32b7cb8f26
+java:S3740"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿ8ë‚õ×ª2J$55a75131-67b8-4b54-b305-30e6404f5e8f
 
-java:S1192H"UDefine a constant instead of duplicating this literal "Post nÃ£o encontrado" 3 times.(£«œ×øÿÿÿÿ8í‚õ×ª2J$f1d62e7f-58fa-4878-9c1c-4e223088aca3
+java:S1192H"UDefine a constant instead of duplicating this literal "Post nÃ£o encontrado" 3 times.(£«œ×øÿÿÿÿ8í‚õ×ª2J$531770af-7384-4da9-a0d8-06ecafea1b29
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ˆƒõ×ª2J$5ef91f50-b00d-4129-bcae-df3f39d76470
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ˆƒõ×ª2J$e09f7844-becf-4e05-8a9e-05661a623159
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Šƒõ×ª2J$fbd2de6a-404e-4024-a71d-96fd410c356a
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Šƒõ×ª2J$e6151cc1-88df-4052-8e0e-039c75fb3034
 …
-java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8Šƒõ×ª2J$bf562a4e-7f98-4c5a-825c-55b3c7be5b91
+java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8Šƒõ×ª2J$d0ac1a27-ac12-43d7-83cd-f2cb5c19d8c8
 …
-java:S6813#"BRemove this field injection and use constructor injection instead.(êæÄŞ8Šƒõ×ª2J$32c287fc-83d7-4875-883f-8c366af854bb
+java:S6813#"BRemove this field injection and use constructor injection instead.(êæÄŞ8Šƒõ×ª2J$83420227-3c3c-4404-a003-992c6f0f1045
 
-java:S2159W"VRemove this call to "equals"; comparisons between unrelated types always return false.(ÈËÕÂûÿÿÿÿ8¨ƒõ×ª2J$e0a91d94-27cc-41d4-913a-f23970954d0a
-‹
-java:S1858["C"getUserId" returns a string, there's no need to call "toString()".(®¥ñùûÿÿÿÿ8¨ƒõ×ª2J$a0f24eff-71b0-4972-baf3-bffbee6e9294
-‹
-java:S1858g"C"getUserId" returns a string, there's no need to call "toString()".(®¥ñùûÿÿÿÿ8¸ƒõ×ª2J$7c531ddb-fdea-46d7-b2e9-eb2ab55f654f
+java:S2159W"VRemove this call to "equals"; comparisons between unrelated types always return false.(ÈËÕÂûÿÿÿÿ8¨ƒõ×ª2J$b619730d-a251-468c-8720-4642d897d076
+†
+java:S1858["C"getUserId" returns a string, there's no need to call "toString()".(ë¿£«8¨ƒõ×ª2J$4565e8d4-7670-4c1b-b77a-71d33ecd5552
+†
+java:S1858g"C"getUserId" returns a string, there's no need to call "toString()".(ë¿£«8¸ƒõ×ª2J$bba7a45c-449c-4341-b828-aca0e66c16f4

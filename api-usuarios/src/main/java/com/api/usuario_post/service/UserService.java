@@ -73,15 +73,15 @@ public class UserService {
         user.setNumeroTelefone(userDTO.getNumeroTelefone());
         user.setTag(userDTO.getTag());
         user.setCurso(userDTO.getCurso());
-        user.setDescricao(userDTO.getDescricao());
-        user.setFotoPerfil(userDTO.getFotoPerfil());
-        user.setFotoCapa(userDTO.getFotoCapa());
+//        user.setDescricao(userDTO.getDescricao());
+//        user.setFotoPerfil(userDTO.getFotoPerfil());
+//        user.setFotoCapa(userDTO.getFotoCapa());
         user.setRoles(userDTO.getRoles());
 
         User savedUser = userRepository.save(user);
         savedUser.setUserId(savedUser.getId());
 
-        kafkaProducerService.sendMessage("user-criado-topic", new ElasticEvent(user.getUserId().toString(), null, user.getNomeCompleto(), user.getTag(), user.getFotoPerfil(), null, null, null, null));
+        kafkaProducerService.sendMessage("user-criado-topic", new ElasticEvent(user.getUserId().toString(), null, user.getNomeCompleto(), user.getTag(), user.getFotoPerfil(), null, null, null, null, null));
         return userRepository.save(savedUser);
     }
 
@@ -115,7 +115,7 @@ public class UserService {
             }
 
             userRepository.save(user.get());
-            kafkaProducerService.sendMessage("user-alterado-topic", new ElasticEvent(user.get().getUserId().toString(), null, user.get().getNomeCompleto(), user.get().getTag(), user.get().getFotoPerfil(), null, null, null, null));
+            kafkaProducerService.sendMessage("user-alterado-topic", new ElasticEvent(user.get().getUserId().toString(), null, user.get().getNomeCompleto(), user.get().getTag(), user.get().getFotoPerfil(), null, null, null, null, user.get().getCurso().toString()));
             return userRepository.findOnlyUser(user.get().getUserId());
         } else {
             // Lançar uma exceção apropriada se o usuário não for encontrado
@@ -193,11 +193,9 @@ public class UserService {
         usuarioDiferenteDTO.setFotoCapa(user.getFotoCapa());
         usuarioDiferenteDTO.setNomeCompleto(user.getNomeCompleto());
         usuarioDiferenteDTO.setTag(user.getTag());
-        usuarioDiferenteDTO.setListPosts(user.getListPosts());
         usuarioDiferenteDTO.setFotoPerfil(user.getFotoPerfil());
 
         return usuarioDiferenteDTO;
-
     }
 
     public User buscarUsuarioEmail(String email) throws RuntimeException {
@@ -238,7 +236,7 @@ public class UserService {
         if (user.isPresent()) {
             User user1 = userRepository.findOnlyUser(user.get().getUserId());
             userRepository.deleteById(id);
-            kafkaProducerService.sendMessage("user-deletado-topic", new ElasticEvent(user1.getUserId().toString(), null, null, null, null, null, null, null, null));
+            kafkaProducerService.sendMessage("user-deletado-topic", new ElasticEvent(user1.getUserId().toString(), null, null, null, null, null, null, null, null, null));
             return user1;
         } else {
             throw new BusinessException("Erro ao excluir usuario");
@@ -301,48 +299,6 @@ public class UserService {
         } else {
             throw new NoSuchElementException("Usuário não encontrado para o ID: " + userId);
         }
-    }
-
-    public User salvarPostList(ElasticEvent elasticEvent){
-
-        Optional<User> optionalUser = userRepository.findByUserId(Long.valueOf(elasticEvent.getUserId()));
-
-        if (optionalUser.isEmpty()) {
-            throw new RuntimeException("Usuário não encontrado com o ID: " + elasticEvent.getUserId());
-        }
-
-        User user = optionalUser.get();
-
-        var listPosts = user.getListPosts();
-
-        var userId = elasticEvent.getUserId();
-        var postId = elasticEvent.getPostId();
-        var texto = elasticEvent.getTexto();
-        var listImagens = elasticEvent.getListImagens();
-        var contadorLike = elasticEvent.getContadorLike();
-        var contadorDeslike = elasticEvent.getContadorDeslike();
-
-        var postSalvo = new ElasticEvent(userId, postId, null, null, null, texto, listImagens, contadorLike, contadorDeslike);
-
-        listPosts.add(postSalvo);
-
-        log.info("Post adicionado a lista com sucesso");
-        return userRepository.save(user);
-    }
-
-    public User removerPostListPosts(Long userId, Long postId) {
-        Optional<User> optionalUser = userRepository.findByUserId(userId);
-
-        if (optionalUser.isEmpty()) {
-            throw new RuntimeException("Usuário não encontrado com o ID: " + userId);
-        }
-
-        User user = optionalUser.get();
-        var listPosts = user.getListPosts();
-        boolean removerPost = listPosts.removeIf(l -> l.getPostId().equals(postId));
-
-        log.info("Post removido da lista com sucesso");
-        return userRepository.save(user);
     }
 
 }

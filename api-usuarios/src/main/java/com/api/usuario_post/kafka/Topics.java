@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Properties;
 
+
 public class Topics {
 
     public static void main(String[] args) {
@@ -16,8 +17,7 @@ public class Topics {
 
         try (AdminClient adminClient = AdminClient.create(properties)) {
             NewTopic userLogado = new NewTopic("user-logado-topic", 1, (short) 1);
-            NewTopic userAlterado = new NewTopic("user-alterado-topic", 1, (short) 1);
-            adminClient.createTopics(Arrays.asList(userLogado, userAlterado)).all().get();
+            adminClient.createTopics(Collections.singletonList( userLogado )).all().get();
 
             System.out.println("Tópico criado com sucesso!");
         } catch (Exception e) {
