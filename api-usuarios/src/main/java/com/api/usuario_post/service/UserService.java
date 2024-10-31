@@ -73,15 +73,22 @@ public class UserService {
         user.setNumeroTelefone(userDTO.getNumeroTelefone());
         user.setTag(userDTO.getTag());
         user.setCurso(userDTO.getCurso());
-//        user.setDescricao(userDTO.getDescricao());
-//        user.setFotoPerfil(userDTO.getFotoPerfil());
+        user.setDescricao(userDTO.getDescricao());
+
+        if(userDTO.getFotoPerfil() == null){
+            String fotoPadrao = "https://storageimagesmoots.blob.core.windows.net/artifact-image-container/68a77764-1c2e-4bc4-8d6b-c280ac593970.png";
+            user.setFotoPerfil(fotoPadrao);
+        }else{
+            user.setFotoPerfil(userDTO.getFotoPerfil());
+        }
+
 //        user.setFotoCapa(userDTO.getFotoCapa());
         user.setRoles(userDTO.getRoles());
 
         User savedUser = userRepository.save(user);
         savedUser.setUserId(savedUser.getId());
 
-        kafkaProducerService.sendMessage("user-criado-topic", new ElasticEvent(user.getUserId().toString(), null, user.getNomeCompleto(), user.getTag(), user.getFotoPerfil(), null, null, null, null, null));
+        kafkaProducerService.sendMessage("user-criado-topic", new ElasticEvent(user.getUserId().toString(), null, user.getNomeCompleto(), user.getTag(), user.getFotoPerfil(), null, null, null, null, user.getCurso().toString()));
         return userRepository.save(savedUser);
     }
 

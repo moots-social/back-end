@@ -45,10 +45,10 @@ public class Post implements Serializable {
     private List<String> listImagens;
 
     @NonNull
-    private Integer contadorLike;
+    private Integer contadorLike = 0;
 
     @NonNull
-    private Integer contadorDeslike;
+    private Integer contadorDeslike = 0;
 
     @JsonManagedReference
     @Relationship(type = "HAS_COMMENT", direction = Relationship.Direction.OUTGOING)

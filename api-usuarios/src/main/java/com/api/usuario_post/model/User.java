@@ -60,7 +60,7 @@ public class User {
         followers.add(user);
     }
 
-    private String descricao = "Seja bem-vindo(a) ao meu perfil.";
+    private String descricao;
 
     private String fotoPerfil = "https://storageimagesmoots.blob.core.windows.net/artifact-image-container/68a77764-1c2e-4bc4-8d6b-c280ac593970.png";
 
