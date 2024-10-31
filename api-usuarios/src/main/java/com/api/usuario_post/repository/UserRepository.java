@@ -34,4 +34,8 @@ public interface UserRepository extends Neo4jRepository <User, Long> {
     User findOnlyUser(Long userId);
 
     Optional<User> findByUserId(Long userId);
+
+//
+//    @Query("MATCH (u:User)-[QualquerRel]-(p:User) WHERE u.userId = $id1 && p.userId = $id2 DElETE QualquerRel")
+//    User removeFollowers(Long id1, Long id2);
 }

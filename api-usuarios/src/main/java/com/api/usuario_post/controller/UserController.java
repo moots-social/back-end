@@ -57,8 +57,8 @@ public class UserController {
     }
 
     @PutMapping("/seguir")
-    public ResponseEntity<User> seguir(@RequestParam Long id1, @RequestParam Long id2) {
-        User user = userService.seguirUsuario(id1, id2);
+    public ResponseEntity<User> seguir(@RequestParam Long id1, @RequestParam Long id2, @RequestParam(defaultValue = "true") boolean follow) {
+        User user = userService.seguirUsuario(id1, id2, follow);
 
         return ResponseEntity.ok().body(user);
     }

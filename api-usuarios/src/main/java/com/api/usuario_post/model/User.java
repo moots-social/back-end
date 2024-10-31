@@ -55,7 +55,7 @@ public class User {
 
     public void follow(User user) {
         if (followers.contains(user)) {
-            throw new IllegalStateException("Already following this user");
+            throw new IllegalStateException("Você já está seguindo esse usuário");
         }
         followers.add(user);
     }

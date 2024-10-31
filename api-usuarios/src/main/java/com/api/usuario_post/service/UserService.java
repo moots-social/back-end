@@ -158,12 +158,16 @@ public class UserService {
     }
 
     @CacheEvict(value = {"seguidores", "seguindos"}, key = "#userId")
-    public User seguirUsuario(Long userId, Long userId2) throws RuntimeException{
+    public User seguirUsuario(Long userId, Long userId2, boolean follow) throws RuntimeException{
         Optional<User> user1 = userRepository.findByUserId(userId);
         Optional<User> user2 = userRepository.findByUserId(userId2);
         String evento = "Seguiu";
 
-        if (user1.isPresent() && user2.isPresent()) {
+        if(follow == false){
+            removeFollower(userId, userId2);
+        }
+
+        if (user1.isPresent() && user2.isPresent() && follow == true) {
             user1.get().follow(user2.get());
 
             userRepository.save(user1.get());
@@ -171,9 +175,11 @@ public class UserService {
             kafkaProducerService.sendMessage("notification-topic", new NotificationEvent(null,user1.get().getUserId(), user1.get().getTag(), evento, new Date(),user2.get().getUserId().toString(), user1.get().getFotoPerfil()));
             log.info("Evento enviado com sucesso");
             return userRepository.findOnlyUser(user1.get().getUserId());
-        } else {
-            throw new BusinessException("Usuario(s) não encontrado(s)");
         }
+
+        User user = user1.get();
+
+        return user;
     }
 
     @Cacheable(cacheNames = "user", key = "#id")
@@ -306,6 +312,17 @@ public class UserService {
         } else {
             throw new NoSuchElementException("Usuário não encontrado para o ID: " + userId);
         }
+    }
+
+    public User removeFollower(Long userId1, Long userId2){
+        Optional<User> user1 = userRepository.findByUserId(userId1);
+
+        User user = user1.get();
+        var listFollowers = user.getFollowers();
+
+        boolean removeFollower = listFollowers.removeIf(l -> l.getUserId().equals(userId2));
+        log.info("Usuário removido da lista de seguidores com sucesso");
+        return userRepository.save(user);
     }
 
 }
