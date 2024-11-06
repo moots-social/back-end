@@ -29,7 +29,7 @@ public interface UserRepository extends Neo4jRepository <User, Long> {
     @Query("MATCH (u:User)-[:FOLLOWS]->(f:User) WHERE u.userId = $userId RETURN f")
     List<User> findFollowingByUserId(Long userId);
 
-    @Query("MATCH (u:User)-[:FOLLOWS]->(f:User)-[:HAS_POST]->(p:POST) WHERE u.userId = $userId RETURN p")
+    @Query("MATCH (u:User)-[:FOLLOWS]->(f:User)-[:HAS_POST]->(p:POST) WHERE u.userId = $userId RETURN p.postId as postId, p.nomeCompleto as nomeCompleto, p.tag as tag, p.fotoPerfil as fotoPerfil, p.texto as texto, p.listImagens as listImagens, p.contadorLike as contadorLike, p.contadorDeslike as contadorDeslike, p.comentarioList as comentarioList")
     List<Post> findPostAndComentarioByFollowers(Long userId);
 
     @Query("MATCH (p:User) WHERE p.userId = $userId " +

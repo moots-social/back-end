@@ -23,22 +23,16 @@ public class Comentario implements Serializable {
     @GeneratedValue
     private Long id;
 
-    @NonNull
     private String texto;
 
-    @NonNull
     private String userId;
 
-    @NonNull
     private String nomeCompleto;
 
-    @NonNull
     private String fotoPerfil;
 
-    @NonNull
     private String tag;
 
-    @NonNull
     private Long postId;
 
     @JsonBackReference

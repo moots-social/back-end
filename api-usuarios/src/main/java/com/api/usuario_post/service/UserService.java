@@ -334,6 +334,7 @@ public class UserService {
                 .orElseThrow(NoSuchElementException::new);
 
         Post novoPost = new Post();
+//        novoPost.setUserId(elasticEvent.getUserId());
         novoPost.setPostId(elasticEvent.getPostId());
         novoPost.setTexto(elasticEvent.getTexto());
         novoPost.setFotoPerfil(elasticEvent.getFotoPerfil());
