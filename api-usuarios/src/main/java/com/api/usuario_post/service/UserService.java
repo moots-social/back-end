@@ -8,6 +8,7 @@ import com.api.usuario_post.event.ElasticEvent;
 import com.api.usuario_post.event.NotificationEvent;
 import com.api.usuario_post.event.UserEvent;
 import com.api.usuario_post.handler.BusinessException;
+import com.api.usuario_post.model.Post;
 import com.api.usuario_post.model.User;
 import com.api.usuario_post.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -16,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -325,4 +327,28 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    @KafkaListener(topics = "post-salvo-topic")
+    public void adicionarPostNaLista(ElasticEvent elasticEvent){
+
+        User user = userRepository.findByUserId(Long.valueOf(elasticEvent.getUserId()))
+                .orElseThrow(NoSuchElementException::new);
+
+        Post novoPost = new Post();
+        novoPost.setPostId(elasticEvent.getPostId());
+        novoPost.setTexto(elasticEvent.getTexto());
+        novoPost.setFotoPerfil(elasticEvent.getFotoPerfil());
+        novoPost.setNomeCompleto(elasticEvent.getNomeCompleto());
+        novoPost.setTag(elasticEvent.getTag());
+        novoPost.setListImagens(elasticEvent.getListImagens());
+
+        user.getListPosts().add(novoPost);
+
+        log.info("Post adicionado na lista de usuarios com sucesso");
+        userRepository.save(user);
+    }
+
+    public List<Post> findPostAndCommentByFollowers(Long userId){
+        List<Post> posts = userRepository.findPostAndComentarioByFollowers(userId);
+        return posts;
+    }
 }

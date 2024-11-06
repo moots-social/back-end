@@ -11,8 +11,6 @@ p
 Napi-usuarios/src/main/java/com/api/usuario_post/controller/UserController.java,7\3\7393fee32f22d14c79f3dfe5e5afc2e05bf79ae5
 {
 Kapi-usuarios/src/main/java/com/api/usuario_post/UsuarioPostApplication.java,e\a\ea575db5e7795fd337a4c1159dfdf87e092d7bd0
-y
-Iapi-gateway/src/main/java/com/moots/api_gateway/config/GatewayConfig.java,f\7\f7dc879c5115e0f096617f16c3ae51a2d853129e
 z
 Japi-busca/src/main/java/com/moots/api_busca/controller/PostController.java,0\a\0aa5d86e6254533d13427fa166a1b51c89ff88ae
 z
@@ -29,10 +27,6 @@ Tapi-reporte-main/src/main/java/com/moots/api_report/controller/ReportController
 Oapi-usuarios/src/main/java/com/api/usuario_post/controller/LoginController.java,d\4\d4446ce4b8987344665423dc858d22f295c185a4
 D
 api-busca/Dockerfile,8\a\8aa85be229d885046d7f9f585a35c9f7cdf7ea3c
-F
-api-gateway/Dockerfile,9\5\9548e2ce3bdfe112d8c757987e1beebc1ecab5ed
-z
-Japi-gateway/src/main/java/com/moots/api_gateway/ApiGatewayApplication.java,8\5\85271ae2dfc7c454e763b590950abb35ee6657ca
 t
 Dapi-busca/src/main/java/com/moots/api_busca/ApiBuscaApplication.java,0\d\0d4922c3ec1de6edb633818195a59be0d5bb3f55
 ~
@@ -163,3 +157,13 @@ Lapi-usuarios/src/main/java/com/api/usuario_post/dto/UsuarioDiferenteDTO.java,5
 Napi-post/src/main/java/com/moots/api_post/repository/ComentarioRepository.java,1\4\14eab6797d4aabb3e8ce280ecf22bacaf0f26ed3
 „
 Tapi-reporte-main/src/main/java/com/moots/api_report/repository/ReportRepository.java,a\6\a67a8aa50da9e4ad2c5c4a21b2a3376c737ebbd4
+i
+9api-post/src/main/java/com/moots/api_post/model/User.java,4\3\4355e38e3565d66279d1866bfd6795f511b1fe41
+p
+@api-usuarios/src/main/java/com/api/usuario_post/model/Postt.java,7\a\7a8b3e8171f8ea70947a6653661d67232c18ed4a
+o
+?api-usuarios/src/main/java/com/api/usuario_post/model/Post.java,b\0\b039c8068d9aae08b1914b1dc3b89d8fd4a6a0ac
+u
+Eapi-usuarios/src/main/java/com/api/usuario_post/model/Comentario.java,0\5\052cddff66d5c4312d77c39f00e9fa86607a6d32
+o
+?api-post/src/main/java/com/moots/api_post/model/Comentario.java,f\6\f68f638bd3558e0511a4df6fa0c6e8ca64aabe0d

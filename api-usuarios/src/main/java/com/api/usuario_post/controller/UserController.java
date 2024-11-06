@@ -6,6 +6,7 @@ import com.api.usuario_post.dto.UserDTO;
 import com.api.usuario_post.dto.UsuarioDiferenteDTO;
 import com.api.usuario_post.event.ElasticEvent;
 import com.api.usuario_post.event.PostEvent;
+import com.api.usuario_post.model.Post;
 import com.api.usuario_post.model.User;
 import com.api.usuario_post.repository.UserRepository;
 import com.api.usuario_post.service.UserService;
@@ -147,5 +148,11 @@ public class UserController {
     public String deletarImagemBlob(@RequestParam String containerName, @RequestParam String blobName) {
         imageStorageClient.deleteBlob(blobName, containerName);
         return "Blob deletado com sucesso " + blobName;
+    }
+
+    @GetMapping("/seguidores/post/{userId}")
+    public ResponseEntity<List<Post>> findPostAndCommentByFollowers(@PathVariable Long userId){
+        List<Post> posts = userService.findPostAndCommentByFollowers(userId);
+        return ResponseEntity.ok().body(posts);
     }
 }

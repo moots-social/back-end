@@ -46,5 +46,4 @@ public class Comentario implements Serializable {
     @Relationship(value = "HAS_COMMENT", direction = Relationship.Direction.INCOMING)
     private Post post;
 
-
 }

@@ -40,6 +40,9 @@ public class User {
     @Relationship(type = "FOLLOWS", direction = Relationship.Direction.OUTGOING)
     private Set<User> followers = new HashSet<>();
 
+    @Relationship(type = "HAS_POST", direction = Relationship.Direction.OUTGOING)
+    private List<Post> listPosts = new ArrayList<>();
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
