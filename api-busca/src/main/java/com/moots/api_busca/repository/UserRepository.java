@@ -14,5 +14,5 @@ public interface UserRepository extends ElasticsearchRepository<User, String> {
 
     List<User> findByCurso(String curso);
 
-    List<User> findByTagOrNomeCompleto(String tag, String nomeCompleto, Pageable pageable); // 5 users
+    List<User> findByTagOrNomeCompleto(String tag, String nomeCompleto); // 5 users
 }

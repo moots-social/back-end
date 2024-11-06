@@ -50,10 +50,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public List<User> findByTagOrNomeCompleto(String query, int page){
-        int size = 5;
-        PageRequest pageRequest = PageRequest.of(page, size);
-        var result = userRepository.findByTagOrNomeCompleto(query, query, pageRequest);
+    public List<User> findByTagOrNomeCompleto(String query){
+        var result = userRepository.findByTagOrNomeCompleto(query, query);
         return result;
     }
 

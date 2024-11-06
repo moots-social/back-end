@@ -60,10 +60,8 @@ public class PostService {
         return postRepository.findAll();
     }
 
-    public List<Post> findByTextoOrTag(String query, int page){
-        int size = 10;
-        PageRequest pageRequest = PageRequest.of(page, size);
-        List<Post> result = postRepository.findByTextoOrTag(query, query, pageRequest);
+    public List<Post> findByTextoOrTag(String query){
+        List<Post> result = postRepository.findByTextoOrTag(query, query);
         return result;
     }
 

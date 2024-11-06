@@ -48,8 +48,8 @@ public class PostController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Post>> searchByTexto(@RequestParam String query, @RequestParam (defaultValue = "0", value = "page") int page){
-        var result = postService.findByTextoOrTag(query, page);
+    public ResponseEntity<List<Post>> searchByTexto(@RequestParam String query){
+        var result = postService.findByTextoOrTag(query);
         return ResponseEntity.ok().body(result);
     }
 

@@ -41,8 +41,8 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> findByTagOrNomeCompleto(@RequestParam String query, @RequestParam (defaultValue = "0", value = "page") int page){
-        var result = userService.findByTagOrNomeCompleto(query, page);
+    public ResponseEntity<List<User>> findByTagOrNomeCompleto(@RequestParam String query){
+        var result = userService.findByTagOrNomeCompleto(query);
         return ResponseEntity.ok().body(result);
     }
 
