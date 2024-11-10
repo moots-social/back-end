@@ -20,7 +20,7 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @KafkaListener(topics = "post-salvo-topic")
+    @KafkaListener(topics = "post-salvar-topic")
     public void salvarPostElastic(ElasticEvent elasticEvent){
         System.out.println("Mensagem recebida " + elasticEvent);
         postService.salvarPostElastic(elasticEvent);
@@ -43,19 +43,19 @@ public class PostController {
 
     @GetMapping("/all")
     public ResponseEntity<Iterable<Post>> allPosts(){
-        var posts = postService.findAll();
+        Iterable<Post> posts = postService.findAll();
         return ResponseEntity.ok().body(posts);
     }
 
     @GetMapping
     public ResponseEntity<List<Post>> searchByTexto(@RequestParam String query){
-        var result = postService.findByTextoOrTag(query);
+        List<Post> result = postService.findByTextoOrTag(query);
         return ResponseEntity.ok().body(result);
     }
 
     @GetMapping("/{userId}")
     public ResponseEntity<List<Post>> searchByUserId(@PathVariable String userId){
-        var result = postService.findPostByUserId(userId);
+        List<Post> result = postService.findPostByUserId(userId);
         return ResponseEntity.ok().body(result);
     }
 }

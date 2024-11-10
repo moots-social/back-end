@@ -1,11 +1,11 @@
 package com.moots.api_post.service;
 
-import com.moots.api_post.event.PostEvent;
 import com.moots.api_post.dto.PostDTO;
 import com.moots.api_post.event.NotificationEvent;
 import com.moots.api_post.event.ElasticEvent;
 import com.moots.api_post.event.ReportPostEvent;
 import com.moots.api_post.model.Post;
+import com.moots.api_post.model.User;
 import com.moots.api_post.repository.PostRepository;
 import com.moots.api_post.utils.Utils;
 import lombok.extern.slf4j.Slf4j;
@@ -32,13 +32,10 @@ public class PostService {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private SseService sseService;
-
     public Post criarPost(PostDTO postDTO) throws Exception {
-        var userId = Utils.buscarIdToken();
-        var post = new Post();
-        var user = userService.getUserRedis(userId.toString());
+        Long userId = Utils.buscarIdToken();
+        Post post = new Post();
+        User user = userService.getUserRedis(userId.toString());
 
         post.setUserId(user.getUserId());
         post.setTag(user.getTag());
@@ -53,10 +50,9 @@ public class PostService {
         Post postSalvo = postRepository.save(post);
         postSalvo.setPostId(postSalvo.getId());
 
-        kafkaProducerService.sendMessage("post-salvo-topic", new ElasticEvent(post.getUserId(), post.getPostId(), post.getNomeCompleto(), post.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null));
+        kafkaProducerService.sendMessage("post-salvar-topic", new ElasticEvent(post.getUserId(), post.getPostId(), post.getNomeCompleto(), post.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null));
         log.info("Evento enviado com sucesso");
 
-        sseService.sendPostEvent(postSalvo);
         return postSalvo;
     }
 
@@ -88,7 +84,7 @@ public class PostService {
             kafkaProducerService.sendMessage("notification-topic", new NotificationEvent(postId, idUser, user.getTag(), evento, new Date(), post.getUserId(), user.getFotoPerfil()));
             log.info("Evento enviado com sucesso");
         }
-        kafkaProducerService.sendMessage("post-atualizado-topic", new ElasticEvent(post.getUserId().toString(), post.getPostId(), post.getNomeCompleto(), post.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null));
+        kafkaProducerService.sendMessage("post-atualizado-topic", new ElasticEvent(post.getUserId().toString(), postId, post.getNomeCompleto(), post.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null));
         return postRepository.save(post);
     }
 
@@ -100,7 +96,7 @@ public class PostService {
         int contador = deslike ? post.getContadorDeslike() + 1 : post.getContadorDeslike() - 1;
         post.setContadorDeslike(contador);
 
-        kafkaProducerService.sendMessage("post-atualizado-topic", new ElasticEvent(post.getUserId().toString(), post.getPostId(), post.getNomeCompleto(), post.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null));
+        kafkaProducerService.sendMessage("post-atualizado-topic", new ElasticEvent(post.getUserId().toString(), postId, post.getNomeCompleto(), post.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null));
         return postRepository.save(post);
     }
 

@@ -16,7 +16,7 @@ public class UserService {
     private UserRepository userRepository;
 
     public User salvarUserElastic(ElasticEvent elasticEvent){
-        var user = new User();
+        User user = new User();
         user.setTag(elasticEvent.getTag());
         user.setNomeCompleto(elasticEvent.getNomeCompleto());
         user.setFotoPerfil(elasticEvent.getFotoPerfil());
@@ -51,12 +51,17 @@ public class UserService {
     }
 
     public List<User> findByTagOrNomeCompleto(String query){
-        var result = userRepository.findByTagOrNomeCompleto(query, query);
+        List<User> result = userRepository.findByTagOrNomeCompleto(query, query);
         return result;
     }
 
     public List<User> findByCurso(String curso){
         List<User> users = userRepository.findByCurso(curso);
         return users;
+    }
+
+    public List<User> findByCursoAndTagOrNomeCompleto(String curso, String query){
+        List<User> result = userRepository.findCursoAndTagOrNomeCompleto(curso, query, query);
+        return result;
     }
 }

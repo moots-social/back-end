@@ -1,8 +1,8 @@
 
 ›
-java:S1192"SDefine a constant instead of duplicating this literal "Mensagem recebida " 3 times.(Ë“¶”ûÿÿÿÿ8îÓ×§­2J$ac8f2054-81bb-450f-883f-0ed466690774
+java:S1192"SDefine a constant instead of duplicating this literal "Mensagem recebida " 3 times.(Ë“¶”ûÿÿÿÿ8ÅŸ¹±2J$107325d3-7d0a-46bb-8c31-01b4907b9f1f
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Ô×§­2J$9f8c108d-fb38-43ab-88c3-a1fa877f15a3
-r	java:S106"+Replace this use of System.out by a logger.(Ë“¶”ûÿÿÿÿ8‰Ô×§­2J$17a64017-d426-4fca-963a-5f32962013d6
-r	java:S106"+Replace this use of System.out by a logger.(Ë“¶”ûÿÿÿÿ8ŠÔ×§­2J$975543d4-408c-4815-b73a-015e7ec7bf76
-r	java:S106&"+Replace this use of System.out by a logger.(Ë“¶”ûÿÿÿÿ8ŒÔ×§­2J$754afec2-5788-40ca-bdba-986104eda81e
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8’ÅŸ¹±2J$0253af9a-4fc0-483c-885b-edbb3d4c7802
+r	java:S106"+Replace this use of System.out by a logger.(Ë“¶”ûÿÿÿÿ8šÅŸ¹±2J$e509dc1c-7c83-47db-a9ff-fa2790dbe3e7
+r	java:S106"+Replace this use of System.out by a logger.(Ë“¶”ûÿÿÿÿ8ÅŸ¹±2J$4debe5d3-dc17-4180-bf96-3f74d451164b
+r	java:S106&"+Replace this use of System.out by a logger.(Ë“¶”ûÿÿÿÿ8ÅŸ¹±2J$b70fdd9f-1b78-43e1-a064-217bd7998806

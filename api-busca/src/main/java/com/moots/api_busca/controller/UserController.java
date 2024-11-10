@@ -42,13 +42,19 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<User>> findByTagOrNomeCompleto(@RequestParam String query){
-        var result = userService.findByTagOrNomeCompleto(query);
+        List<User> result = userService.findByTagOrNomeCompleto(query);
         return ResponseEntity.ok().body(result);
     }
 
     @GetMapping("/{curso}")
     public ResponseEntity<List<User>> findUserByCurso(@PathVariable String curso){
-        var result = userService.findByCurso(curso);
+        List<User> result = userService.findByCurso(curso);
+        return ResponseEntity.ok().body(result);
+    }
+
+    @GetMapping("/curso/{curso}/query/{query}")
+    public ResponseEntity<List<User>> findByCursoAndTagOrNomeCompleto(@PathVariable String curso, @PathVariable String query){
+        List<User> result = userService.findByCursoAndTagOrNomeCompleto(curso, query);
         return ResponseEntity.ok().body(result);
     }
 }

@@ -1,7 +1,9 @@
 
-Ÿ
-java:S14888"^Immediately return this expression instead of assigning it to the temporary variable "result".(¸ä´ıÿÿÿÿJ$d7481654-1ca8-44cd-943c-e82c2837243c
-™
-java:S1488="]Immediately return this expression instead of assigning it to the temporary variable "users".(ıéÚÇJ$e67d7c41-4ca2-4efa-bc8a-b36c4254c605
-~
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞJ$c4fad99e-408b-4ade-abc3-d06e943670b2
+¦
+java:S14886"^Immediately return this expression instead of assigning it to the temporary variable "result".(ŞË’úÿÿÿÿ8Ø¢’¹±2J$688ed81b-3c3d-4c43-8776-b72ead982264
+ 
+java:S1488;"]Immediately return this expression instead of assigning it to the temporary variable "users".(ıéÚÇ8Ù¢’¹±2J$52562e60-06a6-4f33-86cd-9f5fe25bbcc2
+¦
+java:S1488@"^Immediately return this expression instead of assigning it to the temporary variable "result".(½áÑÉüÿÿÿÿ8Ì×’¹±2J$228c9adb-5e7c-4f25-a3a6-6f53e1f1ec96
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ä¢’¹±2J$fdb51659-f03c-4794-8d41-edbf8638c442

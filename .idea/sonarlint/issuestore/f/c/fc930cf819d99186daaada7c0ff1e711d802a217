@@ -1,19 +1,17 @@
 
 w
-java:S3740"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿ8ë‚õ×ª2J$55a75131-67b8-4b54-b305-30e6404f5e8f
+java:S3740"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿ8ë‚õ×ª2J$28162687-4cfc-4077-b61d-fd757405540d
 
-java:S1192H"UDefine a constant instead of duplicating this literal "Post nÃ£o encontrado" 3 times.(£«œ×øÿÿÿÿ8í‚õ×ª2J$531770af-7384-4da9-a0d8-06ecafea1b29
+java:S1192D"UDefine a constant instead of duplicating this literal "Post nÃ£o encontrado" 3 times.(£«œ×øÿÿÿÿ8í‚õ×ª2J$0b2ccaf7-f849-42a1-9a5f-8cebdca259e8
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ˆƒõ×ª2J$e09f7844-becf-4e05-8a9e-05661a623159
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ˆƒõ×ª2J$94092afc-a4b9-4e7e-96a0-21ad27f930c7
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Šƒõ×ª2J$e6151cc1-88df-4052-8e0e-039c75fb3034
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Šƒõ×ª2J$c4dcbf2f-1124-4fef-b7b8-eb52b3bac1d6
 …
-java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8Šƒõ×ª2J$d0ac1a27-ac12-43d7-83cd-f2cb5c19d8c8
-…
-java:S6813#"BRemove this field injection and use constructor injection instead.(êæÄŞ8Šƒõ×ª2J$83420227-3c3c-4404-a003-992c6f0f1045
+java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8Šƒõ×ª2J$9e80ad10-0c6c-4160-868a-65b9dc49c366
 
-java:S2159W"VRemove this call to "equals"; comparisons between unrelated types always return false.(ÈËÕÂûÿÿÿÿ8¨ƒõ×ª2J$b619730d-a251-468c-8720-4642d897d076
-†
-java:S1858["C"getUserId" returns a string, there's no need to call "toString()".(ë¿£«8¨ƒõ×ª2J$4565e8d4-7670-4c1b-b77a-71d33ecd5552
-†
-java:S1858g"C"getUserId" returns a string, there's no need to call "toString()".(ë¿£«8¸ƒõ×ª2J$bba7a45c-449c-4341-b828-aca0e66c16f4
+java:S2159S"VRemove this call to "equals"; comparisons between unrelated types always return false.(ÈËÕÂûÿÿÿÿ8¨ƒõ×ª2J$9a2d86bb-8eed-4003-819e-8f81d4a5c3f5
+‹
+java:S1858W"C"getUserId" returns a string, there's no need to call "toString()".(äöç×ùÿÿÿÿ8¸ƒõ×ª2J$94ac481d-838b-4fb0-ba6e-df65b787d17c
+‹
+java:S1858c"C"getUserId" returns a string, there's no need to call "toString()".(äöç×ùÿÿÿÿ8»•¤œ±2J$b4905b62-6b32-4142-9b6a-ad96df5b34f5

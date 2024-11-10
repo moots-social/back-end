@@ -36,10 +36,8 @@ public class Post implements Serializable {
     @NonNull
     private String tag;
 
-
     private String fotoPerfil;
 
-    @NonNull
     private String texto;
 
     private List<String> listImagens;

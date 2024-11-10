@@ -327,14 +327,14 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    @KafkaListener(topics = "post-salvo-topic")
+    @KafkaListener(topics = "post-salvar-topic")
     public void adicionarPostNaLista(ElasticEvent elasticEvent){
 
         User user = userRepository.findByUserId(Long.valueOf(elasticEvent.getUserId()))
                 .orElseThrow(NoSuchElementException::new);
 
         Post novoPost = new Post();
-//        novoPost.setUserId(elasticEvent.getUserId());
+        novoPost.setUserId(user.getUserId().toString());
         novoPost.setPostId(elasticEvent.getPostId());
         novoPost.setTexto(elasticEvent.getTexto());
         novoPost.setFotoPerfil(elasticEvent.getFotoPerfil());

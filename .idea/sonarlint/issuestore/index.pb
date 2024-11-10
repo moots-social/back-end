@@ -159,8 +159,6 @@ Napi-post/src/main/java/com/moots/api_post/repository/ComentarioRepository.java
 Tapi-reporte-main/src/main/java/com/moots/api_report/repository/ReportRepository.java,a\6\a67a8aa50da9e4ad2c5c4a21b2a3376c737ebbd4
 i
 9api-post/src/main/java/com/moots/api_post/model/User.java,4\3\4355e38e3565d66279d1866bfd6795f511b1fe41
-p
-@api-usuarios/src/main/java/com/api/usuario_post/model/Postt.java,7\a\7a8b3e8171f8ea70947a6653661d67232c18ed4a
 o
 ?api-usuarios/src/main/java/com/api/usuario_post/model/Post.java,b\0\b039c8068d9aae08b1914b1dc3b89d8fd4a6a0ac
 u
