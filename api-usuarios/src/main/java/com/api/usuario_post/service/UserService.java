@@ -327,7 +327,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    @KafkaListener(topics = "post-salvar-topic")
+    @KafkaListener(topics = "post-salvo-topic")
     public void adicionarPostNaLista(ElasticEvent elasticEvent){
 
         User user = userRepository.findByUserId(Long.valueOf(elasticEvent.getUserId()))
@@ -350,6 +350,12 @@ public class UserService {
 
     public List<Post> findPostAndCommentByFollowers(Long userId){
         List<Post> posts = userRepository.findPostAndComentarioByFollowers(userId);
+        log.info("Post adicionado na lista de usuarios com sucesso");
+        return posts;
+    }
+
+    public List<Post> findPostByUserId(Long userId){
+        List<Post> posts = userRepository.findPostsByUserId(userId);
         return posts;
     }
 }

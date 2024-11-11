@@ -20,7 +20,7 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @KafkaListener(topics = "post-salvar-topic")
+    @KafkaListener(topics = "post-salvo-topic")
     public void salvarPostElastic(ElasticEvent elasticEvent){
         System.out.println("Mensagem recebida " + elasticEvent);
         postService.salvarPostElastic(elasticEvent);

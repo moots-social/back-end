@@ -7,6 +7,8 @@ import com.moots.api_post.event.ReportPostEvent;
 import com.moots.api_post.dto.PostDTO;
 import com.moots.api_post.model.Post;
 import com.moots.api_post.service.PostService;
+import com.moots.api_post.utils.Deslike;
+import com.moots.api_post.utils.Like;
 import com.moots.api_post.utils.Result;
 import com.moots.api_post.utils.StatusCode;
 import lombok.extern.slf4j.Slf4j;
@@ -53,9 +55,9 @@ public class PostController {
     }
 
     @PutMapping("/dar-like")
-    public ResponseEntity<Post> darLikePost(@RequestParam Long postId, @RequestParam boolean like) {
+    public ResponseEntity<Like> darLikePost(@RequestParam Long postId, @RequestParam boolean like) {
         try{
-            Post postAtualizado = postService.darLike(postId, like);
+            Like postAtualizado = postService.darLike(postId, like);
 
             return ResponseEntity.ok(postAtualizado);
         } catch (Exception e) {
@@ -65,7 +67,7 @@ public class PostController {
     }
 
     @PutMapping("/dar-deslike")
-    public Post darDeslikePost(@RequestParam Long postId, @RequestParam boolean deslike){
+    public Deslike darDeslikePost(@RequestParam Long postId, @RequestParam boolean deslike){
         return postService.darDeslike(postId, deslike);
     }
 

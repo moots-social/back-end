@@ -153,6 +153,13 @@ public class UserController {
     @GetMapping("/seguidores/post/{userId}")
     public ResponseEntity<List<Post>> findPostAndCommentByFollowers(@PathVariable Long userId){
         List<Post> posts = userService.findPostAndCommentByFollowers(userId);
+        log.info("Post adicionado na lista de usuarios com sucesso");
+        return ResponseEntity.ok().body(posts);
+    }
+
+    @GetMapping("/post/{userId}")
+    public ResponseEntity<List<Post>> findPostByUserId(@PathVariable Long userId){
+        List<Post> posts = userService.findPostByUserId(userId);
         return ResponseEntity.ok().body(posts);
     }
 }
