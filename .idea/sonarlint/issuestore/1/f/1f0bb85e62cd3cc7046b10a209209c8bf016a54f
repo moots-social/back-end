@@ -1,5 +1,7 @@
 
-X
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
-V
-java:S1128"ARemove this unused import 'com.api.usuario_post.event.UserEvent'.(£ÌªA
+~
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞJ$c9fca6e4-530a-4b1f-b283-9518fdc1e1ab
+a
+java:S1128"DRemove this unused import 'com.api.usuario_post.event.ElasticEvent'.(Ü­ô8ğ¥ø—²2
+]
+java:S1128"ARemove this unused import 'com.api.usuario_post.event.UserEvent'.(£ÌªA8ğ¥ø—²2

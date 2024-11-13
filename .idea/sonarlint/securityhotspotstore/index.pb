@@ -165,3 +165,5 @@ u
 Eapi-usuarios/src/main/java/com/api/usuario_post/model/Comentario.java,0\5\052cddff66d5c4312d77c39f00e9fa86607a6d32
 o
 ?api-post/src/main/java/com/moots/api_post/model/Comentario.java,f\6\f68f638bd3558e0511a4df6fa0c6e8ca64aabe0d
+{
+Kapi-post/src/main/java/com/moots/api_post/service/KafkaProducerService.java,c\3\c3fe6840dd476bd2acb787a404a4c13895916abc

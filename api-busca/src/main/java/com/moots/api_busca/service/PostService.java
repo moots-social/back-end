@@ -18,9 +18,10 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
-    public Post salvarPostElastic(ElasticEvent elasticEvent){
-
-        var post = new Post();
+    @KafkaListener(topics = "post-criado-topic")
+    public void salvarPostElastic(ElasticEvent elasticEvent) {
+        log.info("O evento de salvar post foi recebido: " + elasticEvent);
+        Post post = new Post();
         post.setTag(elasticEvent.getTag());
         post.setListImagens(elasticEvent.getListImagens());
         post.setTexto(elasticEvent.getTexto());
@@ -31,11 +32,13 @@ public class PostService {
         post.setUserId(elasticEvent.getUserId());
         post.setPostId(elasticEvent.getPostId());
 
-        log.info("Post salvo no elastic com sucesso ");
-        return postRepository.save(post);
+        postRepository.save(post);
+        log.info("Post salvo com sucesso: " + post);
     }
 
-    public Post atualizarPostElastic(ElasticEvent elasticEvent){
+    @KafkaListener(topics = "post-atualizado-topic")
+    public void atualizarPostElastic(ElasticEvent elasticEvent){
+        log.info("O evento de alterar post foi recebido " + elasticEvent);
         Post post = postRepository.findByPostId(elasticEvent.getPostId().toString());
 
         post.setTag(elasticEvent.getTag());
@@ -48,17 +51,18 @@ public class PostService {
         post.setUserId(elasticEvent.getUserId());
         post.setPostId(elasticEvent.getPostId());
 
-        log.info("Post alterado no elastic search com sucesso !");
         postRepository.save(post);
-        return post;
+        log.info("Post alterado no elastic search com sucesso !" + post);
     }
 
 
-    public Post deletarPost(String postId){
-        Post post = postRepository.findByPostId(postId);
-        log.info("Post deletado no elastic search com sucesso");
-        postRepository.deleteById(post.getId());
-        return post;
+    @KafkaListener(topics = "post-deletado-topic")
+    public void deletarPost(ElasticEvent elasticEvent){
+        log.info("O evento de deletar post foi recebido " + elasticEvent.getPostId());
+
+        Post post = postRepository.findByPostId(elasticEvent.getPostId().toString());
+        postRepository.delete(post);
+        log.info("Post deletado no elastic search com sucesso" + post);
     }
 
     public Iterable<Post> findAll(){

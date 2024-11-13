@@ -52,15 +52,19 @@ public class PostService {
         Post postSalvo = postRepository.save(post);
         postSalvo.setPostId(postSalvo.getId());
 
-        kafkaProducerService.sendMessage("post-salvo-topic", new ElasticEvent(post.getUserId(), post.getPostId(), post.getNomeCompleto(), post.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null));
-        log.info("Evento enviado com sucesso");
+        ElasticEvent message = new ElasticEvent(postSalvo.getUserId(), postSalvo.getPostId(), postSalvo.getNomeCompleto(), postSalvo.getTag(), postSalvo.getFotoPerfil(), postSalvo.getTexto(), postSalvo.getListImagens(), postSalvo.getContadorLike(), postSalvo.getContadorDeslike(), null);
+        kafkaProducerService.sendMessage("post-criado-topic", message);
+        kafkaProducerService.sendMessage("post-topic", message);
+        log.info("Evento de salvar post foi enviado com sucesso" + message);
 
         return postSalvo;
     }
 
 
     public Post deletarPostEComentarios(Long postId) {
-        kafkaProducerService.sendMessage("post-deletado-topic", new ElasticEvent(null, postId, null, null, null, null, null, null, null, null));
+        ElasticEvent message = new ElasticEvent(null, postId, null, null, null, null, null, null, null, null);
+        kafkaProducerService.sendMessage("post-deletado-topic", message);
+        log.info("Evento de deletar post foi enviado com sucesso" + postId);
         return postRepository.deletarPostEComentarios(postId);
     }
 
@@ -87,7 +91,9 @@ public class PostService {
             kafkaProducerService.sendMessage("notification-topic", new NotificationEvent(postId, idUser, user.getTag(), evento, new Date(), post.getUserId(), user.getFotoPerfil()));
             log.info("Evento enviado com sucesso");
         }
-        kafkaProducerService.sendMessage("post-atualizado-topic", new ElasticEvent(post.getUserId().toString(), postId, post.getNomeCompleto(), user.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null));
+        ElasticEvent message = new ElasticEvent(post.getUserId().toString(), postId, post.getNomeCompleto(), user.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null);
+        kafkaProducerService.sendMessage("post-atualizado-topic", message);
+        log.info("Evento de alterar post foi enviado com sucesso" + message);
         postRepository.save(post);
         return new Like(idUser, postId, contador, like);
     }

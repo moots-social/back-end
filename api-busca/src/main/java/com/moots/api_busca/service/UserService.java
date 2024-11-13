@@ -3,19 +3,24 @@ package com.moots.api_busca.service;
 import com.moots.api_busca.event.ElasticEvent;
 import com.moots.api_busca.model.User;
 import com.moots.api_busca.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class UserService {
 
     @Autowired
     private UserRepository userRepository;
 
-    public User salvarUserElastic(ElasticEvent elasticEvent){
+    @KafkaListener(topics = "user-criado-topic")
+    public void salvarUserElastic(ElasticEvent elasticEvent){
+        log.info("O evento de salvar usuario foi recebido " + elasticEvent);
         User user = new User();
         user.setTag(elasticEvent.getTag());
         user.setNomeCompleto(elasticEvent.getNomeCompleto());
@@ -23,16 +28,21 @@ public class UserService {
         user.setUserId(elasticEvent.getUserId());
         user.setCurso(elasticEvent.getCurso());
 
-        return userRepository.save(user);
+        userRepository.save(user);
+        log.info("Usuario salvo com sucesso" + user);
     }
 
-    public User deletarUser(String userId){
-        User user = userRepository.findByUserId(userId);
-        userRepository.deleteById(user.getId());
-        return user;
+    @KafkaListener(topics = "user-deletado-topic")
+    public void deletarUser(ElasticEvent elasticEvent){
+        log.info("O evento de deletar usuario foi recebido " + elasticEvent.getUserId());
+        User user = userRepository.findByUserId(elasticEvent.getUserId());
+        userRepository.delete(user);
+        log.info("Usuario deletado com sucesso" + user);
     }
 
-    public User alterarUser(ElasticEvent elasticEvent){
+    @KafkaListener(topics = "user-alterado-topic")
+    public void alterarUser(ElasticEvent elasticEvent){
+        log.info("O evento de alterar usuario foi recebido " + elasticEvent);
         User user = userRepository.findByUserId(elasticEvent.getUserId());
 
         user.setTag(elasticEvent.getTag());
@@ -42,7 +52,8 @@ public class UserService {
         user.setCurso(elasticEvent.getCurso());
         user.setPostId(elasticEvent.getPostId());
 
-        return userRepository.save(user);
+        userRepository.save(user);
+        log.info("Usuario alterado com sucesso" + user);
     }
 
 
