@@ -12,6 +12,7 @@ import org.springframework.data.neo4j.core.schema.Relationship;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -47,6 +48,8 @@ public class Post implements Serializable {
 
     @NonNull
     private Integer contadorDeslike = 0;
+
+    private List<String> likeUsers = new ArrayList<>();
 
     @JsonManagedReference
     @Relationship(type = "HAS_COMMENT", direction = Relationship.Direction.OUTGOING)

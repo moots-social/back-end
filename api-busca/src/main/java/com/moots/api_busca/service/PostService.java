@@ -31,6 +31,7 @@ public class PostService {
         post.setFotoPerfil(elasticEvent.getFotoPerfil());
         post.setUserId(elasticEvent.getUserId());
         post.setPostId(elasticEvent.getPostId());
+        post.setLikeUsers(elasticEvent.getLikeUsers());
 
         postRepository.save(post);
         log.info("Post salvo com sucesso: " + post);
@@ -50,6 +51,7 @@ public class PostService {
         post.setFotoPerfil(elasticEvent.getFotoPerfil());
         post.setUserId(elasticEvent.getUserId());
         post.setPostId(elasticEvent.getPostId());
+        post.setLikeUsers(elasticEvent.getLikeUsers());
 
         postRepository.save(post);
         log.info("Post alterado no elastic search com sucesso !" + post);

@@ -27,8 +27,6 @@ public class User {
 
     private String email;
 
-    private String numeroTelefone;
-
     private String tag;
 
     private String senha;

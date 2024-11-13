@@ -26,7 +26,9 @@ public class PostEvent implements Serializable {
 
     private List<String> listImagens;
 
-    private Integer contadorLike;
+    private String nomeCompleto;
 
-    private Integer contadorDeslike;
+    private String tag;
+
+    private String fotoPerfil;
 }

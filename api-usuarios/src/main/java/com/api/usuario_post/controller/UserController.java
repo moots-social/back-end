@@ -116,12 +116,6 @@ public class UserController {
         userRepository.deleteAll();
     }
 
-    @KafkaListener(topics = "post-colecao-topic")
-    public ResponseEntity<User> savePostColecao(ElasticEvent elasticEvent){
-        User user = userService.salvarPostColecao(elasticEvent);
-        log.info("post salvo na coleção");
-        return ResponseEntity.ok().body(user);
-    }
 
     @GetMapping("/colecao-salvos/{userId}")
     public ResponseEntity<List<PostEvent>> getColecaoSalvos(@PathVariable Long userId) {

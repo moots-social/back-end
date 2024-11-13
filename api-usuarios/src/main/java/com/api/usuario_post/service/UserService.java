@@ -1,6 +1,5 @@
 package com.api.usuario_post.service;
 
-import ch.qos.logback.core.joran.conditional.ElseAction;
 import com.api.usuario_post.dto.ResetPasswordDTO;
 import com.api.usuario_post.dto.UserDTO;
 import com.api.usuario_post.dto.UsuarioDiferenteDTO;
@@ -73,7 +72,6 @@ public class UserService {
         String pass = userDTO.getSenha();
         user.setSenha(encoder.encode(pass));
 
-        user.setNumeroTelefone(userDTO.getNumeroTelefone());
         user.setTag(userDTO.getTag());
         user.setCurso(userDTO.getCurso());
         user.setDescricao(userDTO.getDescricao());
@@ -108,9 +106,7 @@ public class UserService {
             if (userDTO.getNomeCompleto() != null) {
                 user.get().setNomeCompleto(userDTO.getNomeCompleto());
             }
-            if (userDTO.getNumeroTelefone() != null) {
-                user.get().setNumeroTelefone(userDTO.getNumeroTelefone());
-            }
+
             if (userDTO.getTag() != null){
                 user.get().setTag(userDTO.getTag());
             }
@@ -271,8 +267,10 @@ public class UserService {
         return "Evento enviado com sucesso";
     }
 
-    @CacheEvict(value = "colecaoPost", key = "#colecaoPostEvent.userId")
-    public User salvarPostColecao(ElasticEvent elasticEvent) {
+
+    @CacheEvict(value = "colecaoPost", key = "#elasticEvent.userId")
+    @KafkaListener(topics = "post-colecao-topic")
+    public void salvarPostColecao(ElasticEvent elasticEvent) {
         Optional<User> optionalUser = userRepository.findByUserId(Long.valueOf( elasticEvent.getUserId()));
 
         if (optionalUser.isEmpty()) {
@@ -283,18 +281,15 @@ public class UserService {
 
         var colecao = user.getColecaoSalvos();
 
-        var userId = Long.valueOf( elasticEvent.getUserId());
-        var postId = elasticEvent.getPostId();
-        var conteudo = elasticEvent.getTexto();
-        var imagens = elasticEvent.getListImagens();
-        var contadorLike = elasticEvent.getContadorLike();
-        var contadorDeslike = elasticEvent.getContadorDeslike();
-        var postSalvo = new PostEvent(null, userId, postId, conteudo, imagens, contadorLike, contadorDeslike);
+        var postSalvo = new PostEvent(null, Long.valueOf(elasticEvent.getUserId()), elasticEvent.getPostId(), elasticEvent.getTexto(), elasticEvent.getListImagens(), elasticEvent.getNomeCompleto(), elasticEvent.getTag(), elasticEvent.getFotoPerfil());
 
-        colecao.add(postSalvo);
-
-        log.info("Colecao salvo com sucesso");
-        return userRepository.save(user);
+        if(colecao.contains(postSalvo)){
+            throw new RuntimeException("Esse post já está salvo em sua coleção" + elasticEvent.getPostId());
+        }else{
+            colecao.add(postSalvo);
+            log.info("Colecao salvo com sucesso");
+            userRepository.save(user);
+        }
     }
 
     @CacheEvict(value = "colecaoPost", key = "#userId")

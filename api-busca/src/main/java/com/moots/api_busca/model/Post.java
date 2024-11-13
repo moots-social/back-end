@@ -7,6 +7,7 @@ import lombok.NonNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -35,4 +36,6 @@ public class Post {
     private Integer contadorLike;
 
     private Integer contadorDeslike;
+
+    private List<String> likeUsers = new ArrayList<>();
 }

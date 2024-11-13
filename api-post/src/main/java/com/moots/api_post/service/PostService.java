@@ -52,7 +52,7 @@ public class PostService {
         Post postSalvo = postRepository.save(post);
         postSalvo.setPostId(postSalvo.getId());
 
-        ElasticEvent message = new ElasticEvent(postSalvo.getUserId(), postSalvo.getPostId(), postSalvo.getNomeCompleto(), postSalvo.getTag(), postSalvo.getFotoPerfil(), postSalvo.getTexto(), postSalvo.getListImagens(), postSalvo.getContadorLike(), postSalvo.getContadorDeslike(), null);
+        ElasticEvent message = new ElasticEvent(postSalvo.getUserId(), postSalvo.getPostId(), postSalvo.getNomeCompleto(), postSalvo.getTag(), postSalvo.getFotoPerfil(), postSalvo.getTexto(), postSalvo.getListImagens(), postSalvo.getContadorLike(), postSalvo.getContadorDeslike(), null, post.getLikeUsers());
         kafkaProducerService.sendMessage("post-criado-topic", message);
         kafkaProducerService.sendMessage("post-topic", message);
         log.info("Evento de salvar post foi enviado com sucesso" + message);
@@ -62,7 +62,7 @@ public class PostService {
 
 
     public Post deletarPostEComentarios(Long postId) {
-        ElasticEvent message = new ElasticEvent(null, postId, null, null, null, null, null, null, null, null);
+        ElasticEvent message = new ElasticEvent(null, postId, null, null, null, null, null, null, null, null, null);
         kafkaProducerService.sendMessage("post-deletado-topic", message);
         log.info("Evento de deletar post foi enviado com sucesso" + postId);
         return postRepository.deletarPostEComentarios(postId);
@@ -76,27 +76,36 @@ public class PostService {
 
     @CacheEvict(value = "post", key = "#postId")
     public Like darLike(Long postId, boolean like) throws Exception {
-        var idUser = Utils.buscarIdToken();
+        Long idUser = Utils.buscarIdToken();
         String evento = "Curtiu";
 
-        var user = userService.getUserRedis(idUser.toString());
+        User user = userService.getUserRedis(idUser.toString());
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new NoSuchElementException("Post não encontrado"));
 
+        if (!post.getLikeUsers().contains(user.getUserId()) && like) {
+            post.getLikeUsers().add(user.getUserId());
+        } else if (!like) {
+            post.getLikeUsers().remove(user.getUserId());
+        }
+
         int contador = like ? post.getContadorLike() + 1 : post.getContadorLike() - 1;
         post.setContadorLike(contador);
-
 
         if (like && !idUser.equals(post.getUserId())) {
             kafkaProducerService.sendMessage("notification-topic", new NotificationEvent(postId, idUser, user.getTag(), evento, new Date(), post.getUserId(), user.getFotoPerfil()));
             log.info("Evento enviado com sucesso");
         }
-        ElasticEvent message = new ElasticEvent(post.getUserId().toString(), postId, post.getNomeCompleto(), user.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null);
+
+        ElasticEvent message = new ElasticEvent(post.getUserId().toString(), postId, post.getNomeCompleto(), user.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null, post.getLikeUsers());
         kafkaProducerService.sendMessage("post-atualizado-topic", message);
-        log.info("Evento de alterar post foi enviado com sucesso" + message);
+        log.info("Evento de alterar post foi enviado com sucesso: {}", message);
+
         postRepository.save(post);
-        return new Like(idUser, postId, contador, like);
+
+        return new Like(idUser, postId, contador, like, post.getLikeUsers());
     }
+
 
     @CacheEvict(value = "post", key = "#postId")
     public Deslike darDeslike(Long postId, boolean deslike)  {
@@ -108,7 +117,7 @@ public class PostService {
         int contador = deslike ? post.getContadorDeslike() + 1 : post.getContadorDeslike() - 1;
         post.setContadorDeslike(contador);
 
-        kafkaProducerService.sendMessage("post-atualizado-topic", new ElasticEvent(post.getUserId().toString(), postId, post.getNomeCompleto(), post.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null));
+        kafkaProducerService.sendMessage("post-atualizado-topic", new ElasticEvent(post.getUserId().toString(), postId, post.getNomeCompleto(), post.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null, post.getLikeUsers()));
         postRepository.save(post);
         return new Deslike(idUser, postId, contador, deslike);
     }
@@ -124,13 +133,14 @@ public class PostService {
 
         var post = postRepository.findById(postId);
 
-        var colecaoPostEvent = new ElasticEvent();
+        ElasticEvent colecaoPostEvent = new ElasticEvent();
         colecaoPostEvent.setUserId(userId.toString());
         colecaoPostEvent.setPostId(postId);
         colecaoPostEvent.setTexto(post.get().getTexto());
         colecaoPostEvent.setListImagens(post.get().getListImagens());
-        colecaoPostEvent.setContadorDeslike(post.get().getContadorDeslike());
-        colecaoPostEvent.setContadorLike(post.get().getContadorLike());
+        colecaoPostEvent.setFotoPerfil(post.get().getFotoPerfil());
+        colecaoPostEvent.setNomeCompleto(post.get().getNomeCompleto());
+        colecaoPostEvent.setTag(post.get().getTag());
 
         kafkaProducerService.sendMessage("post-colecao-topic", colecaoPostEvent);
     }

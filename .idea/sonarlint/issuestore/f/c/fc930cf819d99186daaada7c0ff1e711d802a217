@@ -1,17 +1,17 @@
 
 w
-java:S3740"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿ8êñÖ‘²2J$16263d97-eb0f-4ba4-8e67-f0198b200910
+java:S3740"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿ8¾è«»²2J$86fdcfec-2f50-470c-be6f-18fea080e7d4
 
-java:S1192J"UDefine a constant instead of duplicating this literal "Post nÃ£o encontrado" 3 times.(£«œ×øÿÿÿÿ8ìñÖ‘²2J$cff2f85b-27be-478f-ae4c-46467760c2ad
+java:S1192J"UDefine a constant instead of duplicating this literal "Post nÃ£o encontrado" 3 times.(£«œ×øÿÿÿÿ8Àè«»²2J$43b26aee-9607-4b32-a254-3508afba107c
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8÷ñÖ‘²2J$5380cb93-f1e8-4696-a564-ce516f40a77e
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Éè«»²2J$ff8cbc22-828f-413f-b62d-d52258ae7ece
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8÷ñÖ‘²2J$08048cfd-df3f-40dc-b36f-5748ba92ca9c
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Éè«»²2J$73b45dc0-2277-4ad4-bc46-c405feab63de
 …
-java:S6813""BRemove this field injection and use constructor injection instead.(êæÄŞ8÷ñÖ‘²2J$4345de6e-ebc8-4b56-b7b7-c80ac6007b8f
+java:S6813""BRemove this field injection and use constructor injection instead.(êæÄŞ8Éè«»²2J$132a90cb-204f-4860-8149-a86b4b86a7fe
 
-java:S2159Z"VRemove this call to "equals"; comparisons between unrelated types always return false.(ÈËÕÂûÿÿÿÿ8‰òÖ‘²2J$c1e82add-d2ae-461a-9065-90c9084cd444
-†
-java:S1858^"C"getUserId" returns a string, there's no need to call "toString()".(İÙÀ³8ŒòÖ‘²2J$1eb07b99-f41f-4f45-803b-031a1ce66dea
+java:S2159_"VRemove this call to "equals"; comparisons between unrelated types always return false.(ÈËÕÂûÿÿÿÿ8ªÀµ»²2J$c1410c93-8e1f-4d0c-a8ce-75728d2b6008
 ‹
-java:S1858o"C"getUserId" returns a string, there's no need to call "toString()".(äöç×ùÿÿÿÿ8òÖ‘²2J$eb935882-fc5b-4930-b79e-b95c9db5d88b
+java:S1858d"C"getUserId" returns a string, there's no need to call "toString()".(Ôëó«ÿÿÿÿÿ8àè«»²2J$a4e6f701-9180-4440-aaa7-7b83ba9e2812
+†
+java:S1858x"C"getUserId" returns a string, there's no need to call "toString()".(Š£¨×8¹Àµ»²2J$9e21e83b-a279-4a70-8887-5839a481bfbb

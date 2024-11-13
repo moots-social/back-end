@@ -44,4 +44,5 @@ public class Post {
     @Relationship(type = "HAS_COMMENT", direction = Relationship.Direction.OUTGOING)
     private List<Comentario> comentarioList;
 
+
 }
