@@ -149,4 +149,13 @@ public class PostService {
         return postRepository.findAll();
     }
 
+
+    public List<String> findLikeUsersByPostId(Long postId){
+        Post post = postRepository.findById(postId)
+                .orElseThrow(NoSuchElementException::new);
+
+        List<String> likeUsers = post.getLikeUsers();
+        return likeUsers;
+    }
+
 }

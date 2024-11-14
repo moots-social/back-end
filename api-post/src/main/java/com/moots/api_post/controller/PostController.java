@@ -115,4 +115,10 @@ public class PostController {
         imageStorageClient.deleteBlob(blobName, containerName);
         return "Blob deletado com sucesso " + blobName;
     }
+
+    @GetMapping("/likeUsers/{postId}")
+    public ResponseEntity<List<String>> findLikeUsersByPostId(@PathVariable Long postId){
+        List<String> result = postService.findLikeUsersByPostId(postId);
+        return ResponseEntity.ok().body(result);
+    }
 }
