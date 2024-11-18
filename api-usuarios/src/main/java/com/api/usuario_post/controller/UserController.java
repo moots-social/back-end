@@ -156,4 +156,10 @@ public class UserController {
         List<Post> posts = userService.findPostByUserId(userId);
         return ResponseEntity.ok().body(posts);
     }
+
+    @GetMapping("/colecao-salvos-postId/{userId}")
+    public ResponseEntity<List<Long>> findPostIdByColecoes(@PathVariable Long userId){
+        List<Long> postIds = userService.findPostIdByColecoes(userId);
+        return ResponseEntity.ok().body(postIds);
+    }
 }

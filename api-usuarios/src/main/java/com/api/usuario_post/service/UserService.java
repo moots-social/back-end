@@ -25,6 +25,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -304,6 +305,8 @@ public class UserService {
         var colecao = user.getColecaoSalvos();
         boolean removerPost = colecao.removeIf(c -> c.getPostId().equals(postId));
 
+        userRepository.deletePostEventByPostId(postId);
+
         log.info("Post removido da coleção com sucesso");
         return userRepository.save(user);
     }
@@ -360,5 +363,18 @@ public class UserService {
     public List<Post> findPostByUserId(Long userId){
         List<Post> posts = userRepository.findPostsByUserId(userId);
         return posts;
+    }
+
+    public List<Long> findPostIdByColecoes(Long userId){
+        User user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
+
+        List<PostEvent> colecao = user.getColecaoSalvos();
+
+        List<Long> listPostId = colecao.stream()
+                .map(p -> p.getPostId())
+                .collect(Collectors.toList());
+
+        return listPostId;
     }
 }

@@ -5,6 +5,7 @@ import com.moots.api_post.event.NotificationEvent;
 import com.moots.api_post.handler.BusinessException;
 import com.moots.api_post.model.Comentario;
 import com.moots.api_post.model.Post;
+import com.moots.api_post.model.User;
 import com.moots.api_post.repository.ComentarioRepository;
 import com.moots.api_post.repository.PostRepository;
 import com.moots.api_post.utils.Utils;
@@ -39,10 +40,10 @@ public class ComentarioService {
     @Transactional
     @CacheEvict(value = "post", key = "#postId")
     public Comentario adicionarComentario(Long postId, ComentarioDTO comentarioDTO) throws Exception {
-        var userId = Utils.buscarIdToken();
+        Long userId = Utils.buscarIdToken();
         String evento = "Comentou";
 
-        var user = userService.getUserRedis(userId.toString());
+        User user = userService.getUserRedis(userId.toString());
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new ResourceNotFoundException("Post não encontrado"));
 
@@ -55,8 +56,10 @@ public class ComentarioService {
         comentario.setFotoPerfil(user.getFotoPerfil());
         comentario.setUserId(user.getUserId());
 
-        kafkaProducerService.sendMessage("notification-topic", new NotificationEvent(postId, userId , user.getTag(), evento, new Date(), post.getUserId(), comentario.getFotoPerfil()));
-        log.info("Evento enviado com sucesso");
+        if(!userId.equals(Long.valueOf(post.getUserId()))){
+            kafkaProducerService.sendMessage("notification-topic", new NotificationEvent(postId, userId , user.getTag(), evento, new Date(), post.getUserId(), comentario.getFotoPerfil()));
+            log.info("Evento enviado com sucesso");
+        }
 
         return comentarioRepository.save(comentario);
     }

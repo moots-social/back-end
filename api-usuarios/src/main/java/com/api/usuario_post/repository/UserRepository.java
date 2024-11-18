@@ -1,5 +1,6 @@
 package com.api.usuario_post.repository;
 
+import com.api.usuario_post.event.PostEvent;
 import com.api.usuario_post.model.Post;
 import com.api.usuario_post.model.User;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
@@ -41,5 +42,7 @@ public interface UserRepository extends Neo4jRepository <User, Long> {
     User findOnlyUser(Long userId);
 
     Optional<User> findByUserId(Long userId);
+
+    PostEvent deletePostEventByPostId(Long postId);
 
 }

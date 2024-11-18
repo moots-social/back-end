@@ -155,6 +155,7 @@ public class PostService {
                 .orElseThrow(NoSuchElementException::new);
 
         List<String> likeUsers = post.getLikeUsers();
+
         return likeUsers;
     }
 
