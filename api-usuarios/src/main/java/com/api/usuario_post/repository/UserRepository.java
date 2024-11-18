@@ -43,6 +43,6 @@ public interface UserRepository extends Neo4jRepository <User, Long> {
 
     Optional<User> findByUserId(Long userId);
 
-    PostEvent deletePostEventByPostId(Long postId);
+//    PostEvent deletePostEventByPostId(Long postId);
 
 }

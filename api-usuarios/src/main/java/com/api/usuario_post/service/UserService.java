@@ -271,8 +271,8 @@ public class UserService {
 
     @CacheEvict(value = "colecaoPost", key = "#elasticEvent.userId")
     @KafkaListener(topics = "post-colecao-topic")
-    public void salvarPostColecao(ElasticEvent elasticEvent) {
-        Optional<User> optionalUser = userRepository.findByUserId(Long.valueOf( elasticEvent.getUserId()));
+    public void salvarPostColecao(ElasticEvent elasticEvent, boolean favorito) {
+        Optional<User> optionalUser = userRepository.findByUserId(Long.valueOf(elasticEvent.getUserId()));
 
         if (optionalUser.isEmpty()) {
             throw new RuntimeException("Usuário não encontrado com o ID: " + elasticEvent.getUserId());
@@ -284,7 +284,8 @@ public class UserService {
 
         var postSalvo = new PostEvent(null, Long.valueOf(elasticEvent.getUserId()), elasticEvent.getPostId(), elasticEvent.getTexto(), elasticEvent.getListImagens(), elasticEvent.getNomeCompleto(), elasticEvent.getTag(), elasticEvent.getFotoPerfil());
 
-        if(colecao.contains(postSalvo)){
+        if(favorito == true){
+            boolean removerPost = colecao.removeIf(c -> c.getPostId().equals(elasticEvent.getPostId()));
             throw new RuntimeException("Esse post já está salvo em sua coleção" + elasticEvent.getPostId());
         }else{
             colecao.add(postSalvo);
@@ -305,7 +306,7 @@ public class UserService {
         var colecao = user.getColecaoSalvos();
         boolean removerPost = colecao.removeIf(c -> c.getPostId().equals(postId));
 
-        userRepository.deletePostEventByPostId(postId);
+//        userRepository.deletePostEventByPostId(postId);
 
         log.info("Post removido da coleção com sucesso");
         return userRepository.save(user);
