@@ -1,7 +1,5 @@
 
 ¦
-java:S1488L"^Immediately return this expression instead of assigning it to the temporary variable "result".(í‘Ÿşÿÿÿÿ8Ü„ÛÓ´2J$fdbf1c2d-0c56-4341-899f-46f2b486b2b6
+java:S1488L"^Immediately return this expression instead of assigning it to the temporary variable "result".(í‘Ÿşÿÿÿÿ8Ü„ÛÓ´2J$8cc4d682-c206-4399-9e4f-6632f0a15c75
  
-java:S1488Q"]Immediately return this expression instead of assigning it to the temporary variable "posts".(ÑÍåç8Ü„ÛÓ´2J$b259fea2-8502-4cfd-8193-482fb70d4ab2
-…
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ç„ÛÓ´2J$217c7f05-ea42-4df6-b2b0-489d8edcf6d9
+java:S1488Q"]Immediately return this expression instead of assigning it to the temporary variable "posts".(ÑÍåç8Ü„ÛÓ´2J$dff19302-1690-48cb-bc0f-c9b1c543cead
