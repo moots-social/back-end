@@ -17,8 +17,6 @@ public class User {
     @Id
     private String id;
 
-    private Long postId;
-
     private String userId;
 
     private String nomeCompleto;

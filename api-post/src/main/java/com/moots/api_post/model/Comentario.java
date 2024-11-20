@@ -39,7 +39,6 @@ public class Comentario implements Serializable {
     @NonNull
     private String tag;
 
-    @NonNull
     private Long postId;
 
     @JsonBackReference

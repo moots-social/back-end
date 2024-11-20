@@ -1,3 +1,10 @@
 
 s
-java:S1128"+Remove this unused import 'lombok.NonNull'.(¦¸©—ıÿÿÿÿ8ğı‚Ùª2J$a3d15fb2-8851-4d70-b42b-6a1f2195e681
+java:S1128"+Remove this unused import 'lombok.NonNull'.(¦¸©—ıÿÿÿÿ8¼–€Ö´2J$0640c364-3543-40f9-8f8c-49146db65b94
+
+java:S1128	"URemove this unused import 'org.springframework.data.elasticsearch.annotations.Field'.(ìäëüÿÿÿÿ8ğÎÖ´2J$0600e5c6-741c-4fb4-b012-24f4d3bd07e1
+œ
+java:S1128
+"YRemove this unused import 'org.springframework.data.elasticsearch.annotations.FieldType'.(æ‘ÙÒ8‘ğÎÖ´2J$d3f90962-5357-4bce-8a48-f1ab6fd0bf6e
+|
+java:S1128"4Remove this unused import 'java.time.LocalDateTime'.(æÃ§ƒüÿÿÿÿ8‘ğÎÖ´2J$56cb123b-d484-4e2b-bd1a-7b5f92c11d3f

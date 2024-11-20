@@ -1,9 +1,9 @@
 
 ¦
-java:S1488A"^Immediately return this expression instead of assigning it to the temporary variable "result".(ŞË’úÿÿÿÿ8Óë¹—²2J$573e8776-1cc6-4534-9737-b2ea5a82494e
+java:S1488@"^Immediately return this expression instead of assigning it to the temporary variable "result".(ŞË’úÿÿÿÿ8Óë¹—²2J$aa9d6bde-16a7-477b-bfce-9550c2718000
  
-java:S1488F"]Immediately return this expression instead of assigning it to the temporary variable "users".(ıéÚÇ8Ôë¹—²2J$3c5f7b41-9bb0-4304-a72c-d0f9952e2e06
+java:S1488E"]Immediately return this expression instead of assigning it to the temporary variable "users".(ıéÚÇ8Ôë¹—²2J$67f9ad76-3647-4d1e-bfb8-0108f95870d5
 ¦
-java:S1488K"^Immediately return this expression instead of assigning it to the temporary variable "result".(½áÑÉüÿÿÿÿ8Ôë¹—²2J$42b7e2be-671a-4abb-8602-d50d39bec273
+java:S1488J"^Immediately return this expression instead of assigning it to the temporary variable "result".(½áÑÉüÿÿÿÿ8Ôë¹—²2J$b55d6dc6-25e2-4e17-95f6-cdd8539bf7a1
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Úë¹—²2J$f33899c3-16d4-4b2c-b066-65f37512f242
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Úë¹—²2J$2e61207e-f7e0-4ea4-8e77-7d6d40883430

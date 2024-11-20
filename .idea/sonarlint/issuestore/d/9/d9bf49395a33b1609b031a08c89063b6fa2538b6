@@ -1,5 +1,7 @@
 
 €
-java:S1128"=Remove this unused import 'com.api.usuario_post.model.Curso'.(Éâèþ8£ŠàÙª2J$2f4c3ea5-e265-406e-8a9b-aba771ee9068
+java:S1128"=Remove this unused import 'com.api.usuario_post.model.Curso'.(Éâèþ8£ŠàÙª2J$4225a279-fe62-43d8-aedf-8bc84c2c98cd
 l
-java:S1128"+Remove this unused import 'lombok.NonNull'.(¦¸©—ýÿÿÿÿJ$ad0c48cd-5c66-42a8-ac04-c82134efa95f
+java:S1128"+Remove this unused import 'lombok.NonNull'.(¦¸©—ýÿÿÿÿJ$40a25d94-fa4c-47e8-b483-470c99531a6b
+V
+java:S1128"4Remove this unused import 'java.time.LocalDateTime'.(æÃ§ƒüÿÿÿÿ8Œ²ÅÖ´2

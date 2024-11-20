@@ -16,6 +16,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,8 +38,11 @@ public class PostService {
     public Post criarPost(PostDTO postDTO) throws Exception {
         Long userId = Utils.buscarIdToken();
         Post post = new Post();
+
+        // Busca as informações do usuário
         User user = userService.getUserRedis(userId.toString());
 
+        // Preenche os dados do post
         post.setUserId(user.getUserId());
         post.setTag(user.getTag());
         post.setFotoPerfil(user.getFotoPerfil());
@@ -48,21 +52,21 @@ public class PostService {
         post.setComentarioList(new ArrayList<>());
         post.setContadorLike(0);
         post.setContadorDeslike(0);
+        post.setDataCriacao(LocalDateTime.now());
 
         Post postSalvo = postRepository.save(post);
+
         postSalvo.setPostId(postSalvo.getId());
 
-        ElasticEvent message = new ElasticEvent(postSalvo.getUserId(), postSalvo.getPostId(), postSalvo.getNomeCompleto(), postSalvo.getTag(), postSalvo.getFotoPerfil(), postSalvo.getTexto(), postSalvo.getListImagens(), postSalvo.getContadorLike(), postSalvo.getContadorDeslike(), null, post.getLikeUsers());
-        kafkaProducerService.sendMessage("post-criado-topic", message);
-        kafkaProducerService.sendMessage("post-topic", message);
-        log.info("Evento de salvar post foi enviado com sucesso" + message);
+        ElasticEvent message = new ElasticEvent(post.getUserId(), post.getId(), post.getNomeCompleto(), post.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null, post.getLikeUsers(), post.getDataCriacao().toString());
 
-        return postSalvo;
+        kafkaProducerService.sendMessage("post-criado-topic", message);
+
+        return postRepository.save(postSalvo);
     }
 
-
     public Post deletarPostEComentarios(Long postId) {
-        ElasticEvent message = new ElasticEvent(null, postId, null, null, null, null, null, null, null, null, null);
+        ElasticEvent message = new ElasticEvent(null, postId, null, null, null, null, null, null, null, null, null, null);
         kafkaProducerService.sendMessage("post-deletado-topic", message);
         log.info("Evento de deletar post foi enviado com sucesso" + postId);
         return postRepository.deletarPostEComentarios(postId);
@@ -97,7 +101,7 @@ public class PostService {
             log.info("Evento enviado com sucesso");
         }
 
-        ElasticEvent message = new ElasticEvent(post.getUserId().toString(), postId, post.getNomeCompleto(), user.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null, post.getLikeUsers());
+        ElasticEvent message = new ElasticEvent(post.getUserId().toString(), postId, post.getNomeCompleto(), user.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null, post.getLikeUsers(), null);
         kafkaProducerService.sendMessage("post-atualizado-topic", message);
         log.info("Evento de alterar post foi enviado com sucesso: {}", message);
 
@@ -117,7 +121,7 @@ public class PostService {
         int contador = deslike ? post.getContadorDeslike() + 1 : post.getContadorDeslike() - 1;
         post.setContadorDeslike(contador);
 
-        kafkaProducerService.sendMessage("post-atualizado-topic", new ElasticEvent(post.getUserId().toString(), postId, post.getNomeCompleto(), post.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null, post.getLikeUsers()));
+        kafkaProducerService.sendMessage("post-atualizado-topic", new ElasticEvent(post.getUserId().toString(), postId, post.getNomeCompleto(), post.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null, post.getLikeUsers(), null));
         postRepository.save(post);
         return new Deslike(idUser, postId, contador, deslike);
     }
@@ -146,9 +150,8 @@ public class PostService {
     }
 
     public List<Post> findAll(){
-        return postRepository.findAll();
+        return postRepository.findAllByOrderByDataCriacaoDesc();
     }
-
 
     public List<String> findLikeUsersByPostId(Long postId){
         Post post = postRepository.findById(postId)

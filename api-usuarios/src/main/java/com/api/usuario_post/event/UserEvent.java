@@ -27,5 +27,4 @@ public class UserEvent implements Serializable {
 
     private String fotoPerfil;
 
-
 }

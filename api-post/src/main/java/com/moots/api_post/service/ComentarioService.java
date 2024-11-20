@@ -50,7 +50,7 @@ public class ComentarioService {
         Comentario comentario = new Comentario();
         comentario.setTexto(comentarioDTO.texto());
         comentario.setPost(post);
-        comentario.setPostId(post.getPostId());
+        comentario.setPostId(post.getId());
         comentario.setTag(user.getTag());
         comentario.setNomeCompleto(user.getNomeCompleto());
         comentario.setFotoPerfil(user.getFotoPerfil());

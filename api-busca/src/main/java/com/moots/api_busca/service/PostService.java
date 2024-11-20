@@ -18,7 +18,7 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
-    @KafkaListener(topics = "post-criado-topic")
+    @KafkaListener(topics = "post-criado-topic", groupId = "grupo-1")
     public void salvarPostElastic(ElasticEvent elasticEvent) {
         log.info("O evento de salvar post foi recebido: " + elasticEvent);
         Post post = new Post();
@@ -32,6 +32,7 @@ public class PostService {
         post.setUserId(elasticEvent.getUserId());
         post.setPostId(elasticEvent.getPostId());
         post.setLikeUsers(elasticEvent.getLikeUsers());
+        post.setDataCriacao(elasticEvent.getDataCriacaoPost());
 
         postRepository.save(post);
         log.info("Post salvo com sucesso: " + post);
@@ -68,7 +69,7 @@ public class PostService {
     }
 
     public Iterable<Post> findAll(){
-        return postRepository.findAll();
+        return postRepository.findAllByOrderByDataCriacaoDesc();
     }
 
     public List<Post> findByTextoOrTag(String query){

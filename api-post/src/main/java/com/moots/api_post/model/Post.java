@@ -12,6 +12,7 @@ import org.springframework.data.neo4j.core.schema.Relationship;
 
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,5 +55,7 @@ public class Post implements Serializable {
     @JsonManagedReference
     @Relationship(type = "HAS_COMMENT", direction = Relationship.Direction.OUTGOING)
     private List<Comentario> comentarioList;
+
+    private LocalDateTime dataCriacao;
 
 }

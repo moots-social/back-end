@@ -1,5 +1,5 @@
 
-X
-java:S1128"CRemove this unused import 'com.moots.api_busca.event.ElasticEvent'.(¿óÛ
-g
-java:S1128"ERemove this unused import 'org.springframework.data.domain.Pageable'.(‡ë‚Öıÿÿÿÿ8œ•…¹±2
+…
+java:S1128"CRemove this unused import 'com.moots.api_busca.event.ElasticEvent'.(¿óÛ8é¬ŞÓ´2J$b5cb40dd-0e1a-4618-97e5-444f572fe166
+
+java:S1128"ERemove this unused import 'org.springframework.data.domain.Pageable'.(‡ë‚Öıÿÿÿÿ8é¬ŞÓ´2J$0fc7ac6c-e95d-40b6-b710-f4669e597102

@@ -1,19 +1,19 @@
 
+Q
+java:S3740"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿ8ùÚ¨Ú´2
 w
-java:S3740"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿ8¾è«»²2J$d67def98-0220-435e-9a40-6718492ffb88
-
-java:S1192J"UDefine a constant instead of duplicating this literal "Post nÃ£o encontrado" 3 times.(£«œ×øÿÿÿÿ8Àè«»²2J$267aaa96-c05f-4009-840e-04da22a8e839
-¥
-java:S1488"aImmediately return this expression instead of assigning it to the temporary variable "likeUsers".(Ù›¹Î8ô°şÙ³2J$f86fd0df-b5d7-4833-bfe7-a750089e6baf
-…
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Éè«»²2J$f6e5c6c4-43e0-4ef6-a541-a572b9e324fa
-…
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Éè«»²2J$314a5f88-7309-4400-951b-2858a26ef76a
-…
-java:S6813""BRemove this field injection and use constructor injection instead.(êæÄŞ8Éè«»²2J$7f6a85a7-a05a-43f9-86f7-5f18862ccd76
-
-java:S2159_"VRemove this call to "equals"; comparisons between unrelated types always return false.(ÈËÕÂûÿÿÿÿ8ªÀµ»²2J$72eb84c8-8ff8-4312-b3f5-e9041b452cd4
-‹
-java:S1858d"C"getUserId" returns a string, there's no need to call "toString()".(Ôëó«ÿÿÿÿÿ8àè«»²2J$baefd0ba-2577-4666-bdf8-aa327529434d
-†
-java:S1858x"C"getUserId" returns a string, there's no need to call "toString()".(Š£¨×8¹Àµ»²2J$cfefec19-c661-41bd-a012-9fd73460c425
+java:S1192N"UDefine a constant instead of duplicating this literal "Post nÃ£o encontrado" 3 times.(£«œ×øÿÿÿÿ8ûÚ¨Ú´2
+
+java:S1488 "aImmediately return this expression instead of assigning it to the temporary variable "likeUsers".(Ù›¹Î8Û¨Ú´2
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Û¨Ú´2
+_
+java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8Û¨Ú´2
+_
+java:S6813#"BRemove this field injection and use constructor injection instead.(êæÄŞ8Û¨Ú´2
+x
+java:S2159c"VRemove this call to "equals"; comparisons between unrelated types always return false.(ÈËÕÂûÿÿÿÿ8ÏÛ¨Ú´2
+e
+java:S1858h"C"getUserId" returns a string, there's no need to call "toString()".(éœ§Ãüÿÿÿÿ8ÓÛ¨Ú´2
+e
+java:S1858|"C"getUserId" returns a string, there's no need to call "toString()".(Ş¤Ëßûÿÿÿÿ8ÛÛ¨Ú´2

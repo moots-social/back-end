@@ -6,7 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,4 +41,6 @@ public class Post {
     private Integer contadorDeslike;
 
     private List<String> likeUsers = new ArrayList<>();
+
+    private String dataCriacao;
 }

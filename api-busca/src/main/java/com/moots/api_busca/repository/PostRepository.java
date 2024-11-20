@@ -17,4 +17,6 @@ public interface PostRepository extends ElasticsearchRepository<Post, String> {
     List<Post> findByTextoOrTag(String texto, String tag); // 10 posts
 
     List<Post> findByUserId(String userId);
+
+    List<Post> findAllByOrderByDataCriacaoDesc();
 }

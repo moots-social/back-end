@@ -50,7 +50,6 @@ public class UserService {
         user.setFotoPerfil(elasticEvent.getFotoPerfil());
         user.setUserId(elasticEvent.getUserId());
         user.setCurso(elasticEvent.getCurso());
-        user.setPostId(elasticEvent.getPostId());
 
         userRepository.save(user);
         log.info("Usuario alterado com sucesso" + user);

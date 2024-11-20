@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,5 +37,6 @@ public class ElasticEvent implements Serializable {
 
     private List<String> likeUsers = new ArrayList<>();
 
+    private String dataCriacaoPost;
 }
 

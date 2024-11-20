@@ -14,5 +14,6 @@ public interface PostRepository extends Neo4jRepository<Post, Long> {
     @Query("MATCH (p:POST {postId: $postId}) OPTIONAL MATCH (p)-[:HAS_COMMENT]->(c:COMENTARIO) WHERE c.postId = $postId DETACH DELETE p, c")
     Post deletarPostEComentarios(Long postId);
 
+    List<Post> findAllByOrderByDataCriacaoDesc();
 
 }
