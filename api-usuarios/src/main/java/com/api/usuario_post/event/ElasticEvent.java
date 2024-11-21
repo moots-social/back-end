@@ -36,6 +36,6 @@ public class ElasticEvent implements Serializable {
 
     private String curso;
 
-    private String dataCriacaoPost;
+    private LocalDateTime dataCriacaoPost;
 
 }

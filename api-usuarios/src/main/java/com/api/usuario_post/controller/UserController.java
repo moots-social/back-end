@@ -4,9 +4,7 @@ import com.api.usuario_post.client.imagestorage.ImageStorageClient;
 import com.api.usuario_post.dto.ResetPasswordDTO;
 import com.api.usuario_post.dto.UserDTO;
 import com.api.usuario_post.dto.UsuarioDiferenteDTO;
-import com.api.usuario_post.event.ElasticEvent;
 import com.api.usuario_post.event.PostEvent;
-import com.api.usuario_post.model.Post;
 import com.api.usuario_post.model.User;
 import com.api.usuario_post.repository.UserRepository;
 import com.api.usuario_post.service.UserService;
@@ -17,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -142,19 +139,6 @@ public class UserController {
     public String deletarImagemBlob(@RequestParam String containerName, @RequestParam String blobName) {
         imageStorageClient.deleteBlob(blobName, containerName);
         return "Blob deletado com sucesso " + blobName;
-    }
-
-    @GetMapping("/seguidores/post/{userId}")
-    public ResponseEntity<List<Post>> findPostAndCommentByFollowers(@PathVariable Long userId){
-        List<Post> posts = userService.findPostAndCommentByFollowers(userId);
-        log.info("Post adicionado na lista de usuarios com sucesso");
-        return ResponseEntity.ok().body(posts);
-    }
-
-    @GetMapping("/post/{userId}")
-    public ResponseEntity<List<Post>> findPostByUserId(@PathVariable Long userId){
-        List<Post> posts = userService.findPostByUserId(userId);
-        return ResponseEntity.ok().body(posts);
     }
 
     @GetMapping("/colecao-salvos-postId/{userId}")

@@ -32,7 +32,7 @@ public class PostService {
         post.setUserId(elasticEvent.getUserId());
         post.setPostId(elasticEvent.getPostId());
         post.setLikeUsers(elasticEvent.getLikeUsers());
-        post.setDataCriacao(elasticEvent.getDataCriacaoPost());
+        post.setDataCriacao(elasticEvent.getDataCriacaoPost().toString());
 
         postRepository.save(post);
         log.info("Post salvo com sucesso: " + post);

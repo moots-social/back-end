@@ -1,23 +1,10 @@
 
-L
-java:S1068"*Remove this unused "postId" private field.(„Õ·åÿÿÿÿÿ8æŒëÚ´2
-F
-java:S1068"*Remove this unused "userId" private field.(íÃË8óŒëÚ´2
-L
-java:S1068"0Remove this unused "nomeCompleto" private field.(Ş–šT8óŒëÚ´2
-D
-java:S1068"'Remove this unused "tag" private field.(šàÆ¯8óŒëÚ´2
-J
-java:S1068!".Remove this unused "fotoPerfil" private field.(òô›K8ôŒëÚ´2
-F
-java:S1068#")Remove this unused "texto" private field.(‹äÇø8ôŒëÚ´2
-Q
-java:S1068%"/Remove this unused "listImagens" private field.(©À¶Œşÿÿÿÿ8ôŒëÚ´2
 M
-java:S1068'"0Remove this unused "contadorLike" private field.(‰ôûÊ8ôŒëÚ´2
-U
-java:S1068)"3Remove this unused "contadorDeslike" private field.(Ş©äóüÿÿÿÿ8ôŒëÚ´2
-J
-java:S1068+"-Remove this unused "likeUsers" private field.(¤‡€Ç8ôŒëÚ´2
-L
-java:S1068-"/Remove this unused "dataCriacao" private field.(©±­¬8ôŒëÚ´2
+java:S1128"+Remove this unused import 'lombok.NonNull'.(¦¸©—ıÿÿÿÿ8ê‰Û´2
+w
+java:S1128	"URemove this unused import 'org.springframework.data.elasticsearch.annotations.Field'.(ìäëüÿÿÿÿ8ë‰Û´2
+v
+java:S1128
+"YRemove this unused import 'org.springframework.data.elasticsearch.annotations.FieldType'.(æ‘ÙÒ8ë‰Û´2
+V
+java:S1128"4Remove this unused import 'java.time.LocalDateTime'.(æÃ§ƒüÿÿÿÿ8ë‰Û´2

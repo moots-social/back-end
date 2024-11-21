@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,4 +24,5 @@ public class Report {
     @NonNull
     private String denuncia;
 
+    private LocalDateTime dataCriacao;
 }

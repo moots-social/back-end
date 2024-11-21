@@ -42,23 +42,22 @@ public class PostService {
         // Busca as informações do usuário
         User user = userService.getUserRedis(userId.toString());
 
-        // Preenche os dados do post
         post.setUserId(user.getUserId());
-        post.setTag(user.getTag());
+        post.setTexto(postDTO.texto());
         post.setFotoPerfil(user.getFotoPerfil());
         post.setNomeCompleto(user.getNomeCompleto());
+        post.setTag(user.getTag());
         post.setListImagens(postDTO.listImagens());
-        post.setTexto(postDTO.texto());
+        post.setDataCriacao(LocalDateTime.now());
         post.setComentarioList(new ArrayList<>());
         post.setContadorLike(0);
         post.setContadorDeslike(0);
-        post.setDataCriacao(LocalDateTime.now());
 
         Post postSalvo = postRepository.save(post);
 
         postSalvo.setPostId(postSalvo.getId());
 
-        ElasticEvent message = new ElasticEvent(post.getUserId(), post.getId(), post.getNomeCompleto(), post.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null, post.getLikeUsers(), post.getDataCriacao().toString());
+        ElasticEvent message = new ElasticEvent(post.getUserId(), post.getId(), post.getNomeCompleto(), post.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null, post.getLikeUsers(), post.getDataCriacao());
 
         kafkaProducerService.sendMessage("post-criado-topic", message);
 
@@ -96,9 +95,11 @@ public class PostService {
         int contador = like ? post.getContadorLike() + 1 : post.getContadorLike() - 1;
         post.setContadorLike(contador);
 
-        if (like && !idUser.equals(post.getUserId())) {
+        if (like && idUser.toString().equals(post.getUserId().toString())) {
+            log.info("Usuário que curtiu é o mesmo que criou o post, não enviando a notificação.");
+        } else if (like) {
             kafkaProducerService.sendMessage("notification-topic", new NotificationEvent(postId, idUser, user.getTag(), evento, new Date(), post.getUserId(), user.getFotoPerfil()));
-            log.info("Evento enviado com sucesso");
+            log.info("Evento enviado com sucesso para o postId: {}", postId);
         }
 
         ElasticEvent message = new ElasticEvent(post.getUserId().toString(), postId, post.getNomeCompleto(), user.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null, post.getLikeUsers(), null);

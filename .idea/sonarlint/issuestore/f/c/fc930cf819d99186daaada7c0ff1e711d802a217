@@ -1,0 +1,19 @@
+
+w
+java:S3740"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿ8Ë¢Çß´2J$feb6bee6-2bac-4bfa-8b61-451cd75d10d3
+
+java:S1192M"UDefine a constant instead of duplicating this literal "Post nÃ£o encontrado" 3 times.(£«œ×øÿÿÿÿ8Ì¢Çß´2J$b7b27702-2782-4b0f-9894-65b583df0359
+¥
+java:S1488¡"aImmediately return this expression instead of assigning it to the temporary variable "likeUsers".(Ù›¹Î8Î¢Çß´2J$0fb901ae-72e0-49fe-8c64-a7fa0a61a1a2
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8×¢Çß´2J$2f7c18ba-9e1f-4e93-9920-eeacf1c2a2dc
+…
+java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8×¢Çß´2J$e84c8a08-3343-4de1-bac1-e7dfcb67a10c
+…
+java:S6813#"BRemove this field injection and use constructor injection instead.(êæÄŞ8×¢Çß´2J$8d8f1a9c-e13f-498d-b096-ea14e07cb5a6
+…
+java:S1858b"C"getUserId" returns a string, there's no need to call "toString()".(½Îì8è¢Çß´2J$1f71137c-e639-4b34-968f-1202a039b6de
+‹
+java:S1858i"C"getUserId" returns a string, there's no need to call "toString()".(éœ§Ãüÿÿÿÿ8ê¢Çß´2J$0a21917f-9a32-4924-a368-7b77b6962d10
+‹
+java:S1858}"C"getUserId" returns a string, there's no need to call "toString()".(Ş¤Ëßûÿÿÿÿ8©Õáß´2J$4fffba1e-ec76-4fc2-92ee-16bfc1aafa31

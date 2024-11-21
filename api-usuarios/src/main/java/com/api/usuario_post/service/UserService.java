@@ -8,9 +8,9 @@ import com.api.usuario_post.event.ElasticEvent;
 import com.api.usuario_post.event.NotificationEvent;
 import com.api.usuario_post.event.UserEvent;
 import com.api.usuario_post.handler.BusinessException;
-import com.api.usuario_post.model.Post;
 import com.api.usuario_post.model.User;
 import com.api.usuario_post.repository.UserRepository;
+import com.azure.core.annotation.Post;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -21,10 +21,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -268,30 +265,20 @@ public class UserService {
         return "Evento enviado com sucesso";
     }
 
-
     @CacheEvict(value = "colecaoPost", key = "#elasticEvent.userId")
     @KafkaListener(topics = "post-colecao-topic")
-    public void salvarPostColecao(ElasticEvent elasticEvent, boolean favorito) {
-        Optional<User> optionalUser = userRepository.findByUserId(Long.valueOf(elasticEvent.getUserId()));
+    public void salvarPostColecao(ElasticEvent elasticEvent) {
 
-        if (optionalUser.isEmpty()) {
-            throw new RuntimeException("Usuário não encontrado com o ID: " + elasticEvent.getUserId());
-        }
+        User user = userRepository.findByUserId(Long.valueOf(elasticEvent.getUserId()))
+                .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
 
-        User user = optionalUser.get();
+        List<PostEvent> colecao = user.getColecaoSalvos();
 
-        var colecao = user.getColecaoSalvos();
+        PostEvent postSalvo = new PostEvent(null, Long.valueOf(elasticEvent.getUserId()), elasticEvent.getPostId(), elasticEvent.getTexto(), elasticEvent.getListImagens(), elasticEvent.getNomeCompleto(), elasticEvent.getTag(), elasticEvent.getFotoPerfil());
 
-        var postSalvo = new PostEvent(null, Long.valueOf(elasticEvent.getUserId()), elasticEvent.getPostId(), elasticEvent.getTexto(), elasticEvent.getListImagens(), elasticEvent.getNomeCompleto(), elasticEvent.getTag(), elasticEvent.getFotoPerfil());
-
-        if(favorito == true){
-            boolean removerPost = colecao.removeIf(c -> c.getPostId().equals(elasticEvent.getPostId()));
-            throw new RuntimeException("Esse post já está salvo em sua coleção" + elasticEvent.getPostId());
-        }else{
-            colecao.add(postSalvo);
-            log.info("Colecao salvo com sucesso");
-            userRepository.save(user);
-        }
+        colecao.add(postSalvo);
+        log.info("Colecao salvo com sucesso");
+        userRepository.save(user);
     }
 
     @CacheEvict(value = "colecaoPost", key = "#userId")
@@ -332,38 +319,6 @@ public class UserService {
         boolean removeFollower = listFollowers.removeIf(l -> l.getUserId().equals(userId2));
         log.info("Usuário removido da lista de seguidores com sucesso");
         return userRepository.save(user);
-    }
-
-    @KafkaListener(topics = "post-criado-topic", groupId = "grupo-2")
-    public void adicionarPostNaLista(ElasticEvent elasticEvent){
-
-        User user = userRepository.findByUserId(Long.valueOf(elasticEvent.getUserId()))
-                .orElseThrow(NoSuchElementException::new);
-
-        Post novoPost = new Post();
-        novoPost.setUserId(user.getUserId().toString());
-        novoPost.setPostId(elasticEvent.getPostId());
-        novoPost.setTexto(elasticEvent.getTexto());
-        novoPost.setFotoPerfil(elasticEvent.getFotoPerfil());
-        novoPost.setNomeCompleto(elasticEvent.getNomeCompleto());
-        novoPost.setTag(elasticEvent.getTag());
-        novoPost.setListImagens(elasticEvent.getListImagens());
-
-        user.getListPosts().add(novoPost);
-
-        userRepository.save(user);
-        log.info("Post adicionado na lista de usuarios com sucesso" + user);
-    }
-
-    public List<Post> findPostAndCommentByFollowers(Long userId){
-        List<Post> posts = userRepository.findPostAndComentarioByFollowers(userId);
-        log.info("Post adicionado na lista de usuarios com sucesso");
-        return posts;
-    }
-
-    public List<Post> findPostByUserId(Long userId){
-        List<Post> posts = userRepository.findPostsByUserId(userId);
-        return posts;
     }
 
     public List<Long> findPostIdByColecoes(Long userId){

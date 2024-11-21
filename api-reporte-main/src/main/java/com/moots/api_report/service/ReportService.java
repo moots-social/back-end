@@ -5,11 +5,11 @@ import com.moots.api_report.model.Report;
 import com.moots.api_report.repository.ReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -24,6 +24,7 @@ public class ReportService {
         var report = new Report();
         report.setDenuncia(reportPostEvent.getDenuncia());
         report.setPostId(reportPostEvent.getPostId());
+        report.setDataCriacao(LocalDateTime.now());
 
         return reportRepository.save(report);
     }
@@ -35,8 +36,9 @@ public class ReportService {
     }
 
     public List<Report> findAll(){
-        return reportRepository.findAll();
+        return reportRepository.findAllByOrderByDataCriacaoDesc();
     }
+
 
     @Caching(evict = {
             @CacheEvict(value = "report-postId", key = "#postId"),
@@ -47,11 +49,9 @@ public class ReportService {
         return reportDeletado;
     }
 
-    @Cacheable(value = "report-postId", key = "#postId")
+    //@Cacheable(value = "report-postId", key = "#postId")
     public List<Report> findByPostId(Long postId){
-        return reportRepository.findByPostId(postId);
+        return reportRepository.findByPostIdOrderByDataCriacaoDesc(postId);
     }
-
-
 
 }

@@ -1,3 +1,8 @@
 
+g	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(›ÓÇĞıÿÿÿÿ8ıæÏÜ´2
 ‰
-java:S1192!"FDefine a constant instead of duplicating this literal "user:" 3 times.(Éœ×8€Õ‹Ø«2J$53d85199-fa99-4df6-a344-5ff86e2b1698
+java:S1192!"FDefine a constant instead of duplicating this literal "user:" 3 times.(Éœ×8€Õ‹Ø«2J$315e7bc6-f5be-4832-9621-e4e262a9c856
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8çÏÜ´2
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8çÏÜ´2
