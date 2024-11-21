@@ -87,7 +87,7 @@ public class UserService {
         User savedUser = userRepository.save(user);
         savedUser.setUserId(savedUser.getId());
 
-        ElasticEvent message = new ElasticEvent(savedUser.getUserId().toString(), null, savedUser.getNomeCompleto(), savedUser.getTag(), savedUser.getFotoPerfil(), null, null, null, null, savedUser.getCurso().toString(), null);
+        ElasticEvent message = new ElasticEvent(savedUser.getUserId().toString(), null, savedUser.getNomeCompleto(), savedUser.getTag(), savedUser.getFotoPerfil(), null, null, null, null, null, null);
 
         kafkaProducerService.sendMessage("user-criado-topic", message);
         log.info("O evento de salvar usuario foi enviado" + message);
