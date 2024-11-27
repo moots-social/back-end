@@ -158,10 +158,6 @@ Tapi-reporte-main/src/main/java/com/moots/api_report/repository/ReportRepository
 i
 9api-post/src/main/java/com/moots/api_post/model/User.java,4\3\4355e38e3565d66279d1866bfd6795f511b1fe41
 o
-?api-usuarios/src/main/java/com/api/usuario_post/model/Post.java,b\0\b039c8068d9aae08b1914b1dc3b89d8fd4a6a0ac
-u
-Eapi-usuarios/src/main/java/com/api/usuario_post/model/Comentario.java,0\5\052cddff66d5c4312d77c39f00e9fa86607a6d32
-o
 ?api-post/src/main/java/com/moots/api_post/model/Comentario.java,f\6\f68f638bd3558e0511a4df6fa0c6e8ca64aabe0d
 {
 Kapi-post/src/main/java/com/moots/api_post/service/KafkaProducerService.java,c\3\c3fe6840dd476bd2acb787a404a4c13895916abc
@@ -181,3 +177,7 @@ u
 Eapi-reporte-main/src/main/java/com/moots/api_report/model/Report.java,1\3\13983c263e3fa9d6373c95631f5631eeeeee6154
 t
 Dapi-post/src/main/java/com/moots/api_post/event/ReportPostEvent.java,c\7\c70519e1f2d9f6e10730db0e3a36f6684ae87e1c
+a
+1gateway/src/main/resources/application.properties,7\2\723d904adf42b8d4a8340e269af7dbe382232488
+v
+Fgateway/src/main/java/com/moots/api_gateway/ApiGatewayApplication.java,5\8\5888a684a384d83657e57820334c70f62aeccff7

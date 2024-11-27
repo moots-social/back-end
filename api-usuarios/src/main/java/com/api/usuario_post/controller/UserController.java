@@ -37,6 +37,7 @@ public class UserController {
     @Autowired
     private ImageStorageClient imageStorageClient;
 
+
     @PostMapping("/criar")
     public ResponseEntity<User> criar(@RequestBody UserDTO userDTO) {
         User user = userService.criarUsuario(userDTO);
