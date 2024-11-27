@@ -1,9 +1,0 @@
-
-‡
-java:S1192,"FDefine a constant instead of duplicating this literal "ADMIN" 8 times.(ŒÕ•úÿÿÿÿÿJ$abc7b318-a852-4bc0-b8e8-7e9c48c164fb
-~
-java:S1874"BRemove this use of "EnableGlobalMethodSecurity"; it is deprecated.(ö­ê×J$c8074e57-a668-4fb5-8903-6d2b3ff8b9bf
-
-java:S1612$"LReplace this lambda with method reference 'AbstractHttpConfigurer::disable'.(ø´ïûÿÿÿÿJ$2fbb71b3-da55-4bb7-94c3-5a2c46fc0336
-}
-java:S1068"5Remove this unused "SWAGGER_WHITELIST" private field.(Şòù­øÿÿÿÿ8úÎ×­2J$8db55e73-827e-4afa-b4af-4f1a8274e47a

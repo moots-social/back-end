@@ -38,5 +38,7 @@ public class ElasticEvent implements Serializable {
     private List<String> likeUsers = new ArrayList<>();
 
     private LocalDateTime dataCriacaoPost;
+
+    private Long userIdLogado;
 }
 

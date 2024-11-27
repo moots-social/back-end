@@ -1,5 +1,6 @@
 package com.moots.api_post.service;
 
+import com.moots.api_post.event.ElasticEvent;
 import com.moots.api_post.event.UserEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,9 @@ public class UserEventService {
     }
 
     @KafkaListener(topics = "user-alterado-topic")
-    public void updateUser(UserEvent userEvent) throws Exception {
-        log.info("Evento recebido: " + userEvent);
-        userService.updateUserRedis(userEvent.getUserId().toString(), userEvent);
+    public void updateUser(ElasticEvent elasticEvent) throws Exception {
+        log.info("Evento recebido: " + elasticEvent);
+        userService.updateUserRedis(elasticEvent.getUserId().toString(), elasticEvent);
         log.info("User alterado com sucesso");
     }
 

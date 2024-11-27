@@ -1,6 +1,7 @@
 package com.moots.api_post.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.moots.api_post.event.ElasticEvent;
 import com.moots.api_post.event.UserEvent;
 import com.moots.api_post.model.User;
 
@@ -50,15 +51,15 @@ public class UserService {
         }
     }
 
-    public void updateUserRedis(String id, UserEvent userEvent) throws Exception{
+    public void updateUserRedis(String id, ElasticEvent elasticEvent) throws Exception{
         User user = this.getUserRedis(id);
         if(user == null){
             throw new NoSuchElementException("Usuário não encontrado no Redis com o ID: " + id);
         }
-        user.setUserId(userEvent.getUserId().toString());
-        user.setNomeCompleto(userEvent.getNomeCompleto());
-        user.setTag(userEvent.getTag());
-        user.setFotoPerfil(userEvent.getFotoPerfil());
+        user.setUserId(elasticEvent.getUserId().toString());
+        user.setNomeCompleto(elasticEvent.getNomeCompleto());
+        user.setTag(elasticEvent.getTag());
+        user.setFotoPerfil(elasticEvent.getFotoPerfil());
 
         String userKey = "user:" + user.getUserId();
         String userJson = objectMapper.writeValueAsString(user);

@@ -87,7 +87,7 @@ public class UserService {
         User savedUser = userRepository.save(user);
         savedUser.setUserId(savedUser.getId());
 
-        ElasticEvent message = new ElasticEvent(savedUser.getUserId().toString(), null, savedUser.getNomeCompleto(), savedUser.getTag(), savedUser.getFotoPerfil(), null, null, null, null, null, null);
+        ElasticEvent message = new ElasticEvent(savedUser.getUserId().toString(), null, savedUser.getNomeCompleto(), savedUser.getTag(), savedUser.getFotoPerfil(), null, null, null, null, null, null, null);
 
         kafkaProducerService.sendMessage("user-criado-topic", message);
         log.info("O evento de salvar usuario foi enviado" + message);
@@ -122,7 +122,7 @@ public class UserService {
             }
 
             userRepository.save(user.get());
-            ElasticEvent message = new ElasticEvent(user.get().getUserId().toString(), null, user.get().getNomeCompleto(), user.get().getTag(), user.get().getFotoPerfil(), null, null, null, null, user.get().getCurso().toString(), null);
+            ElasticEvent message = new ElasticEvent(user.get().getUserId().toString(), null, user.get().getNomeCompleto(), user.get().getTag(), user.get().getFotoPerfil(), null, null, null, null, user.get().getCurso().toString(), null, null);
             kafkaProducerService.sendMessage("user-alterado-topic", message);
             log.info("O evento de alterar usuario foi enviado" + message);
             return userRepository.findOnlyUser(user.get().getUserId());
@@ -251,7 +251,7 @@ public class UserService {
         if (user.isPresent()) {
             User user1 = userRepository.findOnlyUser(user.get().getUserId());
             userRepository.deleteById(id);
-            ElasticEvent message = new ElasticEvent(user1.getUserId().toString(), null, null, null, null, null, null, null, null, null, null);
+            ElasticEvent message = new ElasticEvent(user1.getUserId().toString(), null, null, null, null, null, null, null, null, null, null, null);
             kafkaProducerService.sendMessage("user-deletado-topic", message);
             log.info("O evento de deletar o usuário foi enviado" + message);
             return user1;
@@ -269,7 +269,9 @@ public class UserService {
     @KafkaListener(topics = "post-colecao-topic")
     public void salvarPostColecao(ElasticEvent elasticEvent) {
 
-        User user = userRepository.findByUserId(Long.valueOf(elasticEvent.getUserId()))
+        Long userId = elasticEvent.getUserIdLogado();
+
+        User user = userRepository.findByUserId(userId)
                 .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
 
         List<PostEvent> colecao = user.getColecaoSalvos();
@@ -332,5 +334,31 @@ public class UserService {
                 .collect(Collectors.toList());
 
         return listPostId;
+    }
+
+    @KafkaListener(topics = "post-atualizado-topic")
+    public void likedPostsByUser(ElasticEvent elasticEvent){
+
+        Long userId = elasticEvent.getUserIdLogado();
+
+        User user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new NoSuchElementException("Usuario não encontrado"));
+
+        List<Long> listUserLikedPosts = user.getLikedPosts();
+
+        if(listUserLikedPosts.contains(elasticEvent.getPostId())){
+            user.getLikedPosts().remove(elasticEvent.getPostId());
+            userRepository.save(user);
+        }else{
+            user.getLikedPosts().add(elasticEvent.getPostId());
+            userRepository.save(user);
+        }
+    }
+
+    public List<Long> findlikedPostsByUserId(Long userId){
+        User user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new NoSuchElementException("Usuario não encontrado"));
+
+        return user.getLikedPosts();
     }
 }

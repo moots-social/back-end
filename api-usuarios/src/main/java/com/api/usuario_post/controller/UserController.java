@@ -147,4 +147,10 @@ public class UserController {
         List<Long> postIds = userService.findPostIdByColecoes(userId);
         return ResponseEntity.ok().body(postIds);
     }
+
+    @GetMapping("/likedPosts/{userId}")
+    public ResponseEntity<List<Long>> findLikedPostsByUserId(@PathVariable Long userId){
+        List<Long> posts = userService.findlikedPostsByUserId(userId);
+        return ResponseEntity.ok().body(posts);
+    }
 }

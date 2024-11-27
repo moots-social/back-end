@@ -1,14 +1,11 @@
 package com.api.usuario_post.model;
 
-import com.api.usuario_post.event.ElasticEvent;
 import com.api.usuario_post.event.PostEvent;
 import lombok.*;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
-
-import java.lang.reflect.Type;
 import java.util.*;
 
 @Getter
@@ -68,4 +65,6 @@ public class User {
     private List<String > roles = new ArrayList<>();
 
     public boolean moderador;
+
+    private List<Long> likedPosts = new ArrayList<>();
 }

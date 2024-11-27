@@ -1,8 +1,10 @@
 
-g	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(›ÓÇĞıÿÿÿÿ8ıæÏÜ´2
+	java:S112+"FDefine and throw a dedicated exception instead of using a generic one.(›ÓÇĞıÿÿÿÿ8ıæÏÜ´2J$d87498ca-96b0-4390-933c-7aea42feabe8
 ‰
-java:S1192!"FDefine a constant instead of duplicating this literal "user:" 3 times.(Éœ×8€Õ‹Ø«2J$315e7bc6-f5be-4832-9621-e4e262a9c856
-_
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8çÏÜ´2
-_
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8çÏÜ´2
+java:S1192""FDefine a constant instead of duplicating this literal "user:" 3 times.(Éœ×8€Õ‹Ø«2J$b4e79a7a-17ad-42fe-be06-4756b2b49a67
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8çÏÜ´2J$38660949-5fae-4d5f-bcf5-4fe2f12d01a7
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8çÏÜ´2J$99d3a81f-3917-4b4f-a98f-a779050f781d
+e
+java:S1858;"C"getUserId" returns a string, there's no need to call "toString()".(Çœ¡Éıÿÿÿÿ8•ãø¶2
