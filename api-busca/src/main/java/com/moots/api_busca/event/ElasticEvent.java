@@ -39,4 +39,5 @@ public class ElasticEvent implements Serializable {
 
     private LocalDateTime dataCriacaoPost;
 
+    private Long userIdLogado;
 }

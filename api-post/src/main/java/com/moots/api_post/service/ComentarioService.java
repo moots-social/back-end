@@ -2,7 +2,6 @@ package com.moots.api_post.service;
 
 import com.moots.api_post.dto.ComentarioDTO;
 import com.moots.api_post.event.NotificationEvent;
-import com.moots.api_post.handler.BusinessException;
 import com.moots.api_post.model.Comentario;
 import com.moots.api_post.model.Post;
 import com.moots.api_post.model.User;
@@ -18,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 
 @Service

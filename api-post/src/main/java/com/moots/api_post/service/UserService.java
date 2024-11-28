@@ -4,14 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.moots.api_post.event.ElasticEvent;
 import com.moots.api_post.event.UserEvent;
 import com.moots.api_post.model.User;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
-
 import java.util.NoSuchElementException;
-
 
 @Service
 @Slf4j
@@ -66,7 +63,5 @@ public class UserService {
         redisTemplate.opsForValue().set(userKey, userJson);
         log.info("User alterado no redis");
     }
-
-
 
 }

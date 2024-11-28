@@ -31,7 +31,7 @@ public class UserEventService {
         log.info("User salvo com sucesso");
     }
 
-    @KafkaListener(topics = "user-alterado-topic")
+    @KafkaListener(topics = "user-alterado-topic", groupId = "grupo-1")
     public void updateUser(ElasticEvent elasticEvent) throws Exception {
         log.info("Evento recebido: " + elasticEvent);
         userService.updateUserRedis(elasticEvent.getUserId().toString(), elasticEvent);

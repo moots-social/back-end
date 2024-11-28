@@ -139,7 +139,7 @@ public class PostService {
         var post = postRepository.findById(postId);
 
         ElasticEvent colecaoPostEvent = new ElasticEvent();
-        colecaoPostEvent.setUserId(userId.toString());
+        colecaoPostEvent.setUserId(post.get().getUserId().toString());
         colecaoPostEvent.setPostId(postId);
         colecaoPostEvent.setTexto(post.get().getTexto());
         colecaoPostEvent.setListImagens(post.get().getListImagens());

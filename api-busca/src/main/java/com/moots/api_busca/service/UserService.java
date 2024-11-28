@@ -40,7 +40,7 @@ public class UserService {
         log.info("Usuario deletado com sucesso" + user);
     }
 
-    @KafkaListener(topics = "user-alterado-topic")
+    @KafkaListener(topics = "user-alterado-topic", groupId = "grupo-2")
     public void alterarUser(ElasticEvent elasticEvent){
         log.info("O evento de alterar usuario foi recebido " + elasticEvent);
         User user = userRepository.findByUserId(elasticEvent.getUserId());
