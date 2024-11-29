@@ -29,6 +29,7 @@ public class NotificationService {
         notification.setUserTag(notificationEvent.getUserTag());
         notification.setMyUserId(notificationEvent.getMyUserId());
         notification.setDataCriacao(LocalDateTime.now());
+        notification.setFotoPerfil(notificationEvent.getFotoPerfil());
 
         Notification notificationSalva = notificationRepository.save(notification);
         atualizarCache(notificationSalva.getMyUserId());
