@@ -98,11 +98,11 @@ public class PostService {
         if (like && idUser.toString().equals(post.getUserId().toString())) {
             log.info("Usuário que curtiu é o mesmo que criou o post, não enviando a notificação.");
         } else if (like) {
-            kafkaProducerService.sendMessage("notification-topic", new NotificationEvent(postId, idUser, user.getTag(), evento, new Date(), post.getUserId(), user.getFotoPerfil()));
+            kafkaProducerService.sendMessage("notification-topic", new NotificationEvent(postId, idUser, post.getTag(), evento, new Date(), post.getUserId(), post.getFotoPerfil()));
             log.info("Evento enviado com sucesso para o postId: {}", postId);
         }
 
-        ElasticEvent message = new ElasticEvent(post.getUserId().toString(), postId, post.getNomeCompleto(), user.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null, post.getLikeUsers(), null, idUser);
+        ElasticEvent message = new ElasticEvent(post.getUserId().toString(), postId, post.getNomeCompleto(), post.getTag(), post.getFotoPerfil(), post.getTexto(), post.getListImagens(), post.getContadorLike(), post.getContadorDeslike(), null, post.getLikeUsers(), null, idUser);
         kafkaProducerService.sendMessage("post-atualizado-topic", message);
         log.info("Evento de alterar post foi enviado com sucesso: {}", message);
 

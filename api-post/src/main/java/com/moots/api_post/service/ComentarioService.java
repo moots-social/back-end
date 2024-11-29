@@ -55,7 +55,7 @@ public class ComentarioService {
         comentario.setUserId(user.getUserId());
 
         if(!userId.equals(Long.valueOf(post.getUserId()))){
-            kafkaProducerService.sendMessage("notification-topic", new NotificationEvent(postId, userId , user.getTag(), evento, new Date(), post.getUserId(), comentario.getFotoPerfil()));
+            kafkaProducerService.sendMessage("notification-topic", new NotificationEvent(postId, userId , comentario.getTag(), evento, new Date(), comentario.getUserId(), comentario.getFotoPerfil()));
             log.info("Evento enviado com sucesso");
         }
 
