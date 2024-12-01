@@ -1,6 +1,7 @@
 package com.moots.api_post.service;
 
 import com.moots.api_post.dto.ComentarioDTO;
+import com.moots.api_post.event.ElasticEvent;
 import com.moots.api_post.event.NotificationEvent;
 import com.moots.api_post.model.Comentario;
 import com.moots.api_post.model.Post;
@@ -12,10 +13,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 
@@ -70,4 +73,29 @@ public class ComentarioService {
         return comentario;
     }
 
+    public void alterarComentarioByUser(Comentario comentario, ElasticEvent elasticEvent){
+        comentario.setTag(elasticEvent.getTag());
+        comentario.setNomeCompleto(elasticEvent.getNomeCompleto());
+        comentario.setFotoPerfil(elasticEvent.getFotoPerfil());
+    }
+
+
+    @KafkaListener(topics = "user-deletado-topic", groupId = "grupo-3")
+    public void deletarComentarioByUserId(ElasticEvent elasticEvent){
+
+        List<Comentario> comentarios = this.comentarioRepository.findByUserId(elasticEvent.getUserId());
+
+        comentarios.forEach((comentario -> comentarioRepository.deleteByUserId(comentario.getUserId())));
+    }
+
+
+    @KafkaListener(topics = "user-alterado-topic", groupId = "grupo-5")
+    public void alterarComentarioByUser(ElasticEvent elasticEvent){
+        List<Comentario> comentarios = comentarioRepository.findByUserId(elasticEvent.getUserId());
+
+        comentarios.forEach((comentario) -> {
+            this.alterarComentarioByUser(comentario, elasticEvent);
+            comentarioRepository.save(comentario);
+        });
+    }
 }

@@ -1,5 +1,6 @@
 package com.moots.api_post.repository;
 
+import com.moots.api_post.event.PostEvent;
 import com.moots.api_post.model.Post;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.neo4j.repository.query.Query;
@@ -16,4 +17,11 @@ public interface PostRepository extends Neo4jRepository<Post, Long> {
 
     List<Post> findAllByOrderByDataCriacaoDesc();
 
+    List<Post> findByUserId(String userId);
+
+    void deleteByUserId(String userId);
+
+    List<PostEvent> findPostEventByUserId(Long userId);
+
+    void deletePostEventByUserId(Long userId);
 }

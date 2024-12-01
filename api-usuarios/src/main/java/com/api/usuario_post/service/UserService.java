@@ -9,6 +9,7 @@ import com.api.usuario_post.event.NotificationEvent;
 import com.api.usuario_post.event.UserEvent;
 import com.api.usuario_post.handler.BusinessException;
 import com.api.usuario_post.model.User;
+import com.api.usuario_post.repository.PostEventRepository;
 import com.api.usuario_post.repository.UserRepository;
 import com.azure.core.annotation.Post;
 import jakarta.transaction.Transactional;
@@ -36,6 +37,8 @@ public class UserService {
     @Autowired
     private KafkaProducerService kafkaProducerService;
 
+    @Autowired
+    private PostEventRepository postEventRepository;
 
     public User criarUsuario(@Valid UserDTO userDTO){
         // Verificar unicidade de email e tag
@@ -81,7 +84,6 @@ public class UserService {
             user.setFotoPerfil(userDTO.getFotoPerfil());
         }
 
-//        user.setFotoCapa(userDTO.getFotoCapa());
         user.setRoles(userDTO.getRoles());
 
         User savedUser = userRepository.save(user);
@@ -122,9 +124,11 @@ public class UserService {
             }
 
             userRepository.save(user.get());
-            ElasticEvent message = new ElasticEvent(user.get().getUserId().toString(), null, user.get().getNomeCompleto(), user.get().getTag(), user.get().getFotoPerfil(), null, null, null, null, user.get().getCurso().toString(), null, null);
-            kafkaProducerService.sendMessage("user-alterado-topic", message);
-            log.info("O evento de alterar usuario foi enviado" + message);
+            ElasticEvent evento = new ElasticEvent(user.get().getUserId().toString(), null, user.get().getNomeCompleto(), user.get().getTag(), user.get().getFotoPerfil(), null, null, null, null, user.get().getCurso().toString(), null, null);
+            ElasticEvent evento2 = new ElasticEvent(user.get().getUserId().toString(), null, user.get().getNomeCompleto(), user.get().getTag(), user.get().getFotoPerfil(), null, null, null, null, user.get().getCurso().toString(), null, null);
+            kafkaProducerService.sendMessage("user-alterado-topic", evento);
+            kafkaProducerService.sendMessage("alterar-post-colecao-topic", evento2);
+            log.info("Os eventos de alteração do usuário foram enviados");
             return userRepository.findOnlyUser(user.get().getUserId());
         } else {
             // Lançar uma exceção apropriada se o usuário não for encontrado
@@ -251,9 +255,13 @@ public class UserService {
         if (user.isPresent()) {
             User user1 = userRepository.findOnlyUser(user.get().getUserId());
             userRepository.deleteById(id);
-            ElasticEvent message = new ElasticEvent(user1.getUserId().toString(), null, null, null, null, null, null, null, null, null, null, null);
-            kafkaProducerService.sendMessage("user-deletado-topic", message);
-            log.info("O evento de deletar o usuário foi enviado" + message);
+            ElasticEvent evento1 = new ElasticEvent(user1.getUserId().toString(), null, null, null, null, null, null, null, null, null, null, null);
+            NotificationEvent evento2 = new NotificationEvent(null, null, null, null, null, user1.getUserId().toString(), null);
+            ElasticEvent evento3 = new ElasticEvent(user1.getUserId().toString(), null, null, null, null, null, null, null, null, null, null, null);
+            kafkaProducerService.sendMessage("user-deletado-topic", evento1);
+            kafkaProducerService.sendMessage("delete-notification-topic", evento2);
+            kafkaProducerService.sendMessage("delete-post-colecao-topic", evento3);
+            log.info("Os eventos de exclusão do usuario foram enviados");
             return user1;
         } else {
             throw new BusinessException("Erro ao excluir usuario");
@@ -295,7 +303,7 @@ public class UserService {
         var colecao = user.getColecaoSalvos();
         boolean removerPost = colecao.removeIf(c -> c.getPostId().equals(postId));
 
-//        userRepository.deletePostEventByPostId(postId);
+        postEventRepository.deleteByPostId(postId);
 
         log.info("Post removido da coleção com sucesso");
         return userRepository.save(user);
@@ -361,4 +369,16 @@ public class UserService {
 
         return user.getLikedPosts();
     }
+
+    @KafkaListener(topics = "post-deletado-topic", groupId = "grupo-2")
+    public void deletarPostColecaoByPostId(ElasticEvent elasticEvent){
+        Long postId = elasticEvent.getPostId();
+
+        PostEvent post = postEventRepository.findByPostId(postId);
+
+        postEventRepository.deleteByPostId(post.getPostId());
+
+    }
+
+
 }

@@ -20,13 +20,13 @@ public class UserService {
     @Autowired
     private ObjectMapper objectMapper;
 
-    public void saveUser(UserEvent userEvent) {
+    public void saveUser(ElasticEvent elasticEvent) {
         try {
             User user = new User();
-            user.setUserId(userEvent.getUserId().toString());
-            user.setNomeCompleto(userEvent.getNomeCompleto());
-            user.setTag(userEvent.getTag());
-            user.setFotoPerfil(userEvent.getFotoPerfil());
+            user.setUserId(elasticEvent.getUserId().toString());
+            user.setNomeCompleto(elasticEvent.getNomeCompleto());
+            user.setTag(elasticEvent.getTag());
+            user.setFotoPerfil(elasticEvent.getFotoPerfil());
 
             String userKey = "user:" + user.getUserId();
             String userJson = objectMapper.writeValueAsString(user);

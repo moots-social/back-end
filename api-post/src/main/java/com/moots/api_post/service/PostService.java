@@ -3,9 +3,11 @@ package com.moots.api_post.service;
 import com.moots.api_post.dto.PostDTO;
 import com.moots.api_post.event.NotificationEvent;
 import com.moots.api_post.event.ElasticEvent;
+import com.moots.api_post.event.PostEvent;
 import com.moots.api_post.event.ReportPostEvent;
 import com.moots.api_post.model.Post;
 import com.moots.api_post.model.User;
+import com.moots.api_post.repository.PostEventRepository;
 import com.moots.api_post.repository.PostRepository;
 import com.moots.api_post.utils.Deslike;
 import com.moots.api_post.utils.Like;
@@ -14,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -34,6 +37,9 @@ public class PostService {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PostEventRepository postEventRepository;
 
     public Post criarPost(PostDTO postDTO) throws Exception {
         Long userId = Utils.buscarIdToken();
@@ -65,8 +71,10 @@ public class PostService {
     }
 
     public Post deletarPostEComentarios(Long postId) {
-        ElasticEvent message = new ElasticEvent(null, postId, null, null, null, null, null, null, null, null, null, null, null);
-        kafkaProducerService.sendMessage("post-deletado-topic", message);
+        ElasticEvent evento = new ElasticEvent(null, postId, null, null, null, null, null, null, null, null, null, null, null);
+        ElasticEvent evento2 = new ElasticEvent(null, postId, null, null, null, null, null, null, null, null, null, null, null);
+        kafkaProducerService.sendMessage("post-deletado-topic", evento);
+        kafkaProducerService.sendMessage("delete-post-colecao-topic", evento2);
         log.info("Evento de deletar post foi enviado com sucesso" + postId);
         return postRepository.deletarPostEComentarios(postId);
     }
@@ -164,4 +172,55 @@ public class PostService {
         return likeUsers;
     }
 
+    public void alterarPostByUser(Post post, ElasticEvent elasticEvent){
+        post.setTag(elasticEvent.getTag());
+        post.setNomeCompleto(elasticEvent.getNomeCompleto());
+        post.setFotoPerfil(elasticEvent.getFotoPerfil());
+    }
+
+    public void alterarPostColecaoByUser(PostEvent post, ElasticEvent elasticEvent){
+        post.setNomeCompleto(elasticEvent.getNomeCompleto());
+        post.setFotoPerfil(elasticEvent.getFotoPerfil());
+        post.setTag(elasticEvent.getTag());
+    }
+
+    @KafkaListener(topics = "user-deletado-topic", groupId = "grupo-4")
+    public void deletarPostByUserId(ElasticEvent elasticEvent){
+        List<Post> posts = postRepository.findByUserId(elasticEvent.getUserId());
+
+        posts.forEach((post -> postRepository.deleteByUserId(post.getUserId())));
+    }
+
+    @KafkaListener(topics = "delete-post-colecao-topic", groupId = "grupo-1")
+    public void deletarPostColecaoByUserId(ElasticEvent elasticEvent){
+        Long userId = Long.valueOf(elasticEvent.getUserId());
+
+        List<PostEvent> posts = postEventRepository.findByUserId(userId);
+
+        posts.forEach((post -> postEventRepository.deleteByUserId(post.getUserId())));
+    }
+
+    @KafkaListener(topics = "user-alterado-topic", groupId = "grupo-4")
+    public void atualizarPostByUser(ElasticEvent elasticEvent){
+        String userId = elasticEvent.getUserId();
+
+        List<Post> posts = postRepository.findByUserId(userId);
+
+        posts.forEach((post -> {
+            this.alterarPostByUser(post, elasticEvent);
+            postRepository.save(post);
+        }));
+    }
+
+    @KafkaListener(topics = "alterar-post-colecao-topic")
+    public void atualizarPostColecaoByUser(ElasticEvent elasticEvent){
+        Long userId = Long.valueOf(elasticEvent.getUserId());
+
+        List<PostEvent> posts = postEventRepository.findByUserId(userId);
+
+        posts.forEach((post -> {
+            this.alterarPostColecaoByUser(post, elasticEvent);
+            postEventRepository.save(post);
+        }));
+    }
 }

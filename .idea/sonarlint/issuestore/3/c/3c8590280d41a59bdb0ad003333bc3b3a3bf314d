@@ -1,5 +1,5 @@
 
 ~
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞJ$2fd731d2-512c-4a45-a135-437e118d5bdd
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞJ$e639baca-6d7d-43a1-a420-20b531ac9613
 †
-java:S1858%"C"getUserId" returns a string, there's no need to call "toString()".(¬øÊ…8ëèáø¶2J$4c707436-334d-4252-b44b-456885b0e61b
+java:S1858%"C"getUserId" returns a string, there's no need to call "toString()".(¬øÊ…8ëèáø¶2J$c2917b32-6322-431c-a833-7e5103d7b257

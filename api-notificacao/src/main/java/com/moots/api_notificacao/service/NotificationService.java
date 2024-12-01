@@ -56,4 +56,13 @@ public class NotificationService {
     public void invalidarCache(String myUserId) {
     }
 
+    //criar um tópico separado para quando o usuario for deletado
+    @KafkaListener(topics = "delete-notification-topic")
+    public void deleteNotificationByUserId(NotificationEvent notificationEvent){
+        String userId = notificationEvent.getMyUserId();
+
+        List<Notification> notifications = notificationRepository.findByMyUserId(userId);
+
+        notifications.forEach((notification -> notificationRepository.deleteByMyUserId(notification.getMyUserId())));
+    }
 }

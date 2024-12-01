@@ -1,34 +1,34 @@
 
-	java:S112¼"FDefine and throw a dedicated exception instead of using a generic one.(Ï€”©üÿÿÿÿ8èø°û¶2J$e102785b-1322-4e7a-a221-74c0f90a17be
-‰	java:S112Ø"FDefine and throw a dedicated exception instead of using a generic one.(œÇçú8êø°û¶2J$80095ba2-9406-4e5e-8569-7e7d8a759bad
-	java:S112ã"FDefine and throw a dedicated exception instead of using a generic one.(Ä’°ùÿÿÿÿ8êø°û¶2J$e8d47d4f-ad9e-4d6e-a489-1cae3f7d1ec4
-	java:S112î"FDefine and throw a dedicated exception instead of using a generic one.(š™´Ñÿÿÿÿÿ8êø°û¶2J$41b780fc-2e1f-46b4-997a-24ef5e661435
-‰	java:S112£"FDefine and throw a dedicated exception instead of using a generic one.(†ê¿¡8êø°û¶2J$56b59372-16be-4d19-9ef5-09b9e2d45f32
+	java:S112À"FDefine and throw a dedicated exception instead of using a generic one.(Ï€”©üÿÿÿÿ8ê¥Ñœ¸2J$8ce2b47b-c8bc-4883-b1ab-956fb9c094b0
+‰	java:S112Ü"FDefine and throw a dedicated exception instead of using a generic one.(œÇçú8ê¥Ñœ¸2J$240c413d-bb21-485d-90da-e4d2d258cc35
+	java:S112ç"FDefine and throw a dedicated exception instead of using a generic one.(Ä’°ùÿÿÿÿ8ê¥Ñœ¸2J$84b04221-049b-4787-80a1-cbcc727aafaa
+	java:S112ò"FDefine and throw a dedicated exception instead of using a generic one.(š™´Ñÿÿÿÿÿ8ê¥Ñœ¸2J$7c301cd7-0057-4eaa-a421-9393bcd70759
+‰	java:S112«"FDefine and throw a dedicated exception instead of using a generic one.(†ê¿¡8ë¥Ñœ¸2J$5ecdf82b-0745-4bb0-bec2-79240f3b8ac1
 w
-java:S3740%"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿ8ëø°û¶2J$33703192-cc8b-47e3-98f5-dfeec9b90c0d
+java:S3740&"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿ8ì¥Ñœ¸2J$9032e8ff-f46d-4d2a-8301-ed8dbe7889b8
  
-java:S1488¶"\Immediately return this expression instead of assigning it to the temporary variable "user".(ğøÿª8îø°û¶2J$de25e3fb-07b8-4219-8935-1f7d06b4a66f
+java:S1488º"\Immediately return this expression instead of assigning it to the temporary variable "user".(ğøÿª8ğ¥Ñœ¸2J$64731a39-0b85-417f-9e14-503ce94bc567
 ¦
-java:S1488Ì"bImmediately return this expression instead of assigning it to the temporary variable "listPostId".(ÃÚò8îø°û¶2J$525f6fcd-0f73-47c8-9b13-68aa50c1ea23
+java:S1488Ô"bImmediately return this expression instead of assigning it to the temporary variable "listPostId".(ÃÚò8ñ¥Ñœ¸2J$0c34deb0-b777-40bc-a85d-920210757c8d
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8‡ù°û¶2J$bc6fa0e4-d0ef-4f4b-8796-f1f353825440
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8œ¦Ñœ¸2J$e5d72b52-6293-4e21-a38e-010510ea9e2f
 …
-java:S6813!"BRemove this field injection and use constructor injection instead.(êæÄŞ8‡ù°û¶2J$794e36e5-e0c7-4ed0-b840-352e101302d2
+java:S6813""BRemove this field injection and use constructor injection instead.(êæÄŞ8œ¦Ñœ¸2J$88d16e1f-a2c6-4ffd-bd20-5c372ae6b52b
 …
-java:S6813$"BRemove this field injection and use constructor injection instead.(êæÄŞ8‡ù°û¶2J$bd598300-6e77-4282-a565-16dfb8f7bccc
-ƒ	java:S125T"<This block of commented-out lines of code should be removed.(ÈÔ¡›úÿÿÿÿ8µù°û¶2J$4211646e-81e4-4212-b90e-38f98969e554
+java:S6813%"BRemove this field injection and use constructor injection instead.(êæÄŞ8œ¦Ñœ¸2J$550efc1b-48df-419d-86cb-df4f1c7f8f18
+…
+java:S6813("BRemove this field injection and use constructor injection instead.(êæÄŞ8œ¦Ñœ¸2J$a59faa44-7726-4cbd-af6d-81a94ee4ae24
 p
-java:S1125¨"'Remove the unnecessary boolean literal.(™©í½ûÿÿÿÿ8Àù°û¶2J$5c1e733f-d46f-4371-933b-1dc3e48f7515
+java:S1125¬"'Remove the unnecessary boolean literal.(™©í½ûÿÿÿÿ8À¦Ñœ¸2J$68dfdea4-6f68-4b38-b57d-6636c00d4856
 k
-java:S1125¬"'Remove the unnecessary boolean literal.(÷÷š 8Áù°û¶2J$f863d642-7d85-4331-8f26-a2a287b5428d
+java:S1125°"'Remove the unnecessary boolean literal.(÷÷š 8À¦Ñœ¸2J$0a4243e6-6abc-4d18-a694-2b25284fa9e4
 ˆ
-java:S1854¨"?Remove this useless assignment to local variable "removerPost".(š§…œıÿÿÿÿ8Íù°û¶2J$907a6742-e361-448b-8146-19bd4d4ca322
+java:S1854°"?Remove this useless assignment to local variable "removerPost".(š§…œıÿÿÿÿ8Ù¦Ñœ¸2J$74ef75b5-efc1-44e0-8c0b-8a343a354a81
 y
-java:S1481¨"0Remove this unused "removerPost" local variable.(š§…œıÿÿÿÿ8Ïù°û¶2J$46e19c28-efc8-4650-a522-86e7394eeb90
-„	java:S125ª"<This block of commented-out lines of code should be removed.(«é±Æùÿÿÿÿ8Ğù°û¶2J$98cd528b-31b2-4b49-802c-703fdb790cbb
+java:S1481°"0Remove this unused "removerPost" local variable.(š§…œıÿÿÿÿ8İ¦Ñœ¸2J$62641f44-5962-4962-9d24-4e2a8884f758
 †
-java:S1854Á"BRemove this useless assignment to local variable "removeFollower".(§§Á†8Òù°û¶2J$79564cbf-be89-446b-a67a-81dcb6bec07d
+java:S1854É"BRemove this useless assignment to local variable "removeFollower".(§§Á†8à¦Ñœ¸2J$b3c19e9b-cea6-4c42-964a-4a9e18adc6d8
 w
-java:S1481Á"3Remove this unused "removeFollower" local variable.(§§Á†8Óù°û¶2J$d17fb91f-bab3-4978-bb02-41f0800d07f0
+java:S1481É"3Remove this unused "removeFollower" local variable.(§§Á†8ã¦Ñœ¸2J$17c679a1-13b2-4f6d-9875-4c5fea8441c5
 ¾
-java:S6204Î"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨¹8Õù°û¶2J$b2a764ce-67c0-49e2-b23f-578bdad75b62
+java:S6204Ö"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨¹8æ¦Ñœ¸2J$f24d431b-67d5-4930-aa28-40104028aa6c

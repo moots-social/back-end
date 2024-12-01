@@ -36,6 +36,7 @@ public class UserService {
     public void deletarUser(ElasticEvent elasticEvent){
         log.info("O evento de deletar usuario foi recebido " + elasticEvent.getUserId());
         User user = userRepository.findByUserId(elasticEvent.getUserId());
+        // fazer a logica para quando deletar o usuario, deletar seus posts
         userRepository.delete(user);
         log.info("Usuario deletado com sucesso" + user);
     }
@@ -74,4 +75,6 @@ public class UserService {
         List<User> result = userRepository.findCursoAndTagOrNomeCompleto(curso, query, query);
         return result;
     }
+
+
 }

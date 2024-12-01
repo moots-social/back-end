@@ -16,10 +16,12 @@ public class Topics {
 
         try (AdminClient adminClient = AdminClient.create(properties)) {
             NewTopic postColecao = new NewTopic("post-colecao-topic", 1, (short) 1);
+            NewTopic deletarPostColecao = new NewTopic("delete-post-colecao-topic", 1, (short) 1);
+            NewTopic alterarPostColecao = new NewTopic("alterar-post-colecao-topic", 1, (short) 1);
             NewTopic postSalvo = new NewTopic("post-criado-topic", 1, (short) 1);
             NewTopic postDeletado = new NewTopic("post-deletado-topic", 1, (short) 1);
             NewTopic postAtualizado = new NewTopic("post-atualizado-topic", 1, (short) 1);
-            adminClient.createTopics(Arrays.asList(postColecao, postSalvo, postDeletado, postAtualizado)).all().get();
+            adminClient.createTopics(Arrays.asList(postColecao, postSalvo, postDeletado, postAtualizado, deletarPostColecao, alterarPostColecao)).all().get();
 
 
             System.out.println("Tópicos criado com sucesso!");

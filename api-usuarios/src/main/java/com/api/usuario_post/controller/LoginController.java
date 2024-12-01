@@ -2,6 +2,7 @@ package com.api.usuario_post.controller;
 
 import com.api.usuario_post.dto.Login;
 import com.api.usuario_post.dto.Sessao;
+import com.api.usuario_post.event.ElasticEvent;
 import com.api.usuario_post.event.UserEvent;
 import com.api.usuario_post.handler.BusinessException;
 import com.api.usuario_post.model.User;
@@ -58,7 +59,8 @@ public class LoginController {
             jwtObject.setExpiration((new Date(System.currentTimeMillis() + SecurityConfig.EXPIRATION)));
             jwtObject.setRoles(user.getRoles());
             sessao.setToken(JWTCreator.create(SecurityConfig.PREFIX, SecurityConfig.KEY, jwtObject));
-            kafkaProducerService.sendMessage("user-logado-topic", new UserEvent( "UserEvent",user.getUserId(), user.getNomeCompleto(), user.getTag(), user.getFotoPerfil()));
+            ElasticEvent message = new ElasticEvent(user.getUserId().toString(), null, user.getNomeCompleto(), user.getTag(), user.getFotoPerfil(), null, null, null, null, null,null, null);
+            kafkaProducerService.sendMessage("user-logado-topic", message);
             log.info("Evento enviado");
             return sessao;
         }else {
