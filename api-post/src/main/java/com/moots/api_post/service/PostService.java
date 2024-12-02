@@ -41,6 +41,9 @@ public class PostService {
     @Autowired
     private PostEventRepository postEventRepository;
 
+    @Autowired
+    private SseService sseService;
+
     public Post criarPost(PostDTO postDTO) throws Exception {
         Long userId = Utils.buscarIdToken();
         Post post = new Post();
@@ -67,6 +70,7 @@ public class PostService {
 
         kafkaProducerService.sendMessage("post-criado-topic", message);
 
+        sseService.sendPostEvent(postSalvo);
         return postRepository.save(postSalvo);
     }
 
