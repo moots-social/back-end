@@ -1,23 +1,27 @@
 
 w
-java:S3740!"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿ8Ø”É¸2J$f2511ddd-e40c-450a-a372-21fcd368beb9
+java:S3740!"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿ8çä§È¸2J$81f7a940-7fcb-4371-897d-0b3357adbacd
 
-java:S1192U"UDefine a constant instead of duplicating this literal "Post nÃ£o encontrado" 3 times.(£«œ×øÿÿÿÿ8Ù”É¸2J$1807e0be-4a3a-458a-b64c-2776f83dafab
+java:S1192U"UDefine a constant instead of duplicating this literal "Post nÃ£o encontrado" 3 times.(£«œ×øÿÿÿÿ8êä§È¸2J$fcb166d9-d5be-47e3-abda-525e9b976ea2
 ¥
-java:S1488ª"aImmediately return this expression instead of assigning it to the temporary variable "likeUsers".(Ù›¹Î8Ú”É¸2J$9204dc78-2429-4651-b93f-03ece7d4f0ed
+java:S1488ª"aImmediately return this expression instead of assigning it to the temporary variable "likeUsers".(Ù›¹Î8ìä§È¸2J$c97efb37-7316-4449-8a1d-a4d52a2dc882
 …
-java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8æ”É¸2J$14dcad09-b823-4df7-abde-117b0c350d8f
+java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8üä§È¸2J$8149f0d3-b6d0-4a02-8862-5d819bd2b9c2
 …
-java:S6813#"BRemove this field injection and use constructor injection instead.(êæÄŞ8æ”É¸2J$920b149a-1c5e-4a75-a123-e82d24597c13
+java:S6813#"BRemove this field injection and use constructor injection instead.(êæÄŞ8üä§È¸2J$f133db16-85ce-441d-a573-f395b76c16ea
 …
-java:S6813&"BRemove this field injection and use constructor injection instead.(êæÄŞ8æ”É¸2J$81c5bfad-ebfc-448b-95e5-aa0f4dd45ca2
+java:S6813&"BRemove this field injection and use constructor injection instead.(êæÄŞ8üä§È¸2J$34dbb4fd-6edb-4b58-83fc-e154575db8f0
 …
-java:S6813)"BRemove this field injection and use constructor injection instead.(êæÄŞ8æ”É¸2J$b0556616-2457-42e0-a8b5-208d78862949
+java:S6813)"BRemove this field injection and use constructor injection instead.(êæÄŞ8üä§È¸2J$febf0e9a-9412-4a17-b191-b947e6d026d9
 …
-java:S1858j"C"getUserId" returns a string, there's no need to call "toString()".(½Îì8ô”É¸2J$8dc4b58d-6819-46bc-9cc9-01057a3dcd0d
+java:S1858j"C"getUserId" returns a string, there's no need to call "toString()".(½Îì8£å§È¸2J$1a7dfd2a-1b7e-48c7-90b4-c15fb56513c1
 ‹
-java:S1858q"C"getUserId" returns a string, there's no need to call "toString()".(û×·¦üÿÿÿÿ8ö”É¸2J$1cae8d22-be92-49eb-a8bf-d90cfe3c7e6a
+java:S1858q"C"getUserId" returns a string, there's no need to call "toString()".(û×·¦üÿÿÿÿ8¦å§È¸2J$23037135-9a7f-4267-b27e-7cabadf5916c
 Œ
-java:S1858…"C"getUserId" returns a string, there's no need to call "toString()".(¢éà°ûÿÿÿÿ8ø”É¸2J$3c0fe765-9398-4ac8-b06c-929c9222de94
+java:S1858…"C"getUserId" returns a string, there's no need to call "toString()".(¢éà°ûÿÿÿÿ8¬å§È¸2J$cf796da9-1c22-4776-a441-287d9e87647f
 ‡
-java:S1858–"C"getUserId" returns a string, there's no need to call "toString()".(şŠµ8ú”É¸2J$177ee5b0-7327-4d1e-9ab6-611266f6bac1
+java:S1858–"C"getUserId" returns a string, there's no need to call "toString()".(şŠµ8±å§È¸2J$94379395-8177-4f94-a127-36671a4dfedd
+u
+java:S1602Ö",Remove useless curly braces around statement(Ğ’ßıÿÿÿÿ8Ãå§È¸2J$43e0455f-936a-4223-8cd0-98c88283c352
+u
+java:S1602á",Remove useless curly braces around statement(Ğ’ßıÿÿÿÿ8Äå§È¸2J$32f7b38b-2c03-4302-902a-4e7d5f827160

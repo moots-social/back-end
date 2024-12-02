@@ -79,13 +79,13 @@ public class PostService {
         return postRepository.deletarPostEComentarios(postId);
     }
 
-    @Cacheable(value = "post", key = "#postId")
+    //@Cacheable(value = "post", key = "#postId")
     public Post acharPostPorId(Long postId) {
         return postRepository.findById(postId)
                 .orElseThrow(() -> new NoSuchElementException("Post não encontrado"));
     }
 
-    @CacheEvict(value = "post", key = "#postId")
+    //@CacheEvict(value = "post", key = "#postId")
     public Like darLike(Long postId, boolean like) throws Exception {
         Long idUser = Utils.buscarIdToken();
         String evento = "Curtiu";
@@ -106,7 +106,7 @@ public class PostService {
         if (like && idUser.toString().equals(post.getUserId().toString())) {
             log.info("Usuário que curtiu é o mesmo que criou o post, não enviando a notificação.");
         } else if (like) {
-            kafkaProducerService.sendMessage("notification-topic", new NotificationEvent(postId, idUser, post.getTag(), evento, new Date(), post.getUserId(), post.getFotoPerfil()));
+            kafkaProducerService.sendMessage("notification-topic", new NotificationEvent(postId, idUser, user.getTag(), evento, new Date(), post.getUserId(), user.getFotoPerfil()));
             log.info("Evento enviado com sucesso para o postId: {}", postId);
         }
 
@@ -120,7 +120,7 @@ public class PostService {
     }
 
 
-    @CacheEvict(value = "post", key = "#postId")
+    //@CacheEvict(value = "post", key = "#postId")
     public Deslike darDeslike(Long postId, boolean deslike)  {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new NoSuchElementException("Post não encontrado"));
@@ -204,6 +204,7 @@ public class PostService {
         posts.forEach((post -> postEventRepository.deleteByUserId(post.getUserId())));
     }
 
+    //@CacheEvict(value = "post", key = "#elasticEvent.postId")
     @KafkaListener(topics = "user-alterado-topic", groupId = "grupo-15")
     public void atualizarPostByUser(ElasticEvent elasticEvent){
         String userId = elasticEvent.getUserId();

@@ -39,7 +39,7 @@ public class ComentarioService {
     private KafkaProducerService kafkaProducerService;
 
     @Transactional
-    @CacheEvict(value = "post", key = "#postId")
+    //@CacheEvict(value = "post", key = "#postId")
     public Comentario adicionarComentario(Long postId, ComentarioDTO comentarioDTO) throws Exception {
         Long userId = Utils.buscarIdToken();
         String evento = "Comentou";
@@ -65,7 +65,7 @@ public class ComentarioService {
         return comentarioRepository.save(comentario);
     }
 
-    @CacheEvict(value = "post", key = "#postId")
+    //@CacheEvict(value = "post", key = "#postId")
     public Comentario deletarComentario(Long comentarioId, Long postId) {
         Comentario comentario = comentarioRepository.findById(comentarioId)
                 .orElseThrow(() -> new NoSuchElementException("Comentario não encontrado"));
@@ -73,6 +73,7 @@ public class ComentarioService {
         return comentario;
     }
 
+    //@CacheEvict(value = "post", key = "#elasticEvent.postId")
     public void alterarComentarioByUser(Comentario comentario, ElasticEvent elasticEvent){
         comentario.setTag(elasticEvent.getTag());
         comentario.setNomeCompleto(elasticEvent.getNomeCompleto());
@@ -89,6 +90,7 @@ public class ComentarioService {
     }
 
 
+    //@CacheEvict(value = "post", key = "#elasticEvent.postId")
     @KafkaListener(topics = "user-alterado-topic", groupId = "grupo-20")
     public void alterarComentarioByUser(ElasticEvent elasticEvent){
         List<Comentario> comentarios = comentarioRepository.findByUserId(elasticEvent.getUserId());
