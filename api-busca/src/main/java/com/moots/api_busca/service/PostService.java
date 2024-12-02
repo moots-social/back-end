@@ -82,4 +82,28 @@ public class PostService {
         return posts;
     }
 
+    public void alterarPostByUser(Post post, ElasticEvent elasticEvent){
+        post.setTag(elasticEvent.getTag());
+        post.setNomeCompleto(elasticEvent.getNomeCompleto());
+        post.setFotoPerfil(elasticEvent.getFotoPerfil());
+    }
+
+    @KafkaListener(topics = "user-alterado-topic", groupId = "grupo-10")
+    public void atualizarPostByUser(ElasticEvent elasticEvent){
+        String userId = elasticEvent.getUserId();
+
+        List<Post> posts = postRepository.findByUserId(userId);
+
+        posts.forEach((post -> {
+            this.alterarPostByUser(post, elasticEvent);
+            postRepository.save(post);
+        }));
+    }
+
+    @KafkaListener(topics = "user-deletado-topic", groupId = "grupo-10")
+    public void deletarPostByUserId(ElasticEvent elasticEvent){
+        List<Post> posts = postRepository.findByUserId(elasticEvent.getUserId());
+
+        posts.forEach((post -> postRepository.deleteByUserId(post.getUserId())));
+    }
 }

@@ -89,7 +89,7 @@ public class ComentarioService {
     }
 
 
-    @KafkaListener(topics = "user-alterado-topic", groupId = "grupo-5")
+    @KafkaListener(topics = "user-alterado-topic", groupId = "grupo-20")
     public void alterarComentarioByUser(ElasticEvent elasticEvent){
         List<Comentario> comentarios = comentarioRepository.findByUserId(elasticEvent.getUserId());
 

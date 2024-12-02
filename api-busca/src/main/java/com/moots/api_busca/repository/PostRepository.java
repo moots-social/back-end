@@ -19,4 +19,6 @@ public interface PostRepository extends ElasticsearchRepository<Post, String> {
     List<Post> findByUserId(String userId);
 
     List<Post> findAllByOrderByDataCriacaoDesc();
+
+    void deleteByUserId(String userId);
 }

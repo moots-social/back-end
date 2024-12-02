@@ -176,12 +176,16 @@ public class PostService {
         post.setTag(elasticEvent.getTag());
         post.setNomeCompleto(elasticEvent.getNomeCompleto());
         post.setFotoPerfil(elasticEvent.getFotoPerfil());
+
+        postRepository.save(post);
     }
 
     public void alterarPostColecaoByUser(PostEvent post, ElasticEvent elasticEvent){
         post.setNomeCompleto(elasticEvent.getNomeCompleto());
         post.setFotoPerfil(elasticEvent.getFotoPerfil());
         post.setTag(elasticEvent.getTag());
+
+        postEventRepository.save(post);
     }
 
     @KafkaListener(topics = "user-deletado-topic", groupId = "grupo-4")
@@ -200,7 +204,7 @@ public class PostService {
         posts.forEach((post -> postEventRepository.deleteByUserId(post.getUserId())));
     }
 
-    @KafkaListener(topics = "user-alterado-topic", groupId = "grupo-4")
+    @KafkaListener(topics = "user-alterado-topic", groupId = "grupo-15")
     public void atualizarPostByUser(ElasticEvent elasticEvent){
         String userId = elasticEvent.getUserId();
 
@@ -208,7 +212,6 @@ public class PostService {
 
         posts.forEach((post -> {
             this.alterarPostByUser(post, elasticEvent);
-            postRepository.save(post);
         }));
     }
 
@@ -220,7 +223,7 @@ public class PostService {
 
         posts.forEach((post -> {
             this.alterarPostColecaoByUser(post, elasticEvent);
-            postEventRepository.save(post);
+
         }));
     }
 }
