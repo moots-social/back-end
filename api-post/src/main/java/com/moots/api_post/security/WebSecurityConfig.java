@@ -39,6 +39,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(athz -> athz
                         .requestMatchers(SWAGGER_WHITELIST).permitAll()
                         .requestMatchers(HttpMethod.POST, "/post/images").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/post/stream-sse").permitAll()
                         .requestMatchers(HttpMethod.GET, "/post/{postId}").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.POST, "/post/criar").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.POST, "/post/salvar-post-colecao").hasAnyRole("ADMIN", "USER")
@@ -49,7 +50,6 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/post/user/{userId}").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.POST, "/comentario/criar/{postId}").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.DELETE, "/comentario/deletar/{comentarioId}").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers(HttpMethod.GET, "/post/stream-sse").permitAll()
                         .requestMatchers(HttpMethod.GET, "/post/find-all").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.GET, "/swagger-ui/index.html").permitAll()
                         .requestMatchers(HttpMethod.GET, "/v3/api-docs/**").permitAll()
