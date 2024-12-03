@@ -57,7 +57,9 @@ public class ComentarioService {
         comentario.setFotoPerfil(user.getFotoPerfil());
         comentario.setUserId(user.getUserId());
 
-        if(!userId.equals(Long.valueOf(post.getUserId()))){
+        if(userId.toString().equals(comentario.getUserId().toString())){
+            log.info("Usuário que curtiu é o mesmo que criou o comentario, não enviando a notificação.");
+        }else{
             kafkaProducerService.sendMessage("notification-topic", new NotificationEvent(postId, userId , user.getTag(), evento, new Date(), comentario.getUserId(), user.getFotoPerfil()));
             log.info("Evento enviado com sucesso");
         }
