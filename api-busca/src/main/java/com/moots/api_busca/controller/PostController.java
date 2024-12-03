@@ -35,4 +35,10 @@ public class PostController {
         List<Post> result = postService.findPostByUserId(userId);
         return ResponseEntity.ok().body(result);
     }
+
+    @GetMapping("/pageable")
+    public ResponseEntity<List<Post>> findAllPageable(@RequestParam (defaultValue = "0", value = "page") int page){
+        List<Post> result = postService.findAllPostPageable(page);
+        return ResponseEntity.ok().body(result);
+    }
 }

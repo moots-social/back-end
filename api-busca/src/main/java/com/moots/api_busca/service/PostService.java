@@ -106,4 +106,11 @@ public class PostService {
 
         posts.forEach((post -> postRepository.deleteByUserId(post.getUserId())));
     }
+
+    public List<Post> findAllPostPageable(int page){
+        int size = 15;
+        PageRequest pageRequest = PageRequest.of(page, size);
+        List<Post> resultado =  postRepository.findAllByOrderByDataCriacaoDesc(pageRequest);
+        return resultado;
+    }
 }
