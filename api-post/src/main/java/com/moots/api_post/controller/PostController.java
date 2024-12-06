@@ -93,7 +93,8 @@ public class PostController {
         return ResponseEntity.ok().body(posts);
     }
 
-    @CrossOrigin(origins = "*")
+//    @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+    // Tirar o CORS para funcionar nos navegadores
     @GetMapping(path = "/stream-sse", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public SseEmitter streamPosts() {
         SseEmitter emitter = new SseEmitter(Long.MAX_VALUE);

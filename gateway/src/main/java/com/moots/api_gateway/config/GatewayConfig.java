@@ -34,6 +34,10 @@ public class GatewayConfig {
     @Bean
     public CorsWebFilter corsWebFilter() {
         CorsConfiguration config = new CorsConfiguration();
+
+        // Especifica explicitamente a origem permitida (em vez de "*")
+        config.addAllowedOrigin("http://localhost:3000");  // Permite a origem específica (frontend React)
+
         config.addAllowedOriginPattern("*"); // Permite todas as origens (use com cuidado em produção)
         config.addAllowedHeader("*"); // Permite todos os cabeçalhos
         config.addAllowedMethod("*"); // Permite todos os métodos (GET, POST, etc.)
