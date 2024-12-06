@@ -29,3 +29,7 @@ p
 @src/main/java/com/moots/api_busca/controller/UserController.java,6\0\60f414cd1dd0e1386bd98b6018080bf0f0a11f07
 a
 1src/main/java/com/moots/api_busca/model/Post.java,7\b\7b556df1cf6bc7b482b46feee0bb5e9b2e154c86
+j
+:src/main/java/com/moots/api_busca/service/UserService.java,3\2\323bf067c1f3298c5104602bdb9d8cfb493b9c7f
+a
+1src/main/java/com/moots/api_busca/model/User.java,a\8\a83f35c1d15757fcc251432e08014c38e1fda420

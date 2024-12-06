@@ -1,42 +1,50 @@
 package com.moots.api_busca.service;
 
 import com.moots.api_busca.event.ElasticEvent;
-import com.moots.api_busca.model.Curso;
-import com.moots.api_busca.model.Post;
 import com.moots.api_busca.model.User;
 import com.moots.api_busca.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
+@Slf4j
 public class UserService {
 
     @Autowired
     private UserRepository userRepository;
 
-    public User salvarUserElastic(ElasticEvent elasticEvent){
-        var user = new User();
+    @KafkaListener(topics = "user-criado-topic")
+    public void salvarUserElastic(ElasticEvent elasticEvent){
+        log.info("O evento de salvar usuario foi recebido " + elasticEvent);
+        User user = new User();
         user.setTag(elasticEvent.getTag());
         user.setNomeCompleto(elasticEvent.getNomeCompleto());
         user.setFotoPerfil(elasticEvent.getFotoPerfil());
         user.setUserId(elasticEvent.getUserId());
         user.setCurso(elasticEvent.getCurso());
 
-        return userRepository.save(user);
+        userRepository.save(user);
+        log.info("Usuario salvo com sucesso" + user);
     }
 
-    public User deletarUser(String userId){
-        User user = userRepository.findByUserId(userId);
-        userRepository.deleteById(user.getId());
-        return user;
+    @KafkaListener(topics = "user-deletado-topic")
+    public void deletarUser(ElasticEvent elasticEvent){
+        log.info("O evento de deletar usuario foi recebido " + elasticEvent.getUserId());
+        User user = userRepository.findByUserId(elasticEvent.getUserId());
+        // fazer a logica para quando deletar o usuario, deletar seus posts
+        userRepository.delete(user);
+        log.info("Usuario deletado com sucesso" + user);
     }
 
-    public User alterarUser(String userId, ElasticEvent elasticEvent){
-        User user = userRepository.findByUserId(userId);
+    @KafkaListener(topics = "user-alterado-topic", groupId = "grupo-2")
+    public void alterarUser(ElasticEvent elasticEvent){
+        log.info("O evento de alterar usuario foi recebido " + elasticEvent);
+        User user = userRepository.findByUserId(elasticEvent.getUserId());
 
         user.setTag(elasticEvent.getTag());
         user.setNomeCompleto(elasticEvent.getNomeCompleto());
@@ -44,7 +52,8 @@ public class UserService {
         user.setUserId(elasticEvent.getUserId());
         user.setCurso(elasticEvent.getCurso());
 
-        return userRepository.save(user);
+        userRepository.save(user);
+        log.info("Usuario alterado com sucesso" + user);
     }
 
 
@@ -52,15 +61,20 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public List<User> findByTagOrNomeCompleto(String query, int page){
-        int size = 10;
-        PageRequest pageRequest = PageRequest.of(page, size);
-        var result = userRepository.findByTagOrNomeCompleto(query, query, pageRequest);
+    public List<User> findByTagOrNomeCompleto(String query){
+        List<User> result = userRepository.findByTagOrNomeCompleto(query, query);
         return result;
     }
 
-    public List<User> findByCurso(Curso curso){
-        List<User> users = userRepository.findByCurso(curso.toString());
+    public List<User> findByCurso(String curso){
+        List<User> users = userRepository.findByCurso(curso);
         return users;
     }
+
+    public List<User> findByCursoAndTagOrNomeCompleto(String curso, String query){
+        List<User> result = userRepository.findCursoAndTagOrNomeCompleto(curso, query, query);
+        return result;
+    }
+
+
 }

@@ -1,7 +1,9 @@
 
-~
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞJ$2188ee1f-64ea-4c84-a120-23df64c8654d
-~
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞJ$513a4bdc-c2e8-4946-818f-620c3af5c59f
-r	java:S106u"+Replace this use of System.out by a logger.(Ë“¶”ûÿÿÿÿ8ñÄË–¦2J$caa4331a-f484-4772-947d-34e307afc715
-r	java:S106|"+Replace this use of System.out by a logger.(Ë“¶”ûÿÿÿÿ8ôÄË–¦2J$5e52db43-3f0d-4e7b-b21d-cecfa7ad61a7
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8š™ù¶2J$93dae205-bfdb-4443-a74e-1d24ad93db53
+…
+java:S6813""BRemove this field injection and use constructor injection instead.(êæÄŞ8›™ù¶2J$1b82b251-e682-4608-8fe2-a51a20f83b7c
+…
+java:S6813%"BRemove this field injection and use constructor injection instead.(êæÄŞ8›™ù¶2J$68aa4309-fab1-431c-9ce6-720d373d65fd
+j
+java:S1068"'Remove this unused "log" private field.(ÂèûŒ8°™ù¶2J$72ae61ec-a702-439a-8e61-0d25b8c25249

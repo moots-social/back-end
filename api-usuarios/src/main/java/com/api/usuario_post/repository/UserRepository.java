@@ -1,5 +1,6 @@
 package com.api.usuario_post.repository;
 
+import com.api.usuario_post.event.PostEvent;
 import com.api.usuario_post.model.User;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.neo4j.repository.query.Query;
@@ -15,6 +16,11 @@ public interface UserRepository extends Neo4jRepository <User, Long> {
 
     User findByEmail(String email);
 
+    @Query("MATCH (p:User) WHERE p.email = $email " +
+            "OPTIONAL MATCH (p)<-[:FOLLOWS]-(f:User) " +
+            "RETURN p, collect(f) AS followers")
+    User findByOnlyEmail(String email);
+
     User findByTag(String tag);
 
     @Query("MATCH (u:User)<-[:FOLLOWS]-(f:User) WHERE u.userId = $userId RETURN f")
@@ -29,4 +35,8 @@ public interface UserRepository extends Neo4jRepository <User, Long> {
     User findOnlyUser(Long userId);
 
     Optional<User> findByUserId(Long userId);
+
+
+
+
 }

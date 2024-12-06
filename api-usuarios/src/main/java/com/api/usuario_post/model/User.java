@@ -1,14 +1,11 @@
 package com.api.usuario_post.model;
 
-import com.api.usuario_post.event.ElasticEvent;
 import com.api.usuario_post.event.PostEvent;
 import lombok.*;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
-
-import java.lang.reflect.Type;
 import java.util.*;
 
 @Getter
@@ -27,21 +24,17 @@ public class User {
 
     private String email;
 
-    private String numeroTelefone;
-
     private String tag;
 
     private String senha;
 
-    private List<PostEvent> colecaoSalvos;
+    private List<PostEvent> colecaoSalvos = new ArrayList<>();
 
     private Curso curso;
 
-    @Relationship(type = "HAVE", direction = Relationship.Direction.OUTGOING)
-    private List<ElasticEvent> listPosts;
-
     @Relationship(type = "FOLLOWS", direction = Relationship.Direction.OUTGOING)
     private Set<User> followers = new HashSet<>();
+
 
     @Override
     public boolean equals(Object o) {
@@ -58,18 +51,20 @@ public class User {
 
     public void follow(User user) {
         if (followers.contains(user)) {
-            throw new IllegalStateException("Already following this user.");
+            throw new IllegalStateException("Você já está seguindo esse usuário");
         }
         followers.add(user);
     }
 
     private String descricao;
 
-    private String fotoPerfil;
+    private String fotoPerfil = "https://storageimagesmoots.blob.core.windows.net/artifact-image-container/68a77764-1c2e-4bc4-8d6b-c280ac593970.png";
 
-    private String fotoCapa;
+    private String fotoCapa = "https://storageimagesmoots.blob.core.windows.net/artifact-image-container/2442999d-d56d-4a55-994b-91f9286a0ef0.jpg";
 
     private List<String > roles = new ArrayList<>();
 
     public boolean moderador;
+
+    private List<Long> likedPosts = new ArrayList<>();
 }

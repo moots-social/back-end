@@ -1,17 +1,29 @@
 
-p
-java:S3740"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿJ$894a9d76-b7cf-415f-abd4-4155f61cc0e8
-–
-java:S1192A"UDefine a constant instead of duplicating this literal "Post nÃ£o encontrado" 3 times.(£«œ×øÿÿÿÿJ$ce97e064-ad76-43ea-b17b-fb8df7afbbe7
-~
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞJ$2b33b848-10b8-4ac5-9e3b-dbf1558a06d6
-~
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞJ$41b94420-316f-498c-859f-3e30cd9da524
-~
-java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞJ$23d56ba1-baf0-4104-97f4-587a14c4bb75
-—
-java:S2159Q"VRemove this call to "equals"; comparisons between unrelated types always return false.(ÈËÕÂûÿÿÿÿJ$71f62ae3-64c2-4c98-b896-d06fa995e4af
-„
-java:S1858U"C"getUserId" returns a string, there's no need to call "toString()".(®¥ñùûÿÿÿÿJ$d29f9eaa-7687-441f-bb5c-162784777580
-„
-java:S1858b"C"getUserId" returns a string, there's no need to call "toString()".(®¥ñùûÿÿÿÿJ$b0233e3c-a613-4498-94da-726c6a61629b
+w
+java:S3740!"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿ8çä§È¸2J$8d3c47af-2d0f-4844-aa4c-70b2fd02a22c
+
+java:S1192Y"UDefine a constant instead of duplicating this literal "Post nÃ£o encontrado" 3 times.(£«œ×øÿÿÿÿ8êä§È¸2J$784adb5e-07eb-4db1-9f12-d1bd1bd6ded4
+¥
+java:S1488®"aImmediately return this expression instead of assigning it to the temporary variable "likeUsers".(Ù›¹Î8ìä§È¸2J$e78ba0ae-15de-437a-8e46-c3ce916448b3
+…
+java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8üä§È¸2J$4ddcdd72-6fe7-4e49-8536-89842c89cf0e
+…
+java:S6813#"BRemove this field injection and use constructor injection instead.(êæÄŞ8üä§È¸2J$81faf186-aa39-4f46-a614-a2af22dec7f1
+…
+java:S6813&"BRemove this field injection and use constructor injection instead.(êæÄŞ8üä§È¸2J$bc23da60-cdd0-45c7-89d1-f7bde5c77c60
+…
+java:S6813)"BRemove this field injection and use constructor injection instead.(êæÄŞ8üä§È¸2J$cc6d6345-ec5e-4fc5-8e36-941df7c453af
+…
+java:S6813,"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÎâÂÌ¸2J$3eea506a-6f26-47b9-9549-6f5410af32fa
+…
+java:S1858n"C"getUserId" returns a string, there's no need to call "toString()".(½Îì8£å§È¸2J$bfd75473-273a-4b56-ba4b-1ec178510c50
+‹
+java:S1858u"C"getUserId" returns a string, there's no need to call "toString()".(û×·¦üÿÿÿÿ8¦å§È¸2J$3695c74b-6220-40d9-97e6-237492232845
+Œ
+java:S1858‰"C"getUserId" returns a string, there's no need to call "toString()".(¢éà°ûÿÿÿÿ8¬å§È¸2J$eb6747f3-c1dc-4c89-bd83-2d57b219f130
+‡
+java:S1858š"C"getUserId" returns a string, there's no need to call "toString()".(şŠµ8±å§È¸2J$cffcad17-929f-4973-b182-67f3a340fc4c
+u
+java:S1602Ú",Remove useless curly braces around statement(Ğ’ßıÿÿÿÿ8Ãå§È¸2J$b3120136-39b2-47a5-8c89-9f6ff89fb1fa
+u
+java:S1602å",Remove useless curly braces around statement(Ğ’ßıÿÿÿÿ8Äå§È¸2J$2cfecbc7-63b9-4e34-befb-76dbb1248d7a

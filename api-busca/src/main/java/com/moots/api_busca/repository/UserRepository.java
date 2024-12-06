@@ -1,8 +1,7 @@
 package com.moots.api_busca.repository;
 
-import com.moots.api_busca.model.Curso;
 import com.moots.api_busca.model.User;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.annotations.Query;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +14,9 @@ public interface UserRepository extends ElasticsearchRepository<User, String> {
 
     List<User> findByCurso(String curso);
 
-    List<User> findByTagOrNomeCompleto(String tag, String nomeCompleto, Pageable pageable); // 5 users
+    List<User> findByTagOrNomeCompleto(String tag, String nomeCompleto);
+
+    @Query("{\"bool\": {\"should\": [{\"bool\": {\"must\": [{\"match\": {\"curso\": \"?0\"}}, {\"match\": {\"tag\": \"?1\"}}]}}, {\"match\": {\"nomeCompleto\": \"?2\"}}]}}")
+    List<User> findCursoAndTagOrNomeCompleto(String curso, String tag, String nomeCompleto);
+
 }

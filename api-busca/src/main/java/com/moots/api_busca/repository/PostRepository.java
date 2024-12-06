@@ -1,6 +1,5 @@
 package com.moots.api_busca.repository;
 
-import com.moots.api_busca.event.ElasticEvent;
 import com.moots.api_busca.model.Post;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
@@ -14,7 +13,13 @@ public interface PostRepository extends ElasticsearchRepository<Post, String> {
 
     Post findByPostId(String postId);
 
-    List<Post> findByTextoOrTag(String texto, String tag, Pageable pageable); // 10 posts
+    List<Post> findByTextoOrTag(String texto, String tag);
 
     List<Post> findByUserId(String userId);
+
+    List<Post> findAllByOrderByDataCriacaoDesc();
+
+    List<Post> findAllByOrderByDataCriacaoDesc(Pageable pageable);
+
+    void deleteByUserId(String userId);
 }

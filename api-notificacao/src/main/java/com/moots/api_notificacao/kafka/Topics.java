@@ -4,6 +4,7 @@ import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Properties;
 
@@ -14,7 +15,8 @@ public class Topics {
 
         try (AdminClient adminClient = AdminClient.create(properties)) {
             NewTopic notificationTopic = new NewTopic("notification-topic", 1, (short) 1);
-            adminClient.createTopics(Collections.singletonList( notificationTopic )).all().get();
+            NewTopic deleteNotificationTopic = new NewTopic("delete-notification-topic", 1 , (short) 1);
+            adminClient.createTopics(Arrays.asList(notificationTopic, deleteNotificationTopic)).all().get();
 
 
             System.out.println("Tópico criado com sucesso!");

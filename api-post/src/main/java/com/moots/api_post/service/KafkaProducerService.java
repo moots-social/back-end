@@ -1,12 +1,13 @@
 package com.moots.api_post.service;
 
 
+import com.moots.api_post.event.ElasticEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KafkaProducerService<T> {
+public class KafkaProducerService <T>{
 
     @Autowired
     private final KafkaTemplate<String, T> kafkaTemplate;

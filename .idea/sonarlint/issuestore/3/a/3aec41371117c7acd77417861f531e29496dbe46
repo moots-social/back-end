@@ -1,0 +1,28 @@
+
+m
+java:S1104	"RMake PREFIX a static final constant or non-public and provide accessors if needed.(õ¹ ¥øÿÿÿÿ
+e
+java:S1104
+"OMake KEY a static final constant or non-public and provide accessors if needed.(ÎãåÂ
+q
+java:S1104"VMake EXPIRATION a static final constant or non-public and provide accessors if needed.(âµ–öúÿÿÿÿ
+G
+java:S1444	",Make this "public static PREFIX" field final(õ¹ ¥øÿÿÿÿ
+?
+java:S1444
+")Make this "public static KEY" field final(ÎãåÂ
+K
+java:S1444"0Make this "public static EXPIRATION" field final(âµ–öúÿÿÿÿ
+l
+java:S3008	"QRename this field "PREFIX" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ¹ ¥øÿÿÿÿ
+d
+java:S3008
+"NRename this field "KEY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÎãåÂ
+p
+java:S3008"URename this field "EXPIRATION" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(âµ–öúÿÿÿÿ
+L
+java:S2696"6Make the enclosing method "static" or remove this set.(üþóÄ
+L
+java:S2696"6Make the enclosing method "static" or remove this set.(»Åîç
+K
+java:S2696"6Make the enclosing method "static" or remove this set.(çÚ¹Z

@@ -1,5 +1,6 @@
 package com.api.usuario_post.service;
 
+import com.api.usuario_post.event.ElasticEvent;
 import com.api.usuario_post.event.UserEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;

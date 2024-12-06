@@ -1,0 +1,8 @@
+
+
+java:S1598"ÉThis file "Topics.java" should be located in "com\moots\api_report\kafka" directory, not in "C:\Users\Emerson Oliveira\Documents\back-end\api-notificacao\src\main\java\com\moots\api_notificacao\kafka".(ã¯İ‘8áÇ¿¸2J$8b33e52a-2fb8-4836-8460-947ae2f2a039
+{
+java:S2142"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(”ı¾8­ïÁ¸2
+m	java:S106"+Replace this use of System.out by a logger.(úöØº8È¿¸2J$56c68f47-53e2-4b86-8147-233277a0fa7d
+T
+java:S1128"2Remove this unused import 'java.util.Collections'.(¢³ïÓşÿÿÿÿ8·ïÁ¸2

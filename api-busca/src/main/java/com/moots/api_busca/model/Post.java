@@ -6,7 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -18,29 +22,25 @@ public class Post {
     @Id
     private String id;
 
-    @NonNull
     private Long postId;
 
-    @NonNull
     private String userId;
 
-    @NonNull
     private String nomeCompleto;
 
-    @NonNull
     private String tag;
 
-    @NonNull
     private String fotoPerfil;
 
-    @NonNull
     private String texto;
 
     private List<String> listImagens;
 
-    @NonNull
     private Integer contadorLike;
 
-    @NonNull
     private Integer contadorDeslike;
+
+    private List<String> likeUsers = new ArrayList<>();
+
+    private String dataCriacao;
 }

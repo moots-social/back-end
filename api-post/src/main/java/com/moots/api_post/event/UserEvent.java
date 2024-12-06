@@ -13,19 +13,14 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class UserEvent implements Serializable {
 
-    @NonNull
     private String type;
 
-    @NonNull
     private Long userId;
 
-    @NonNull
     private String nomeCompleto;
 
-    @NonNull
     private String tag;
 
-    @NonNull
     private String fotoPerfil;
 }
 

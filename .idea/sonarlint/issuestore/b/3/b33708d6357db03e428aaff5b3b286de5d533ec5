@@ -1,3 +1,15 @@
 
+L
+java:S1068"*Remove this unused "userId" private field.(Â—‹¼úÿÿÿÿ8‰´ Å¸2
+L
+java:S1068"*Remove this unused "postId" private field.(„Õ·åÿÿÿÿÿ8Š´ Å¸2
 F
-java:S1128"+Remove this unused import 'lombok.NonNull'.(¦¸©—ýÿÿÿÿ
+java:S1068")Remove this unused "texto" private field.(‹äÇø8Š´ Å¸2
+Q
+java:S1068"/Remove this unused "listImagens" private field.(©À¶Œþÿÿÿÿ8‹´ Å¸2
+L
+java:S1068"0Remove this unused "nomeCompleto" private field.(Þ–šT8‹´ Å¸2
+D
+java:S1068"'Remove this unused "tag" private field.(šàÆ¯8Œ´ Å¸2
+J
+java:S1068!".Remove this unused "fotoPerfil" private field.(òô›K8Œ´ Å¸2

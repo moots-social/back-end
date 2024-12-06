@@ -3,6 +3,7 @@ package com.api.usuario_post.dto;
 public class Sessao {
     private String login;
     private String token;
+    private Long id;
 
     public String getLogin() {
         return login;
@@ -18,5 +19,13 @@ public class Sessao {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

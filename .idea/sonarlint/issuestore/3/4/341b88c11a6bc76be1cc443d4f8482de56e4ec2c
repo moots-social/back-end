@@ -1,28 +1,34 @@
 
-h	java:S112«"FDefine and throw a dedicated exception instead of using a generic one.(Ï€”©üÿÿÿÿ8ğÖÛ–¦2
-h	java:S112¶"FDefine and throw a dedicated exception instead of using a generic one.(Ä’°ùÿÿÿÿ8ñÖÛ–¦2
-h	java:S112Á"FDefine and throw a dedicated exception instead of using a generic one.(š™´Ñÿÿÿÿÿ8ñÖÛ–¦2
-h	java:S112â"FDefine and throw a dedicated exception instead of using a generic one.(ÛõŠÁøÿÿÿÿ8ñÖÛ–¦2
-c	java:S112ü"FDefine and throw a dedicated exception instead of using a generic one.(†ê¿¡8ñÖÛ–¦2
-h	java:S112—"FDefine and throw a dedicated exception instead of using a generic one.(ÛõŠÁøÿÿÿÿ8ñÖÛ–¦2
-c	java:S112±"FDefine and throw a dedicated exception instead of using a generic one.(†ê¿¡8ñÖÛ–¦2
+h	java:S112À"FDefine and throw a dedicated exception instead of using a generic one.(Ï€”©üÿÿÿÿ8»¼«Ì¸2
+c	java:S112Ü"FDefine and throw a dedicated exception instead of using a generic one.(œÇçú8½¼«Ì¸2
+h	java:S112ç"FDefine and throw a dedicated exception instead of using a generic one.(Ä’°ùÿÿÿÿ8¾¼«Ì¸2
+h	java:S112ò"FDefine and throw a dedicated exception instead of using a generic one.(š™´Ñÿÿÿÿÿ8À¼«Ì¸2
+c	java:S112«"FDefine and throw a dedicated exception instead of using a generic one.(†ê¿¡8Á¼«Ì¸2
 Q
-java:S3740$"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿ8òÖÛ–¦2
-‡
-java:S1192â"dDefine a constant instead of duplicating this literal "UsuÃ¡rio nÃ£o encontrado com o ID: " 4 times.(ÛõŠÁøÿÿÿÿ8şÖÛ–¦2
+java:S3740&"/Provide the parametrized type for this generic.(é…ìÙûÿÿÿÿ8Ã¼«Ì¸2
+z
+java:S1488º"\Immediately return this expression instead of assigning it to the temporary variable "user".(ğøÿª8Ò¼«Ì¸2
+€
+java:S1488Ô"bImmediately return this expression instead of assigning it to the temporary variable "listPostId".(ÃÚò8Ô¼«Ì¸2
 _
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8–×Û–¦2
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Ş½«Ì¸2
 _
-java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8–×Û–¦2
+java:S6813""BRemove this field injection and use constructor injection instead.(êæÄŞ8à½«Ì¸2
 _
-java:S6813#"BRemove this field injection and use constructor injection instead.(êæÄŞ8–×Û–¦2
-n
-java:S3776X"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(¥şûy8¥×Û–¦2
+java:S6813%"BRemove this field injection and use constructor injection instead.(êæÄŞ8á½«Ì¸2
+_
+java:S6813("BRemove this field injection and use constructor injection instead.(êæÄŞ8â½«Ì¸2
+J
+java:S1125¬"'Remove the unnecessary boolean literal.(™©í½ûÿÿÿÿ8¬¾«Ì¸2
+E
+java:S1125°"'Remove the unnecessary boolean literal.(÷÷š 8¯¾«Ì¸2
 b
-java:S1854"?Remove this useless assignment to local variable "removerPost".(š§…œıÿÿÿÿ8º×Û–¦2
+java:S1854°"?Remove this useless assignment to local variable "removerPost".(š§…œıÿÿÿÿ8İ¾«Ì¸2
 S
-java:S1481"0Remove this unused "removerPost" local variable.(š§…œıÿÿÿÿ8¾×Û–¦2
-b
-java:S1854¶"?Remove this useless assignment to local variable "removerPost".(ïò¼Ãúÿÿÿÿ8Ä×Û–¦2
-S
-java:S1481¶"0Remove this unused "removerPost" local variable.(ïò¼Ãúÿÿÿÿ8Æ×Û–¦2
+java:S1481°"0Remove this unused "removerPost" local variable.(š§…œıÿÿÿÿ8ë¾«Ì¸2
+`
+java:S1854É"BRemove this useless assignment to local variable "removeFollower".(§§Á†8î¾«Ì¸2
+Q
+java:S1481É"3Remove this unused "removeFollower" local variable.(§§Á†8ú¾«Ì¸2
+˜
+java:S6204Ö"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨¹8ÿ¾«Ì¸2

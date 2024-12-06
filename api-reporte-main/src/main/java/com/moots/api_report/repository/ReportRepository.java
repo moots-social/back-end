@@ -9,5 +9,9 @@ import java.util.List;
 @Repository
 public interface ReportRepository extends MongoRepository<Report, String> {
 
-    List<Report> findByPostId(Long postId);
+
+    List<Report> findByPostIdOrderByDataCriacaoDesc(Long postId);
+
+    List<Report> findAllByOrderByDataCriacaoDesc();
+
 }

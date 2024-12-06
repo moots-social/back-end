@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -31,5 +33,12 @@ public class ElasticEvent implements Serializable {
 
     private Integer contadorDeslike;
 
+    private String curso;
+
+    private List<String> likeUsers = new ArrayList<>();
+
+    private LocalDateTime dataCriacaoPost;
+
+    private Long userIdLogado;
 }
 

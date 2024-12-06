@@ -19,3 +19,13 @@ u
 Esrc/main/java/com/moots/api_post/controller/ComentarioController.java,5\c\5c0be5befd1e45c6de0a1d73231267604927a469
 h
 8src/main/java/com/moots/api_post/event/ElasticEvent.java,c\d\cd6bcba6f0ec4b048ba68399fa18291c88a81e51
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+|
+Lsrc/main/java/com/moots/api_post/client/imagestorage/ImageStorageClient.java,2\1\217b5bfcf45ca79cc43df755dc8b68f4d6d809ae
+Å
+Qsrc/main/java/com/moots/api_post/client/imagestorage/AzureImageStorageClient.java,3\c\3c27e84c6ab2299e1a1cfe37f8c8811745eba08a
+b
+2src/main/java/com/moots/api_post/utils/Result.java,9\f\9f7e9d2bef44a5aaaaa0338fbb08d5b87ecaff56
+f
+6src/main/java/com/moots/api_post/utils/StatusCode.java,4\8\4887d28636d2b724dcb3bcfb7981229a230bc757

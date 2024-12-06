@@ -39,12 +39,10 @@ public class Comentario implements Serializable {
     @NonNull
     private String tag;
 
-    @NonNull
     private Long postId;
 
     @JsonBackReference
     @Relationship(value = "HAS_COMMENT", direction = Relationship.Direction.INCOMING)
     private Post post;
-
 
 }

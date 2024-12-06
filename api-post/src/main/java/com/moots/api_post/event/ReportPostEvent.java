@@ -19,5 +19,5 @@ public class ReportPostEvent implements Serializable {
     @NonNull
     private String denuncia;
 
-    private Integer contadorDenuncia;
+
 }
